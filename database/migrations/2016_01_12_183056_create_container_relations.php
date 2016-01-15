@@ -13,7 +13,7 @@ class CreateContainerRelations extends Migration
     public function up()
     {
         Schema::create('container_relations', function (Blueprint $table) {
-            $table->string('host_asset')->references('id')->on('assets');
+            $table->string('host_asset')->references('id')->on('assets')->primary();
             $table->string('item_asset')->references('id')->on('assets');
         });
     }

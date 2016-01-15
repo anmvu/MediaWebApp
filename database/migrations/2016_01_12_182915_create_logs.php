@@ -14,6 +14,9 @@ class CreateLogs extends Migration
     {
         Schema::create('logs', function (Blueprint $table) {
             $table->increments('id');
+            $table->longText('comment');
+            $table->integer('asset_id')->references('id')->on('assets');
+            $table->string('status');
             $table->timestamps();
         });
     }

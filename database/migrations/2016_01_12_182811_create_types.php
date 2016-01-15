@@ -14,6 +14,8 @@ class CreateTypes extends Migration
     {
         Schema::create('types', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('name');
+            $table->bool('is_container');
             $table->timestamps();
         });
     }
