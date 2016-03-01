@@ -44,6 +44,10 @@ An attribute would be attributes of an asset. Many attributes can be connected t
 
 For example: I have a Ben-Q projector. The projector is already an asset in the database but there are no attributes linked to it. So, link the 'brand' attribute to the projector and I label the brand as Ben-Q. Now we know that there is a Ben-Q projector as an equipment. 
 
+
+All assets must have an **issue count** as an attribute
+
+
 ###<a name="issues"></a>Issues
 
 When some asset does not work or function properly, an issue can be created for that asset. The issue would have to be created by a user and the issue would be created in a form. The form will only ask for an asset id and priority. The issues will have status which indicates whether or not the issue has not started, is in the process of, or completed. Each issue can be connected to multiple comments.
