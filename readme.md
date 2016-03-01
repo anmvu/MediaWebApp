@@ -60,6 +60,7 @@ Loans are any portable equipment that are mainly used for temporary use. The pur
 
 
 Loans would be submitted in a form that requires the following:
+
 	- an asset id that does not have a container 
 	- the room it's going to
 	- the name of borrower
@@ -72,7 +73,8 @@ Loans would be submitted in a form that requires the following:
 Note that the loanable equipment needs an attribute of loans and the value is incremented everytime the form is filled and if the asset is still labeled as out, the asset cannot be loaned until 'returned' is pressed.
 
 
-If it is just a room with problems, 
+If it is just a room with problems:
+
 	- name = Issue 
 	- email = webteam@poly.edu
 	- comments = can leave blank
@@ -84,12 +86,14 @@ Room checks are crucial during room availabilities. It allows Media Support to c
 
 
 Room Checks will be done as follows:
+
 	1. Choose a room.
 	2. All assets that lists that room as its container will be listed.
 	3. Checker must go through each equipment and make sure it's working properly.
 	4. For any assets that is not performing correctly, check off the box next to it.
 	5. Even if there is no discoverable error, "Checked Room"  MUST be pressed. 
 	6. If there assets with checked off boxes, "Checked Room" will redirect to a form that will allow the checked to write comments in regards to the issues connected to the asset.
+
 		- The comment is necessary for future fixing. 
 		- Must submit each comment seperately. 
 		- The comments will be marked as not a solution.
@@ -100,20 +104,23 @@ The Room Check function is also used to mark any issues found in the room. If a 
 ###<a name="users"></a>Users
 
 There are two types of users:
+
 	- authorized
 	- student
 
 
 Authorized users are obviously myself and any managers in the department. Authorized can do the following:
+
 	- Modify/Add/Remove Types
 	- Modify/Add/Remove Assets
 	- Modify/Add/Remove Attributes
 	- Modify/Add/Remove Users
 	- Room Checks (Includes Issues and Comments)
 	- Loans
-	
+
 
 Student users are users that work for the department and have work-study. Students can do the following:
+
 	- Room Checks(Includes Issues and Comments)
 	- Loans
 
