@@ -70,7 +70,9 @@ Loans would be submitted in a form that requires the following:
 	- status -> whether or not the equipment is still out or has been returned. 
 
 
+
 Note that the loanable equipment needs an attribute of loans and the value is incremented everytime the form is filled and if the asset is still labeled as out, the asset cannot be loaned until 'returned' is pressed.
+
 
 
 If it is just a room with problems:
@@ -79,7 +81,7 @@ If it is just a room with problems:
 	- email = webteam@poly.edu
 	- comments = can leave blank
 	- due = 1-2 weeks from the day of loans
-	
+
 
 ###<a name="roomcheck"></a>Room Check
 
