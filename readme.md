@@ -53,22 +53,22 @@ Comments can be connected to one issue. The comments can either be in regards to
 
 Loans are any portable equipment that are mainly used for temporary use. The purpose of this function is to understand the borrowing frequency of certain assets. Anyone can loan assets.
 Loans would be submitted in a form that requires the following:
-	* an asset id that does not have a container 
-	* the room it's going to
-	* the name of borrower
-	* email(netID) of the borrower
-	* comments before lending if it is an expensive asset or about what event it is for. 
-	* the time or day the equipment is due
-	* status -> whether or not the equipment is still out or has been returned. 
+	- an asset id that does not have a container 
+	- the room it's going to
+	- the name of borrower
+	- email(netID) of the borrower
+	- comments before lending if it is an expensive asset or about what event it is for. 
+	- the time or day the equipment is due
+	- status -> whether or not the equipment is still out or has been returned. 
 
 Note that the loanable equipment needs an attribute of loans and the value is incremented everytime the form is filled and if the asset is still labeled as out, the asset cannot be loaned until 'returned' is pressed.
 
 
 If it is just a room with problems, 
-	* name = Issue 
-	* email = webteam@poly.edu
-	* comments = can leave blank
-	* due = 1-2 weeks from the day of loans
+	- name = Issue 
+	- email = webteam@poly.edu
+	- comments = can leave blank
+	- due = 1-2 weeks from the day of loans
 
 ###<a name="roomcheck"></a>Room Check
 
@@ -94,16 +94,16 @@ There are two types of users:
 *student
 
 Authorized users are obviously myself and any managers in the department. Authorized can do the following:
-* Modify/Add/Remove Types
-* Modify/Add/Remove Assets
-* Modify/Add/Remove Attributes
-* Modify/Add/Remove Users
-* Room Checks (Includes Issues and Comments)
-* Loans
+	- Modify/Add/Remove Types
+	- Modify/Add/Remove Assets
+	- Modify/Add/Remove Attributes
+	- Modify/Add/Remove Users
+	- Room Checks (Includes Issues and Comments)
+	- Loans
 
 Student users are users that work for the department and have work-study. Students can do the following:
-* Room Checks(Includes Issues and Comments)
-* Loans
+	- Room Checks(Includes Issues and Comments)
+	- Loans
 
 
 
@@ -113,10 +113,10 @@ Special thanks to Aleksandr Rogozin and Randy Sofia for their assistance and tea
 
 ## <a name="future"></a>Future Features
 
-	* Form for requests
-	* Logging in two different ways
-	* Chat feature between online users
-	* Updating certain asset-attribute values in room check i.e. lamp hours
-	* Loanable equipment can be from storage and still be loaned out
+	- Form for requests
+	- Logging in two different ways
+	- Chat feature between online users
+	- Updating certain asset-attribute values in room check i.e. lamp hours
+	- Loanable equipment can be from storage and still be loaned out
 
 
