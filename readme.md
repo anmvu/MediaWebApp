@@ -10,7 +10,9 @@
 
 Media-link to be made
 
+
 This web application is mainly for use by Media Support at NYU Tandon School of Engineering. The purpose of this web application is to help the team log all A/V activity within the workplace. 
+
 
 Logging System utilizes the Laravel Framework along with Eloquent ORM and the Database is in MySQL. 
 
@@ -37,11 +39,14 @@ Assets is each individual object itself. In a classroom, you have a set of equip
 ###<a name="attributes"></a>Attributes
 
 An attribute would be attributes of an asset. Many attributes can be connected to many assets but an asset cannot have two of the same attributes. There are several projectors but they are not all the same brands. Therefore, an attribute would be the brand. When you link an attribute to an asset, a value must be set. Attributes can only be modified, or linked, by an authorized user.
+
+
 For example: I have a Ben-Q projector. The projector is already an asset in the database but there are no attributes linked to it. So, link the 'brand' attribute to the projector and I label the brand as Ben-Q. Now we know that there is a Ben-Q projector as an equipment. 
 
 ###<a name="issues"></a>Issues
 
 When some asset does not work or function properly, an issue can be created for that asset. The issue would have to be created by a user and the issue would be created in a form. The form will only ask for an asset id and priority. The issues will have status which indicates whether or not the issue has not started, is in the process of, or completed. Each issue can be connected to multiple comments.
+
 
 Issues will be listed on one page and there is an option to change the status of the issue. If the status is listed as completed, a comment needs to be submitted as to how it was fixed.
 
@@ -52,6 +57,8 @@ Comments can be connected to one issue. The comments can either be in regards to
 ###<a name="loans"></a>Loans
 
 Loans are any portable equipment that are mainly used for temporary use. The purpose of this function is to understand the borrowing frequency of certain assets. Anyone can loan assets.
+
+
 Loans would be submitted in a form that requires the following:
 	- an asset id that does not have a container 
 	- the room it's going to
@@ -60,6 +67,7 @@ Loans would be submitted in a form that requires the following:
 	- comments before lending if it is an expensive asset or about what event it is for. 
 	- the time or day the equipment is due
 	- status -> whether or not the equipment is still out or has been returned. 
+
 
 Note that the loanable equipment needs an attribute of loans and the value is incremented everytime the form is filled and if the asset is still labeled as out, the asset cannot be loaned until 'returned' is pressed.
 
@@ -74,6 +82,7 @@ If it is just a room with problems,
 
 Room checks are crucial during room availabilities. It allows Media Support to check on the equipments(assets) in the room and make sure everything is readily working for any classes that will/may occur and to document any issues that users might not have submitted. Anyone can do room checks.
 
+
 Room Checks will be done as follows:
 	1. Choose a room.
 	2. All assets that lists that room as its container will be listed.
@@ -85,13 +94,15 @@ Room Checks will be done as follows:
 		- Must submit each comment seperately. 
 		- The comments will be marked as not a solution.
 
+
 The Room Check function is also used to mark any issues found in the room. If a professor calls about a problem, the room check must be used to indicate that there was an issue.  
 
 ###<a name="users"></a>Users
 
 There are two types of users:
-*authorized
-*student
+	- authorized
+	- student
+
 
 Authorized users are obviously myself and any managers in the department. Authorized can do the following:
 	- Modify/Add/Remove Types
@@ -100,6 +111,7 @@ Authorized users are obviously myself and any managers in the department. Author
 	- Modify/Add/Remove Users
 	- Room Checks (Includes Issues and Comments)
 	- Loans
+	
 
 Student users are users that work for the department and have work-study. Students can do the following:
 	- Room Checks(Includes Issues and Comments)
