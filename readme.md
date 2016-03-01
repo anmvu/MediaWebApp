@@ -31,7 +31,7 @@ Logging System utilizes the Laravel Framework along with Eloquent ORM and the Da
 
 ###<a name="types"></a>Types
 
-Type is pretty self explanatory - use are describing each component in a room. If you're describing a projector, the type is projector. The list of types would be made into a list and can be modified for removal or addition. Any modifications in the type list can only be made by an authorized user.
+Type is pretty self explanatory - used to describe each component in a room. If you're describing a projector, the type is projector. The list of types would be made into a list and can be modified for removal or addition. Any modifications in the type list can only be made by an authorized user.
 
 ###<a name="assets"></a>Assets
 
