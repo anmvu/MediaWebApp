@@ -1,4 +1,4 @@
-# Logging System
+# NYU Tandon Media Support Logging System
 
 # Table of Contents
 - [Introduction](#intro)
