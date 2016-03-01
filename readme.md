@@ -5,6 +5,7 @@
 - [Official Documentation](#official)
 - [Special Thanks](#thanks)
 - [Future Features](#future)
+- [Contact](#problems)
 
 #<a name="intro"></a>Introduction
 
@@ -142,3 +143,7 @@ Special thanks to Aleksandr Rogozin and Randy Sofia for their assistance and tea
 	- Loanable equipment can be from storage and still be loaned out
 
 
+##<a name="problem"></a> Contact
+
+If there is any problems, feel free to contact me at
+anvu94@gmail.com or through my mobile number. Or contact Erich Chu.
