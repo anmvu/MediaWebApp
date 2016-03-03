@@ -14,7 +14,7 @@ class CreateAssetsTable extends Migration
     {
         Schema::create('assets', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');
+            $table->string('barcode');
             $table->integer('type_id')->references('id')->on('types');
             $table->timestamp('time_checked');
             $table->integer('container_id')->references('id')->on('assets');

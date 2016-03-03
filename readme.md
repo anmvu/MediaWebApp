@@ -66,7 +66,7 @@ Loans are any portable equipment that are mainly used for temporary use. The pur
 
 Loans would be submitted in a form that requires the following:
 
-	- an asset id that does not have a container 
+	- an asset id that does **not** have a container 
 	- the room it's going to
 	- the name of borrower
 	- email(netID) of the borrower

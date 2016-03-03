@@ -15,6 +15,7 @@ class CreateAttributeAssetsTable extends Migration
         Schema::create('attribute_assets', function (Blueprint $table) {
             $table->integer('asset_id')->references('id')->on('assets');
             $table->integer('attribute_id')->references('id')->on('attributes');
+            $table->string('value');
             $table->timestamps();
             $table->primary(['asset_id','attribute_id']);
         }); 
