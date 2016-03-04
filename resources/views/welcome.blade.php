@@ -2,12 +2,7 @@
 
 @section('content')
 
-    <!-- Bootstrap Boilerplate... -->
-
     <div>
-        <!-- Display Validation Errors -->
-       HI
-    </div>
-
-    <!-- TODO: Current Tasks -->
+           HI
+    </div>s
 @endsection
