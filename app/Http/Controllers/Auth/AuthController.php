@@ -56,16 +56,16 @@ class AuthController extends Controller
 
     public function getLogin()
     {
-
+        return view('login');
     }
 
     public function postLogin(Request $request)
     {
         if ($request->input('barcode')) {
-            if (($user = User::whereBarcode($request->input('user'))->first()) != null) {
+            if (($user = User::whereUser($request->input('user'))->first()) != null) {
                 Auth::login($user, true);
 
-                return redirect('/dashboard');
+                return redirect('/home');
             }
         }
         

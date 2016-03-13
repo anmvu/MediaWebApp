@@ -31,8 +31,13 @@
 
             .header{
                 display:table-row;
-                height: 15%;
-                width: 80%;
+                height: 5%;
+                width: 100%;
+                position: fixed;
+                top:0;
+                left: 0;
+                right: 0;
+
             }
 
             #media{
@@ -59,14 +64,41 @@
             .title {
                 font-size: 96px;
             }
+
+            #login{
+                /*border: 1px solid black;*/
+                text-decoration: none;
+                margin: 3%;
+                font-family: 'Gotham',sans-serif;
+                display: inline;
+                float: right;
+                font-weight: bold;
+                font-size:2vh; 
+            }
+            .divider{
+                background:#57068c; 
+                height:10%;
+                width:100%; 
+            }
         </style>
     </head>
     <body>
         <div class = "header">
-            <a href = "/" style='display:table-cell; text-decoration:none;'>
-                <img src = "img/tandon.png" height="35%"/>
-                <span id = "media">Media Support</span>
-            </a>
+            <div style='display:table-cell; text-decoration:none;'>
+                <a href = "/" style='display:inline;'>
+                    <img src = "img/medsup.jpg" width="85%"/>
+                </a>
+                @if(Auth::check())
+                <a href="{{url('/home')}}">Home</a>
+                <a href="{{ url('/user/profile') }}">{{Auth::user()}}</a>
+                <a href= {{Auth::logout()}}>Logout</a>
+                @else
+                <a id='login' href='/login'>Login</a>
+                @endif
+                
+            </div>
+            <div class='divider'></div>
+            
         </div>
         <div class="container">
             <div class="content">

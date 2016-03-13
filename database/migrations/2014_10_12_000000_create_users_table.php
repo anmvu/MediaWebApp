@@ -16,9 +16,10 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->boolean('is_authorized')->default(false);
             $table->boolean('active')->default(true);
-            $table->string('name');
+            $table->string('first_name');
+            $table->string('last_name');
             $table->string('phone_num',10);
-            $table->string('user');
+            $table->string('user')->unique();
             $table->timestamps();
         });
     }
