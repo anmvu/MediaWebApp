@@ -11,16 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
-
-
-Route::controllers([
-	'auth'=>'Auth\AuthController',
-]);
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -32,18 +22,17 @@ Route::controllers([
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-    Route::get('/login',function(){
-		return view('login');
-	});
+Route::group(['middleware' => 'web'], function () {
+    Route::get('/login','Auth\AuthController@getLogin');
+    Route::post('/login','Auth\AuthController@postLogin');
 	Route::get('/home',function(){
 		return view('home');
 	});
+	Route::get('/', function () {
+	    return view('welcome');
+	});
+	Route::get('/logout','Auth\AuthController@logOut');
+
 });
 
-Route::group(['middleware' => 'web'], function () {
-    Route::auth();
-
-    Route::get('/home');
-});
 

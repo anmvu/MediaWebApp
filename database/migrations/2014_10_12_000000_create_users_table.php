@@ -20,6 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('last_name');
             $table->string('phone_num',10);
             $table->string('user')->unique();
+            $table->string('remember_token');
             $table->timestamps();
         });
     }

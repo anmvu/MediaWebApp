@@ -61,26 +61,35 @@ trait AuthenticatesUsers
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
         // the IP address of the client making these requests into this application.
-        $throttles = $this->isUsingThrottlesLoginsTrait();
+        //$throttles = $this->isUsingThrottlesLoginsTrait();
 
-        if ($throttles && $lockedOut = $this->hasTooManyLoginAttempts($request)) {
-            $this->fireLockoutEvent($request);
+        // if ($throttles && $lockedOut = $this->hasTooManyLoginAttempts($request)) {
+        //     $this->fireLockoutEvent($request);
 
-            return $this->sendLockoutResponse($request);
-        }
+        //     return $this->sendLockoutResponse($request);
+        // }
 
         $credentials = $this->getCredentials($request);
-
-        if (Auth::guard($this->getGuard())->attempt($credentials, $request->has('remember'))) {
+        //$credentials = $request->only('user');
+        //Auth::guard()->user() = $credentials['user'];
+        if (Auth::guard($this->getGuard())->attempt($credentials)) {
+        //if(Auth::guard()->attempt($credentials)){
             return $this->handleUserWasAuthenticated($request, $throttles);
+        }
+
+         if (Auth::attempt(['user' => $credentials])) {
+            // Authentication passed...
+            Auth::login(Auth::user(), $remember);
+            return $this->handleUserWasAuthenticated($request, $throttles);
+            return redirect()->route('home');
         }
 
         // If the login attempt was unsuccessful we will increment the number of attempts
         // to login and redirect the user back to the login form. Of course, when this
         // user surpasses their maximum number of attempts they will get locked out.
-        if ($throttles && ! $lockedOut) {
-            $this->incrementLoginAttempts($request);
-        }
+        // if ($throttles && ! $lockedOut) {
+        //     $this->incrementLoginAttempts($request);
+        // }
 
         return $this->sendFailedLoginResponse($request);
     }
@@ -94,7 +103,7 @@ trait AuthenticatesUsers
     protected function validateLogin(Request $request)
     {
         $this->validate($request, [
-            $this->loginUsername() => 'required', 'password' => 'required',
+            $this->loginUsername() => 'required',
         ]);
     }
 
@@ -153,7 +162,7 @@ trait AuthenticatesUsers
      */
     protected function getCredentials(Request $request)
     {
-        return $request->only($this->loginUsername(), 'password');
+        return $request->only($this->loginUsername());
     }
 
     /**
@@ -195,7 +204,7 @@ trait AuthenticatesUsers
      */
     public function loginUsername()
     {
-        return property_exists($this, 'username') ? $this->username : 'email';
+        return property_exists($this, 'user') ? $this->user : 'user';
     }
 
     /**

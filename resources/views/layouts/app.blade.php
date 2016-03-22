@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <title>NYU Tandon Media Support</title>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+        {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
 
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
 
@@ -29,7 +31,7 @@
                 font-family: 'Gotham',sans-serif;
             }
 
-            .header{
+            /*.header{
                 display:table-row;
                 height: 5%;
                 width: 100%;
@@ -38,7 +40,7 @@
                 left: 0;
                 right: 0;
 
-            }
+            }*/
 
             #media{
                 font-size:4vh; 
@@ -50,15 +52,10 @@
                 margin-top:3%;
             }
 
-            .container {
+            .content {
                 text-align: center;
                 display: table-cell;
                 vertical-align: middle;
-            }
-
-            .content {
-                text-align: center;
-                display: inline-block;
             }
 
             .title {
@@ -77,30 +74,61 @@
             }
             .divider{
                 background:#57068c; 
-                height:10%;
+                height:5px;
                 width:100%; 
+            }
+
+            .vcenter {
+                display: inline-block;
+                vertical-align: middle;
+                float: none;
+                text-align: center;
+            }
+            .vertical-center {
+              min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
+              min-height: 90vh; /* These two lines are counted as one :-)       */
+
+              display: flex;
+              align-items: center;
+            }
+
+            html, body{
+                height: 100%;
+            }
+            .container-table {
+                display: table;
+                height:90%;
+            }
+            .vertical-center-row {
+                display: table-cell;
+                vertical-align: middle;
             }
         </style>
     </head>
     <body>
-        <div class = "header">
-            <div style='display:table-cell; text-decoration:none;'>
-                <a href = "/" style='display:inline;'>
-                    <img src = "img/medsup.jpg" width="85%"/>
-                </a>
+        <div class = "container-fluid">
+            <div class="container-fluid">
+                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 " ><!--style='display:table-cell; text-decoration:none;'>-->
+                    <a href = "/" style='display:inline;'>
+                        <img src = "img/medsup.jpg" width="85%"/>
+                    </a>
+                </div>
                 @if(Auth::check())
-                <a href="{{url('/home')}}">Home</a>
-                <a href="{{ url('/user/profile') }}">{{Auth::user()}}</a>
-                <a href= {{Auth::logout()}}>Logout</a>
-                @else
-                <a id='login' href='/login'>Login</a>
-                @endif
-                
+                <!-- <div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 vcenter'> -->
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3row ">
+                    <div class="vcenter">
+                        <a class = "btn btn-default" role = "button" href="{{url('/home')}}">Home</a>
+                        <a class = "btn btn-default" role = "button"  href="{{ url('/users/profile') }}">{{Auth::user()->first_name}}</a>
+                        <a class = "btn btn-default" role = "button"  href="{{ url('/logout') }}">Logout</a>
+                        @else
+                        <a class="btn btn-default" id='login' href='/login'>Login</a>
+                        @endif
+                </div>
+                </div>
+                <div class='divider col-lg-12'></div>
             </div>
-            <div class='divider'></div>
-            
         </div>
-        <div class="container">
+        <div class="container container-table">
             <div class="content">
                 @yield('content')
             </div>

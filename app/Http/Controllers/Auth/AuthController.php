@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Illuminate\Http\Request;
+use Auth;
 use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
@@ -28,7 +29,8 @@ class AuthController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/';
+    protected $redirectTo = '/home';
+    protected $guard = 'admin';
 
     /**
      * Create a new authentication controller instance.
@@ -37,7 +39,7 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'logout']);
+        $this->middleware('guest', ['except' => ['logout','logOut']]);
     }
 
     /**
@@ -61,14 +63,30 @@ class AuthController extends Controller
 
     public function postLogin(Request $request)
     {
-        if ($request->input('barcode')) {
+        if ($request->input('user')) {
             if (($user = User::whereUser($request->input('user'))->first()) != null) {
                 Auth::login($user, true);
-
-                return redirect('/home');
+                //return response()->json($user);
+                 return redirect('/home');
             }
         }
         
         return redirect('/login');
+        
+    }
+
+    public function create(array $data)
+    {
+        return User::create([
+            'user' => bcrypt($data['user']),
+        ]);
+    }
+
+    public function logOut() {
+
+        Auth::logout();
+        //Session::flush();
+        return redirect('/');
+
     }
 }
