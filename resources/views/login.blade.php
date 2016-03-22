@@ -19,7 +19,7 @@
         </div>
 
         <div class="form-group">
-            <div class="col-md-4 col-md-offset-2">
+            <div class="col-md-4 col-md-offset-4">
                 <button type="submit" class="btn btn-primary btn-block">
                     <i class="fa fa-btn fa-sign-in"></i>Login
                 </button>

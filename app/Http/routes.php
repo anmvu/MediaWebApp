@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Middleware\AdminMiddleware;
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -23,16 +23,31 @@
 */
 
 Route::group(['middleware' => 'web'], function () {
-    Route::get('/login','Auth\AuthController@getLogin');
+   
+	Route::get('/', function () {
+	    return view('welcome');
+	});
+
+	Route::get('/login','Auth\AuthController@getLogin');
     Route::post('/login','Auth\AuthController@postLogin');
 	Route::get('/home',function(){
 		return view('home');
 	});
-	Route::get('/', function () {
-	    return view('welcome');
-	});
+
 	Route::get('/logout','Auth\AuthController@logOut');
 
+	Route::get('/loan','LoansController@getLoanForm');
+	Route::post('/loan','LoansController@postLoan');
+
+	Route::get('/profile',"UsersController@profile");
+
+	Route::group(['middleware' => AdminMiddleware::class], function () {
+		Route::get('/users',"UsersController@index");
+		Route::get('/adduser','UsersController@addUser');
+		Route::post('/adduser','UsersController@postUser');
+	});
+	//Route::get('/users',['middleware' => AdminMiddleware::class, 'uses'=>'UsersController@index']);
 });
+
 
 

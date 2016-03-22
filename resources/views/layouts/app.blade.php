@@ -3,11 +3,14 @@
     <head>
         <meta charset="utf-8">
         <title>NYU Tandon Media Support</title>
+        <script type="text/javascript"  src="https://code.jquery.com/jquery-2.2.2.js"   
+        integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE="   crossorigin="anonymous"></script>
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
-
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+        <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-
+        <script type='text/javascript' src="js/bootstrap-datetimepicker.min.js"></script>
         <style>
 
             @font-face {
@@ -54,7 +57,7 @@
 
             .content {
                 text-align: center;
-                display: table-cell;
+                display: table-row;
                 vertical-align: middle;
             }
 
@@ -84,13 +87,6 @@
                 float: none;
                 text-align: center;
             }
-            .vertical-center {
-              min-height: 100%;  /* Fallback for browsers do NOT support vh unit */
-              min-height: 90vh; /* These two lines are counted as one :-)       */
-
-              display: flex;
-              align-items: center;
-            }
 
             html, body{
                 height: 100%;
@@ -103,6 +99,9 @@
                 display: table-cell;
                 vertical-align: middle;
             }
+            .page-nav{
+                display:table-row;
+            }
         </style>
     </head>
     <body>
@@ -113,22 +112,25 @@
                         <img src = "img/medsup.jpg" width="85%"/>
                     </a>
                 </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3row ">
                 @if(Auth::check())
                 <!-- <div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 vcenter'> -->
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3row ">
                     <div class="vcenter">
                         <a class = "btn btn-default" role = "button" href="{{url('/home')}}">Home</a>
-                        <a class = "btn btn-default" role = "button"  href="{{ url('/users/profile') }}">{{Auth::user()->first_name}}</a>
+                        <a class = "btn btn-default" role = "button"  href="{{ url('/profile') }}">{{Auth::user()->first_name}}</a>
                         <a class = "btn btn-default" role = "button"  href="{{ url('/logout') }}">Logout</a>
                         @else
                         <a class="btn btn-default" id='login' href='/login'>Login</a>
                         @endif
-                </div>
+                    </div>
                 </div>
                 <div class='divider col-lg-12'></div>
             </div>
         </div>
         <div class="container container-table">
+            <div class="page-nav">
+                @yield('bar')
+            </div>
             <div class="content">
                 @yield('content')
             </div>
