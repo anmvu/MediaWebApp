@@ -41,10 +41,30 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::get('/profile',"UsersController@profile");
 
+	Route::get('/return',"LoansController@needReturning");
+
+	Route::get('/issues',"IssuesController@listIssues");
+
 	Route::group(['middleware' => AdminMiddleware::class], function () {
 		Route::get('/users',"UsersController@index");
-		Route::get('/adduser','UsersController@addUser');
-		Route::post('/adduser','UsersController@postUser');
+		Route::get('users/add','UsersController@addUser');
+		Route::post('users/add','UsersController@postUser');
+		Route::get('users/remove','UsersController@removeUser');
+
+		Route::get('/types',"TypesController@index");
+		Route::get('types/add','TypesController@addType');
+		Route::post('types/add','TypesController@postType');
+		Route::get('types/remove','TypesController@removeType');
+
+		Route::get('/assets',"AssetsController@index");
+		Route::get('assets/add','AssetsController@addAsset');
+		Route::post('assets/add','AssetsController@postAsset');
+		Route::get('assets/remove','AssetsController@removeAsset');
+
+		Route::get('/attributes',"AttributesController@index");
+		Route::get('attributes/add','AttributesController@addAsset');
+		Route::post('attributes/add','AttributesController@postAsset');
+		Route::get('attributes/remove','AttributesController@removeAsset');
 	});
 	//Route::get('/users',['middleware' => AdminMiddleware::class, 'uses'=>'UsersController@index']);
 });

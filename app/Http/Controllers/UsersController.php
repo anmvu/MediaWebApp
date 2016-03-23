@@ -27,4 +27,8 @@ class UsersController extends Controller
     public function postUser(){
 
     }
+
+    public function removeUser(){
+        return view('user.removeUser');
+    }
 }

@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('bar')
-<div class='btn-toolbar' role='toolbar' aria-label='user-stuff'>
-    <div class="btn-group" role="group" aria-label="user-stuff">
-        <a href="{{url('/users')}}"><button type="button" class="btn btn-default">View Users</button></a>
-        <a  href="{{url('users/adduser')}}"><button type="button" class="btn btn-default">Add User</button></a>
-        <a href="{{url('users/removeuser')}}"><button type="button" class="btn btn-default">Remove Users (Make Inactive)</button></a>
-        <a href="{{url('users/edituser')}}"><button type="button" class="btn btn-default">Edit User</button></a>
+<div class='btn-toolbar' role='toolbar' aria-label='type-stuff'>
+    <div class="btn-group" role="group" aria-label="type-stuff">
+        <a href="{{url('/types')}}"><button type="button" class="btn btn-default">View Types</button></a>
+        <a  href="{{url('types/add')}}"><button type="button" class="btn btn-default">Add Type</button></a>
+        <a href="{{url('types/remove')}}"><button type="button" class="btn btn-default">Remove Types (Make Inactive)</button></a>
+        <a href="{{url('types/edit')}}"><button type="button" class="btn btn-default">Edit Type</button></a>
     </div>
 </div>
 @endsection
@@ -27,8 +27,8 @@ $(document).ready(function() {
     });
 });
 </script>
-	<h1> Add User Form </h1>
-	<form class="form-horizontal" role="form" method="POST" action="{{ url('/adduser') }}">
+	<h1> Add type Form </h1>
+	<form class="form-horizontal" role="form" method="POST" action="{{ url('/addtype') }}">
 		{{ csrf_field() }}
         <div class="form-group">
 
@@ -72,13 +72,13 @@ $(document).ready(function() {
         <div class="form-group">
             <label class="col-md-4 control-label">N number(Authorized) or Barcode(Student)</label>
             <div class="col-md-4">
-            	<input type="textbox" class="form-control" name='user' value="{{old('user')}}">
+            	<input type="textbox" class="form-control" name='type' value="{{old('type')}}">
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-4 col-md-offset-4">
                 <button type="submit" name='commit' class="btn btn-primary btn-block">
-                    <i class="fa fa-btn fa-sign-in"></i>Add User
+                    <i class="fa fa-btn fa-sign-in"></i>Add type
                 </button>
 
             </div>

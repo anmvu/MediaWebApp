@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Type extends Model
 {
-    $types = Type::all();
+    // $types = Type::all();
 }

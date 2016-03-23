@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Loans;
+use App\Loan as Loan;
 use App\Asset as Asset;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
@@ -26,5 +26,10 @@ class LoansController extends Controller
            	'room' => 'required|id',
            	'comments' => 'string',
         ]);
+    }
+
+    public function needReturning(){
+        $items = Loan::where('is_returned',0);
+        return view('return',['items'=>$items]);
     }
 }

@@ -6,5 +6,5 @@ use Illuminate\Database\Eloquent\Model;
 
 class Attribute extends Model
 {
-    $attributes = Attribute::all();
+    // $attributes = Attribute::all();
 }

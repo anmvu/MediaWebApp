@@ -1,6 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
+<script>
+$(document).ready(function() {
+    formmodified=0;
+    $('form *').change(function(){
+        formmodified=1;
+    });
+    window.onbeforeunload = confirmExit;
+    function confirmExit() {
+        if (formmodified == 1) {
+            return "New information not saved. Do you wish to leave the page?";
+        }
+    }
+    $("input[name='commit']").click(function() {
+        formmodified = 0;
+    });
+});
+</script>
 	<h1> Loan-out Form </h1>
 	<form class="form-horizontal" role="form" method="POST" action="{{ url('/loan') }}">
 		{{ csrf_field() }}

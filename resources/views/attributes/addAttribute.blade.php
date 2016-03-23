@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('bar')
-<div class='btn-toolbar' role='toolbar' aria-label='user-stuff'>
-    <div class="btn-group" role="group" aria-label="user-stuff">
-        <a href="{{url('/users')}}"><button type="button" class="btn btn-default">View Users</button></a>
-        <a  href="{{url('users/adduser')}}"><button type="button" class="btn btn-default">Add User</button></a>
-        <a href="{{url('users/removeuser')}}"><button type="button" class="btn btn-default">Remove Users (Make Inactive)</button></a>
-        <a href="{{url('users/edituser')}}"><button type="button" class="btn btn-default">Edit User</button></a>
+<div class='btn-toolbar' role='toolbar' aria-label='attribute-stuff'>
+    <div class="btn-group" role="group" aria-label="attribute-stuff">
+        <a href="{{url('/attributes')}}"><button type="button" class="btn btn-default">View attributes</button></a>
+        <a  href="{{url('attributes/add')}}"><button type="button" class="btn btn-default">Add attribute</button></a>
+        <a href="{{url('attributes/remove')}}"><button type="button" class="btn btn-default">Remove attributes (Make Inactive)</button></a>
+        <a href="{{url('attributes/edit')}}"><button type="button" class="btn btn-default">Edit attribute</button></a>
     </div>
 </div>
 @endsection
@@ -27,8 +27,8 @@ $(document).ready(function() {
     });
 });
 </script>
-	<h1> Add User Form </h1>
-	<form class="form-horizontal" role="form" method="POST" action="{{ url('/adduser') }}">
+	<h1> Add Attribute Form </h1>
+	<form class="form-horizontal" role="form" method="POST" action="{{ url('/addattribute') }}">
 		{{ csrf_field() }}
         <div class="form-group">
 
@@ -72,13 +72,13 @@ $(document).ready(function() {
         <div class="form-group">
             <label class="col-md-4 control-label">N number(Authorized) or Barcode(Student)</label>
             <div class="col-md-4">
-            	<input type="textbox" class="form-control" name='user' value="{{old('user')}}">
+            	<input type="textbox" class="form-control" name='attribute' value="{{old('attribute')}}">
             </div>
         </div>
         <div class="form-group">
             <div class="col-md-4 col-md-offset-4">
                 <button type="submit" name='commit' class="btn btn-primary btn-block">
-                    <i class="fa fa-btn fa-sign-in"></i>Add User
+                    <i class="fa fa-btn fa-sign-in"></i>Add attribute
                 </button>
 
             </div>

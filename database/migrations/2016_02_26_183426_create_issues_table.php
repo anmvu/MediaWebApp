@@ -17,7 +17,7 @@ class CreateIssuesTable extends Migration
             $table->integer('asset_id')->references('id')->on('assets');
             $table->integer('user_id')->references('id')->on('users');
             $table->string('priority');
-            $table->string('status');
+            $table->string('status')->default('Needs Work');
             $table->timestamps();
         });
     }

@@ -1,12 +1,12 @@
 @extends('layouts.app')
 
 @section('bar')
-<div class='btn-toolbar' role='toolbar' aria-label='user-stuff'>
-    <div class="btn-group" role="group" aria-label="user-stuff">
-        <a href="{{url('/users')}}"><button type="button" class="btn btn-default">View Users</button></a>
-        <a  href="{{url('users/adduser')}}"><button type="button" class="btn btn-default">Add User</button></a>
-        <a href="{{url('users/removeuser')}}"><button type="button" class="btn btn-default">Remove Users (Make Inactive)</button></a>
-        <a href="{{url('users/edituser')}}"><button type="button" class="btn btn-default">Edit User</button></a>
+<div class='btn-toolbar' role='toolbar' aria-label='type-stuff'>
+    <div class="btn-group" role="group" aria-label="type-stuff">
+        <a href="{{url('/types')}}"><button type="button" class="btn btn-default">View Types</button></a>
+        <a  href="{{url('types/add')}}"><button type="button" class="btn btn-default">Add Type</button></a>
+        <a href="{{url('types/remove')}}"><button type="button" class="btn btn-default">Remove Types</button></a>
+        <a href="{{url('types/edit')}}"><button type="button" class="btn btn-default">Edit Type</button></a>
     </div>
 </div>
 @endsection
@@ -20,7 +20,7 @@
 			<h3>Name</h3>
 		</div>
 		<div class='col-md-3'>
-			<h3>Username</h3>
+			<h3>typename</h3>
 		</div>
 		<div class='col-md-3'>
 			<h3>Phone Number</h3>
@@ -30,22 +30,22 @@
 		</div>
 	</div>
 </div>
-@foreach($users as $user)
-@if($user->active and $user->first_name!='Admin')
+@foreach($types as $type)
+@if($type->active and $type->first_name!='Admin')
 <div class='container-fluid'>
 	<div class='form-group'>
 		<div class='col-md-3'>
-			<h5>{{$user->first_name}} {{$user->last_name}}</h5>
+			<h5>{{$type->first_name}} {{$type->last_name}}</h5>
 		</div>
 		<div class='col-md-3'>
-			<h5>{{$user->user}}</h5>
+			<h5>{{$type->type}}</h5>
 		</div>
 		<div class='col-md-3'>
-			<h5>{{$user->phone_num}}</h5>
+			<h5>{{$type->phone_num}}</h5>
 		</div>
 
 		<div class='col-md-3'>
-			@if($user->is_authorized)
+			@if($type->is_authorized)
 			<span class="glyphicon glyphicon-ok" aria-hidden="true" style='line-height:2.42857143'></span>
 			@else
 			<span class="glyphicon glyphicon-remove" aria-hidden="true" style='line-height:2.42857143'></span>
