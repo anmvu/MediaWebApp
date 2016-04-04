@@ -10,6 +10,6 @@ class Comment extends Model
     	return $this->hasMany('App/Comment');
     }
 
-    $comments = Comment::all();
+    //$comments = Comment::all();
 
 }

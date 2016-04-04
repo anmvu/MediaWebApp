@@ -2,21 +2,21 @@
 
 @section('content')
 <div class='container'>
-<div class='col-lg-10 col-lg-offset-1'>
+<div class='col-lg-10 col-md-9 col-sm-8 col-xs-7 col-lg-offset-1 col-md-offset-1 col-sm-offset-2 col-xs-offset-3'>
 @if(count($needsWork) > 1 or count($workingOn) > 1)
 <h2> {{count($needsWork)-1}} thing Needs Work</h2>
 <div class='container-fluid'>
 	<div class='form-group'>
-		<div class='col-md-3'>
+		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 '>
 			<h3>work ID</h3>
 		</div>
-		<div class='col-md-3'>
+		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 '>
 			<h3>Item</h3>
 		</div>
-		<div class='col-md-3'>
+		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 '>
 			<h3>Loaned To</h3>
 		</div>
-		<div class='col-md-3'>
+		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 '>
 			<h3>Room</h3>
 		</div>
 	</div>
@@ -24,17 +24,17 @@
 @foreach($need as $needsWork)
 <div class='container-fluid'>
 	<div class='form-group'>
-		<div class='col-md-3'>
+		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 '>
 			<h5>{{$need->id}}</h5>
 		</div>
-		<div class='col-md-3'>
+		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 '>
 			<h5>{{$need->asset_id}}</h5>
 		</div>
-		<div class='col-md-3'>
+		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 '>
 			<h5>{{$need->priority}}</h5>
 		</div>
 
-		<div class='col-md-3'>
+		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 '>
 			<h5>{{$need->status}}</h5>
 		</div>
 	</div>
@@ -43,16 +43,16 @@
 <h2> {{count($needsWork)-1}} thing is being worked on</h2>
 <div class='container-fluid'>
 	<div class='form-group'>
-		<div class='col-md-3'>
+		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 '>
 			<h3>work ID</h3>
 		</div>
-		<div class='col-md-3'>
+		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 '>
 			<h3>Item</h3>
 		</div>
-		<div class='col-md-3'>
+		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 '>
 			<h3>Loaned To</h3>
 		</div>
-		<div class='col-md-3'>
+		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 '>
 			<h3>Room</h3>
 		</div>
 	</div>
@@ -60,17 +60,17 @@
 @foreach($work as $workingOn)
 <div class='container-fluid'>
 	<div class='form-group'>
-		<div class='col-md-3'>
+		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 '>
 			<h5>{{$work->id}}</h5>
 		</div>
-		<div class='col-md-3'>
+		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 '>
 			<h5>{{$work->asset_id}}</h5>
 		</div>
-		<div class='col-md-3'>
+		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 '>
 			<h5>{{$work->priority}}</h5>
 		</div>
 
-		<div class='col-md-3'>
+		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 '>
 			<h5>{{$work->status}}</h5>
 		</div>
 	</div>

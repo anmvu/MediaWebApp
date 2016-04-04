@@ -1,14 +1,5 @@
 @extends('layouts.app')
-@section('bar')
-<div class='btn-toolbar' role='toolbar' aria-label='asset-stuff'>
-    <div class="btn-group" role="group" aria-label="asset-stuff">
-        <a href="{{url('/assets')}}"><button type="button" class="btn btn-default">View Assets</button></a>
-        <a  href="{{url('assets/add')}}"><button type="button" class="btn btn-default">Add Asset</button></a>
-        <a href="{{url('assets/remove')}}"><button type="button" class="btn btn-default">Remove Assets</button></a>
-        <a href="{{url('assets/edit')}}"><button type="button" class="btn btn-default">Edit Assets</button></a>
-    </div>
-</div>
-@endsection
+@include('assets.assetBar')
 @section('content')
 <script>
 $(document).ready(function() {
@@ -28,41 +19,41 @@ $(document).ready(function() {
 });
 </script>
 	<h1> Add Asset Form </h1>
-	<form class="form-horizontal" role="form" method="POST" action="{{ url('/addasset') }}">
+	<form class="form-horizontal" role="form" method="POST" action="{{ url('asset/add') }}">
 		{{ csrf_field() }}
         <div class="form-group">
 
-            <label class="col-md-4 control-label">First Name</label>
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4  control-label">First Name</label>
             <!-- <br/> -->
-            <div class="col-md-4 dropdown">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4  dropdown">
                 <input type="text" class="form-control" name="fname" value="{{ old('fname') }}"> 
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-4 control-label">Last Name</label>
-            <div class="col-md-4 dropdown">
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4  control-label">Last Name</label>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4  dropdown">
                 <input type="text" class="form-control" name="lname" value="{{ old('lname') }}"> 
             </div>
         </div>
         <div class="form-group">
 
-            <label class="col-md-4 control-label">Phone Number</label>
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4  control-label">Phone Number</label>
             <!-- <br/> -->
-            <div class="col-md-4">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
                <input type="text" class="form-control" name="phonenum" pattern="\d{7}" title="Enter 10 digit phone number" value="{{ old('phonenum') }}">
             </div>
         </div>
         <div class="form-group">
 
-            <label class="col-md-4 control-label">Is Authorized</label>
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4  control-label">Is Authorized</label>
             <!-- <br/> -->
-            <div class="col-md-1 col-md-offset-1 radio">
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1  col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 radio">
                 <label>
                     <input type="radio" name="authorized" id="optionsRadio1" value="1" checked>
                     Yes
                 </label>
             </div>
-            <div class="col-md-1 radio">
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 radio">
                 <label>
                     <input type="radio" name="authorized" id="optionsRadio2" value="0">
                     No
@@ -70,13 +61,13 @@ $(document).ready(function() {
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-4 control-label">N number(Authorized) or Barcode(Student)</label>
-            <div class="col-md-4">
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4  control-label">N number(Authorized) or Barcode(Student)</label>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
             	<input type="textbox" class="form-control" name='asset' value="{{old('asset')}}">
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-4 col-md-offset-4">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4  col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">
                 <button type="submit" name='commit' class="btn btn-primary btn-block">
                     <i class="fa fa-btn fa-sign-in"></i>Add asset
                 </button>

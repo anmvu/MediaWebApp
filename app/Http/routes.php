@@ -30,6 +30,7 @@ Route::group(['middleware' => 'web'], function () {
 
 	Route::get('/login','Auth\AuthController@getLogin');
     Route::post('/login','Auth\AuthController@postLogin');
+    
 	Route::get('/home',function(){
 		return view('home');
 	});
@@ -50,6 +51,7 @@ Route::group(['middleware' => 'web'], function () {
 		Route::get('users/add','UsersController@addUser');
 		Route::post('users/add','UsersController@postUser');
 		Route::get('users/remove','UsersController@removeUser');
+		Route::get('users/reactivate','UsersController@reactivateUser');
 
 		Route::get('/types',"TypesController@index");
 		Route::get('types/add','TypesController@addType');

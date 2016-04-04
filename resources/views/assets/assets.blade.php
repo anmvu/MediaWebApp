@@ -1,61 +1,38 @@
 @extends('layouts.app')
-
-@section('bar')
-<div class='btn-toolbar' role='toolbar' aria-label='asset-stuff'>
-    <div class="btn-group" role="group" aria-label="asset-stuff">
-        <a href="{{url('/assets')}}"><button type="button" class="btn btn-default">View Assets</button></a>
-        <a  href="{{url('assets/add')}}"><button type="button" class="btn btn-default">Add Asset</button></a>
-        <a href="{{url('assets/remove')}}"><button type="button" class="btn btn-default">Remove Assets (Make Inactive)</button></a>
-        <a href="{{url('assets/edit')}}"><button type="button" class="btn btn-default">Edit Assets</button></a>
-    </div>
-</div>
-@endsection
+@include('assets.assetBar')
 @section('content')
 <div class='container'>
-<div class='col-lg-10 col-lg-offset-1'>
-
-<div class='container-fluid'>
-	<div class='form-group'>
-		<div class='col-md-3'>
-			<h3>Name</h3>
-		</div>
-		<div class='col-md-3'>
-			<h3>assetname</h3>
-		</div>
-		<div class='col-md-3'>
-			<h3>Phone Number</h3>
-		</div>
-		<div class='col-md-3'>
-			<h3>Authorized</h3>
-		</div>
-	</div>
+<div class='col-lg-10 col-md-9 col-sm-8 col-xs-7 col-lg-offset-1 col-md-offset-1 col-sm-offset-2 col-xs-offset-3'>
+<div class='table-responsive'>
+<table class='table table-hover table-bordered'>
+	<thead>
+		<tr>
+			<th style='text-align:center'>Barcode</th>
+			<th style='text-align:center'>Type</th>
+			<th style='text-align:center'>Last Checked</th>
+			<th style='text-align:center'>Container</th>
+			<th style='text-align:center'>Is it a Room?</th>
+		</tr>
+	</thead>
+	@foreach($assets as $asset)
+	<tbody>
+		<tr>
+			<td>{{$asset->barcode}}</td>
+			<td>{{$asset->type_id}}</td>
+			<td>{{$asset->time_checked}}</td>
+			<td>{{$asset->container_id}}</td>
+			<td>
+				@if($asset->is_container)
+				<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+				@else
+				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+				@endif
+			</td>
+		</tr>
+	</tbody>
+	@endforeach
+</table>
 </div>
-@foreach($assets as $asset)
-@if($asset->active and $asset->first_name!='Admin')
-<div class='container-fluid'>
-	<div class='form-group'>
-		<div class='col-md-3'>
-			<h5>{{$asset->first_name}} {{$asset->last_name}}</h5>
-		</div>
-		<div class='col-md-3'>
-			<h5>{{$asset->asset}}</h5>
-		</div>
-		<div class='col-md-3'>
-			<h5>{{$asset->phone_num}}</h5>
-		</div>
-
-		<div class='col-md-3'>
-			@if($asset->is_authorized)
-			<span class="glyphicon glyphicon-ok" aria-hidden="true" style='line-height:2.42857143'></span>
-			@else
-			<span class="glyphicon glyphicon-remove" aria-hidden="true" style='line-height:2.42857143'></span>
-			@endif
-		</div>
-	</div>
-</div>
-@endif
-@endforeach
-
 </div>
 </div>
 @endsection

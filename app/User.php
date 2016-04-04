@@ -32,7 +32,19 @@ class User extends Authenticatable
         'user',
     ];
 
-    public function isAdmin(){
+    public function scopeAdmin(){
         return $this->is_authorized;
+    }
+
+    public function scopeActive(){
+        return $this->active;
+    }
+
+    public function scopeInactive($query){
+        return $query->whereActive(0);
+    }
+
+    public function scopeUser($query, $id){
+        return $query->whereId($id);
     }
 }

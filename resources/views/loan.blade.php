@@ -23,17 +23,17 @@ $(document).ready(function() {
 		{{ csrf_field() }}
         <div class="form-group">
 
-            <label class="col-md-4 control-label">Item</label>
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Item</label>
             <!-- <br/> -->
-            <div class="col-md-4 dropdown">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 dropdown">
                 <input type="text" class="form-control" name="item" value="{{ old('item') }}"> 
             </div>
         </div>
         <div class="form-group">
 
-            <label class="col-md-4 control-label">Due</label>
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Due</label>
             <!-- <br/> -->
-            <div class="col-md-4">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
             	<div class="well">
 	            	<div id="datetimepicker2" class="input-append">
 					    <input data-format="MM/dd/yyyy HH:mm:ss PP" type="text"></input>
@@ -55,25 +55,25 @@ $(document).ready(function() {
         </div>
         <div class="form-group">
 
-            <label class="col-md-4 control-label">Loaner's Email</label>
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Loaner's Email</label>
             <!-- <br/> -->
-            <div class="col-md-4">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                <input type="email" class="form-control" name="email" value="{{ old('email') }}">
             </div>
         </div>
         <div class="form-group">
 
-            <label class="col-md-4 control-label">Loaner's Name</label>
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Loaner's Name</label>
             <!-- <br/> -->
-            <div class="col-md-4">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <input type="text" class="form-control" name="loaned" value="{{ old('loaned') }}">
             </div>
         </div>
         <div class="form-group">
 
-            <label class="col-md-4 control-label">Room</label>
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Room</label>
             <!-- <br/> -->
-            <div class="col-md-4">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
             	<select name="room">
             		@foreach ($rooms as $room)
 					    <option value="{{$room->id}}">{{$room->barcode}}</option
@@ -83,14 +83,14 @@ $(document).ready(function() {
         </div>
         <div class="form-group">
 
-            <label class="col-md-4 control-label">Comments Before (if expensive)</label>
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Comments Before (if expensive)</label>
             <!-- <br/> -->
-            <div class="col-md-4">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
             	<input type="textbox" class="form-control" name='comment' value="{{old('comment')}}">
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-4 col-md-offset-4">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">
                 <button type="submit" class="btn btn-primary btn-block">
                     <i class="fa fa-btn fa-sign-in"></i>Submit Loan
                 </button>

@@ -16,7 +16,7 @@ class AdminMiddleware
     public function handle($request, Closure $next)
     {
         // dd ($request->user());
-        if(!$request->user()->isAdmin()){
+        if(!$request->user()->Admin()){
             return redirect('errors.404');
 
         }

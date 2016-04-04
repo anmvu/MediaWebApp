@@ -8,9 +8,9 @@
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
         {{-- <link href="{{ elixir('css/app.css') }}" rel="stylesheet"> --}}
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-        <link href="css/bootstrap-datetimepicker.min.css" rel="stylesheet">
+        <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-        <script type='text/javascript' src="js/bootstrap-datetimepicker.min.js"></script>
+        <script type='text/javascript' src="/js/bootstrap-datetimepicker.min.js"></script>
         <style>
 
             @font-face {
@@ -103,11 +103,32 @@
                 display:table-row;
             }
         </style>
+        <script>
+        var top = $('.top-bar').offset().top;
+        $('.trigger').click(function () {
+            $('.top-bar').css('position','');  
+            $('.left2').toggle('slow',function(){
+                top = $('.top-bar').offset().top;
+            });
+
+        });
+
+
+
+        $(document).scroll(function(){
+            //calculating the minimal top position of the div
+            $('.top-bar').css('position','');
+            top = $('.top-bar').offset().top;
+
+            $('.top-bar').css('position','absolute');                 
+            $('.top-bar').css('top',Math.max(top,$(document).scrollTop()));
+         });
+        </script>
     </head>
     <body>
-        <div class = "container-fluid">
+        <div class = "container-fluid top-bar">
             <div class="container-fluid">
-                <div class="col-lg-9 col-md-9 col-sm-9 col-xs-9 " ><!--style='display:table-cell; text-decoration:none;'>-->
+                <div class="col-lg-9 col-md-9 col-sm-8 col-xs-8 " ><!--style='display:table-cell; text-decoration:none;'>-->
                     @if(Auth::check())
                      <a href = "/home" style='display:inline;'>
                     @else
@@ -116,7 +137,7 @@
                         <img src = "/img/medsup.jpg" width="85%"/>
                     </a>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3row ">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 row ">
                 @if(Auth::check())
                 <!-- <div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 vcenter'> -->
                     <div class="vcenter">
@@ -124,15 +145,15 @@
                         <a class = "btn btn-default" role = "button"  href="{{ url('/profile') }}">{{Auth::user()->first_name}}</a>
                         <a class = "btn btn-default" role = "button"  href="{{ url('/logout') }}">Logout</a>
                         @else
-                        <a class="btn btn-default" id='login' href='/login'>Login</a>
+                        <a class="btn btn-default" id='login' href="{{url('/login')}}">Login</a>
                         @endif
                     </div>
                 </div>
-                <div class='divider col-lg-12'></div>
+                <div class='divider col-lg-12 col-md-12 col-sm-12 col-xs-12'></div>
             </div>
         </div>
         <div class="container container-table">
-            <div class="page-nav">
+            <div class="container-fluid top-bar">
                 @yield('bar')
             </div>
             <div class="content">

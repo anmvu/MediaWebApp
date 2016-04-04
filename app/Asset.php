@@ -9,7 +9,7 @@ class Asset extends Model
     // $assets = Asset::all();
 
     public function attributes(){
-    	return $this->hasMany('App\Attribute');
+    	return $this->belongsToMany('App\Attribute','attribute_assets');
     }
 
     public function containedAssets(){
@@ -17,5 +17,9 @@ class Asset extends Model
     		$items = Asset::where('container_id' == $this->id);
     		return $items;
     	}
+    }
+
+    public function scoperoom($query){
+        return $query->where('is_container',1);
     }
 }

@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('bar')
+<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">
 <div class='btn-toolbar' role='toolbar' aria-label='type-stuff'>
     <div class="btn-group" role="group" aria-label="type-stuff">
         <a href="{{url('/types')}}"><button type="button" class="btn btn-default">View Types</button></a>
@@ -7,6 +8,7 @@
         <a href="{{url('types/remove')}}"><button type="button" class="btn btn-default">Remove Types</button></a>
         <a href="{{url('types/edit')}}"><button type="button" class="btn btn-default">Edit Type</button></a>
     </div>
+</div>
 </div>
 @endsection
 @section('content')
@@ -22,7 +24,7 @@ $(document).ready(function() {
             return "New information not saved. Do you wish to leave the page?";
         }
     }
-    $("input[name='commit']").click(function() {
+    $("button[name='commit']").click(function() {
         formmodified = 0;
     });
 });
@@ -32,53 +34,16 @@ $(document).ready(function() {
 		{{ csrf_field() }}
         <div class="form-group">
 
-            <label class="col-md-4 control-label">First Name</label>
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Type Name</label>
             <!-- <br/> -->
-            <div class="col-md-4 dropdown">
-                <input type="text" class="form-control" name="fname" value="{{ old('fname') }}"> 
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 dropdown">
+                <input type="text" class="form-control" name="name" value="{{ old('name') }}"> 
             </div>
         </div>
         <div class="form-group">
-            <label class="col-md-4 control-label">Last Name</label>
-            <div class="col-md-4 dropdown">
-                <input type="text" class="form-control" name="lname" value="{{ old('lname') }}"> 
-            </div>
-        </div>
-        <div class="form-group">
-
-            <label class="col-md-4 control-label">Phone Number</label>
-            <!-- <br/> -->
-            <div class="col-md-4">
-               <input type="text" class="form-control" name="phonenum" pattern="\d{7}" title="Enter 10 digit phone number" value="{{ old('phonenum') }}">
-            </div>
-        </div>
-        <div class="form-group">
-
-            <label class="col-md-4 control-label">Is Authorized</label>
-            <!-- <br/> -->
-            <div class="col-md-1 col-md-offset-1 radio">
-                <label>
-                    <input type="radio" name="authorized" id="optionsRadio1" value="1" checked>
-                    Yes
-                </label>
-            </div>
-            <div class="col-md-1 radio">
-                <label>
-                    <input type="radio" name="authorized" id="optionsRadio2" value="0">
-                    No
-                </label>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-md-4 control-label">N number(Authorized) or Barcode(Student)</label>
-            <div class="col-md-4">
-            	<input type="textbox" class="form-control" name='type' value="{{old('type')}}">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-4 col-md-offset-4">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">
                 <button type="submit" name='commit' class="btn btn-primary btn-block">
-                    <i class="fa fa-btn fa-sign-in"></i>Add type
+                    <i class="fa fa-btn fa-sign-in"></i>Add Type
                 </button>
 
             </div>
