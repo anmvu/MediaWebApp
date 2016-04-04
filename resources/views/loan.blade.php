@@ -76,7 +76,7 @@ $(document).ready(function() {
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
             	<select name="room">
             		@foreach ($rooms as $room)
-					    <option value="{{$room->id}}">{{$room->barcode}}</option
+					    <option value="{{$room->id}}">{{$room->barcode}}</option>
 					@endforeach
             	</select>
             </div>

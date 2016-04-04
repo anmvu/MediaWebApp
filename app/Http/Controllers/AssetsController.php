@@ -19,7 +19,27 @@ class AssetsController extends Controller
     }
 
     public function postAsset(){
+        $validator = Validator::make($request->all(), [
+            'fname' => 'required',
+            'lname' => 'required',
+            'phonenum' => 'required',
+            'authorized' => 'required',
+            'user' => 'required',
+        ]);
 
+        if ($validator->fails()) {
+            return redirect('/users/add')
+                ->withInput()
+                ->withErrors($validator);
+        }
+
+        $user = new Asset;
+        $user->barcode = $request->fname;
+        $user->type_id = $request->lname;
+        $user->time_checked = $request->phonenum;
+        $user->container_id = $request->authorized;
+        $user->is_container = $request->user;
+        $user->save();
     }
 
     public function removeAsset(){

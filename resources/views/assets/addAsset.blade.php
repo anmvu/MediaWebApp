@@ -23,10 +23,10 @@ $(document).ready(function() {
 		{{ csrf_field() }}
         <div class="form-group">
 
-            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4  control-label">First Name</label>
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4  control-label">Barcode</label>
             <!-- <br/> -->
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4  dropdown">
-                <input type="text" class="form-control" name="fname" value="{{ old('fname') }}"> 
+                <input type="text" class="form-control" name="barcode" value="{{ old('fname') }}"> 
             </div>
         </div>
         <div class="form-group">
