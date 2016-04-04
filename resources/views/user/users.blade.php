@@ -6,14 +6,14 @@
 <div class='container'>
 <div class='col-lg-10 col-md-9 col-sm-10 col-xs-10  col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
 <div class='table-responsive'>
-<table class='table table-hover table-bordered'>
+<table class='table table-hover table-striped table-responsive'>
 	<thead>
 		<tr>
 			<th style='text-align:center'>Name</th>
 			<th style='text-align:center'>Username</th>
 			<th style='text-align:center'>Phone Number</th>
 			<th style='text-align:center'>Authorized</th>
-			<th style='text-align:center; border:0;'></th>
+			<th style='text-align:center;'></th>
 		</tr>
 	</thead>
 	@foreach($users as $user)
@@ -30,7 +30,7 @@
 				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 				@endif
 			</td>
-			<td style='border:0,0,0,0'>
+			<td>
 				<form class="form-horizontal" role="form" method="POST" action="{{ url('/users') }}">
 					{{ csrf_field() }}
 					<div class="form-group">
