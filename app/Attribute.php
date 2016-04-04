@@ -8,6 +8,6 @@ class Attribute extends Model
 {
     // $attributes = Attribute::all();
     public function assets(){
-    	return $this->belongsToMany('App\Asset','attribute_assets')
+    	return $this->belongsToMany('App\Asset','attribute_assets');
     }
 }

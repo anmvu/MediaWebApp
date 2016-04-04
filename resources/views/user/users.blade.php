@@ -13,7 +13,7 @@
 			<th style='text-align:center'>Username</th>
 			<th style='text-align:center'>Phone Number</th>
 			<th style='text-align:center'>Authorized</th>
-			<th style='text-align:center;'></th>
+			<th style='text-align:center;'>Deactivate</th>
 		</tr>
 	</thead>
 	@foreach($users as $user)
@@ -34,9 +34,9 @@
 				<form class="form-horizontal" role="form" method="POST" action="{{ url('/users') }}">
 					{{ csrf_field() }}
 					<div class="form-group">
-						<div class="col-lg-12">
+						<div class="col-lg-5 col-lg-offset-3" style='text-align:center'>
 	            	<input type='hidden' name='id' value='{{$user->id}}'></input>
-	                <button type="submit" class="btn btn-primary btn-block">
+	                <button type="submit" class="btn btn-danger btn-block">
 	                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
 	                </button>
 	            </div>

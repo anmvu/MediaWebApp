@@ -16,7 +16,7 @@ class ActiveMiddleware
     public function handle($request, Closure $next)
     {
         // dd($request->user()->Active());
-        if(!$request->user()->active()){
+        if(!$request->user()->active){
            return redirect('errors.404');
         }
         return$next($request);
