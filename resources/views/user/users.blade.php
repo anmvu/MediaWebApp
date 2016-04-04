@@ -13,6 +13,7 @@
 			<th style='text-align:center'>Username</th>
 			<th style='text-align:center'>Phone Number</th>
 			<th style='text-align:center'>Authorized</th>
+			<th style='text-align:center; border:0;'></th>
 		</tr>
 	</thead>
 	@foreach($users as $user)
@@ -28,6 +29,20 @@
 				@else
 				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 				@endif
+			</td>
+			<td style='border:0,0,0,0'>
+				<form class="form-horizontal" role="form" method="POST" action="{{ url('/users') }}">
+					{{ csrf_field() }}
+					<div class="form-group">
+						<div class="col-lg-12">
+	            	<input type='hidden' name='id' value='{{$user->id}}'></input>
+	                <button type="submit" class="btn btn-primary btn-block">
+	                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+	                </button>
+	            </div>
+	            	</div>
+            	</form>
+				
 			</td>
 		</tr>
 	</tbody>

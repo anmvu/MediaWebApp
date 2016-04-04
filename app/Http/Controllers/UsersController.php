@@ -71,11 +71,17 @@ class UsersController extends Controller
     public function removeSelectedUser(Request $request){
         $user = User::find($request->id);
         $user->update(array('active'=>0));
+        //return redirect('/users/remove');
         return redirect('/users');
     }
 
     public function reactivateUser(){
         $users = User::Inactive()->get();
         return view('user.reactivateUser',['users'=>$users]);
+    }
+    public function reactivateSelectedUser(Request $request){
+        $user = User::find($request->id);
+        $user->update(array('active'=>1));
+        return redirect('/users/reactivate');
     }
 }

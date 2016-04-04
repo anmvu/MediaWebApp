@@ -49,11 +49,13 @@ Route::group(['middleware' => 'web'], function () {
 
 		Route::group(['middleware' => AdminMiddleware::class], function () {
 			Route::get('/users',"UsersController@index");
+			Route::post('/users','UsersController@removeSelectedUser');
 			Route::get('users/add','UsersController@addUser');
 			Route::post('users/add','UsersController@postUser');
 			Route::get('users/remove','UsersController@removeUser');
-			Route::post('users/remove','UsersController@removeSelectedUser');
+			// Route::post('users/remove','UsersController@removeSelectedUser');
 			Route::get('users/reactivate','UsersController@reactivateUser');
+			Route::post('users/reactivate','UsersController@reactivateSelectedUser');
 
 			Route::get('/types',"TypesController@index");
 			Route::get('types/add','TypesController@addType');

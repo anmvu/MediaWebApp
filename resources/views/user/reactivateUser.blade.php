@@ -12,6 +12,7 @@
 			<th style='text-align:center'>Username</th>
 			<th style='text-align:center'>Phone Number</th>
 			<th style='text-align:center'>Authorized</th>
+			<th style='text-align:center'> </th>
 		</tr>
 	</thead>
 	@foreach($users as $user)
@@ -28,6 +29,20 @@
 				<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 				@endif
 			</td>
+			<td>
+				<form class="form-horizontal" role="form" method="POST" action="{{ url('users/reactivate') }}">
+					{{ csrf_field() }}
+					<div class="form-group">
+						<div class="col-lg-12">
+	            	<input type='hidden' name='id' value='{{$user->id}}'></input>
+	                <button type="submit" class="btn btn-primary btn-block">
+	                    <i class="fa fa-btn fa-sign-in"></i>Reactivate
+	                </button>
+	            </div>
+	            	</div>
+            	</form>
+            </div>
+        </div>
 		</tr>
 	</tbody>
 	@endif

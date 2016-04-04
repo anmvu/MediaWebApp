@@ -11,7 +11,9 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <select name="id">
                     @foreach ($users as $user)
+                    @if($user->first_name != 'Admin' && $user->active == 1)
                         <option value="{{$user->id}}">{{$user->first_name}} {{$user->last_name}}</option>
+                        @endif
                     @endforeach
                 </select>
             </div>
