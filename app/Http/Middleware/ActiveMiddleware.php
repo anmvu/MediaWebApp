@@ -17,7 +17,7 @@ class ActiveMiddleware
     {
         // dd($request->user()->Active());
         if(!$request->user()->active){
-           return redirect('errors.404');
+           return redirect('errors.401');
         }
         return$next($request);
     }

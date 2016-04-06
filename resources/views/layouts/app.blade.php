@@ -10,7 +10,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-        <script type='text/javascript' src="/js/bootstrap-datetimepicker.min.js"></script>
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
         <style>
 
             @font-face {
@@ -102,9 +103,10 @@
             .page-nav{
                 display:table-row;
             }
+            
         </style>
         <script>
-        var top = $('.top-bar').offset().top;
+        var top = $('.top-bar').offset();
         $('.trigger').click(function () {
             $('.top-bar').css('position','');  
             $('.left2').toggle('slow',function(){
@@ -126,7 +128,7 @@
         </script>
     </head>
     <body>
-        <div class = "container-fluid top-bar">
+        <div class = "container-fluid top-bar "id='header'>
             <div class="container-fluid">
                 <div class="col-lg-9 col-md-9 col-sm-8 col-xs-8 " ><!--style='display:table-cell; text-decoration:none;'>-->
                     @if(Auth::check())
@@ -137,10 +139,10 @@
                         <img src = "/img/medsup.jpg" width="85%"/>
                     </a>
                 </div>
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 row ">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 row " >
                 @if(Auth::check())
                 <!-- <div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 vcenter'> -->
-                    <div class="vcenter">
+                    <div class="btn-group-justified">
                         <a class = "btn btn-default" role = "button" href="{{url('/home')}}">Home</a>
                         <a class = "btn btn-default" role = "button"  href="{{ url('/profile') }}">{{Auth::user()->first_name}}</a>
                         <a class = "btn btn-default" role = "button"  href="{{ url('/logout') }}">Logout</a>

@@ -1,16 +1,5 @@
 @extends('layouts.app')
-@section('bar')
-<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">
-<div class='btn-toolbar' role='toolbar' aria-label='type-stuff'>
-    <div class="btn-group" role="group" aria-label="type-stuff">
-        <a href="{{url('/types')}}"><button type="button" class="btn btn-default">View Types</button></a>
-        <a  href="{{url('types/add')}}"><button type="button" class="btn btn-default">Add Type</button></a>
-        <a href="{{url('types/remove')}}"><button type="button" class="btn btn-default">Remove Types</button></a>
-        <a href="{{url('types/edit')}}"><button type="button" class="btn btn-default">Edit Type</button></a>
-    </div>
-</div>
-</div>
-@endsection
+@include('user.userBar')
 @section('content')
 <script>
 $(document).ready(function() {

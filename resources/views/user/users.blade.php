@@ -34,7 +34,7 @@
 				<form class="form-horizontal" role="form" method="POST" action="{{ url('/users') }}">
 					{{ csrf_field() }}
 					<div class="form-group">
-						<div class="col-lg-5 col-lg-offset-3" style='text-align:center'>
+						<div class="col-lg-5 col-lg-offset-4" style='text-align:center'>
 	            	<input type='hidden' name='id' value='{{$user->id}}'></input>
 	                <button type="submit" class="btn btn-danger btn-block">
 	                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>

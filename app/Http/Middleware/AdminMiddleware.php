@@ -17,7 +17,7 @@ class AdminMiddleware
     {
         // dd ($request->user());
         if(!$request->user()->Admin()){
-            return redirect('errors.404');
+            return redirect('errors.401');
 
         }
         return$next($request);
