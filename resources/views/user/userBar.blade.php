@@ -26,7 +26,8 @@
     	@else 
     	<a href="{{url('/issues')}}" class="btn btn-default" role="button">
     	@endif
-    	View Issues</a>  
+    	View Issues</a> 
+    	@if(Auth::user()->is_authorized) 
     	<div class="btn-group" role="group"> 
     		@if(strpos(Request::path(), 'types') !== false)
     		<a href="#" class="btn btn-default dropdown-toggle active" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
@@ -86,6 +87,7 @@
     			<li><a href="{{url('/users/reactivate')}}">Reactivate User</a></li> 
     		</ul> 
     	</div>
+    	@endif
         <!-- <a href="{{url('/users')}}"class="btn btn-default">View Users</a>
         <a  href="{{url('users/add')}}"class="btn btn-default">Add User</a>
         <a href="{{url('users/remove')}}"class="btn btn-default">Remove Users (Make Inactive)</a>
