@@ -13,7 +13,7 @@ use DB;
 class UsersController extends Controller
 {
     public function index(){
-    	$users = User::Active()->get();
+    	$users = User::Active()->orderBy('id', 'DESC')->get();
     	return view('user.users',['users'=>$users]);
     }
 
