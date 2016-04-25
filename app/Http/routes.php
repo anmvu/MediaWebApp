@@ -53,6 +53,8 @@ Route::group(['middleware' => 'web'], function () {
 		    return App\Asset::all();
 		});
 
+		Route::get('/roomcheck/form', "AssetsController@showRooms");
+
 		Route::post('/roomcheck', function() {
 		    return App\Asset::create(Request::all());
 		});

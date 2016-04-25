@@ -6,36 +6,19 @@
 [JAB474] => {
 	[name] => 'microphone',
 	[value] => 'description of problem'
-} -->
+} 
+//fetch all the stuff that's in that room into vue.js
+//
+
+-->
 @extends('layouts.app')
 
-@include('user.userBar')
 
 @section('content')
-<!--<script type='text/javascript'>
- $('#dbType').on('change',function(){
-        if( $(this).val()==="other"){
-        $("#otherType").show()
-        }
-        else{
-        $("#otherType").hide()
-        }
-    });
-</script>
-<select name='rooms'>
-	@foreach ($rooms as $room)
-		<option value="{{$room->id}}">{{$room->barcode}}</option>
-	@endforeach
-</select>-->
-<select>
-    <option v-repeat:"room: rooms">
-    @{{ room.barcode }}
-  </option>
-</select>
+<script src='/js/roomcheck.js' type='text/javascript'></script>
 
+<div id="roomcheck">
+</div>
 
 
 @endsection
-<!-- <form>
-<div changeable></div>
-</form> -->

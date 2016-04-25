@@ -10,8 +10,9 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
         <link href="/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
-        
+        <link href="/css/sidebar.css" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+        <script type='text/javascript' src="/js/vue.js"></script>
         <style>
 
             @font-face {
@@ -58,8 +59,9 @@
 
             .content {
                 text-align: center;
-                display: table-row;
+                display: block;
                 vertical-align: middle;
+                margin-top: 15%;
             }
 
             .title {
@@ -128,39 +130,106 @@
         </script>
     </head>
     <body>
-        <div class = "container-fluid top-bar "id='header'>
-            <div class="container-fluid">
-                <div class="col-lg-9 col-md-9 col-sm-8 col-xs-8 " ><!--style='display:table-cell; text-decoration:none;'>-->
-                    @if(Auth::check())
-                     <a href = "/home" style='display:inline;'>
-                    @else
-                    <a href = "/" style='display:inline;'>
-                    @endif
-                        <img src = "/img/medsup.jpg" width="85%"/>
-                    </a>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-4 row " >
-                @if(Auth::check())
-                <!-- <div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 vcenter'> -->
-                    <div class="btn-group-justified">
-                        <a class = "btn btn-default" role = "button" href="{{url('/home')}}">Home</a>
-                        <a class = "btn btn-default" role = "button"  href="{{ url('/profile') }}">{{Auth::user()->first_name}}</a>
-                        <a class = "btn btn-default" role = "button"  href="{{ url('/logout') }}">Logout</a>
+        <div id="wrapper">
+
+            <!-- Sidebar -->
+            <div id="sidebar-wrapper">
+                <ul class="sidebar-nav">
+                    <li class="sidebar-brand">
+                        @if(Auth::check())
+                        <a href="{{ url('/home') }}">
+                            Home
+                        </a>
+
                         @else
-                        <a class="btn btn-default" id='login' href="{{url('/login')}}">Login</a>
+                        <a href="{{url('/login')}}">Login</a>
                         @endif
+                    </li>
+                    
+                    <li>
+                        <a href="{{url('/roomcheck')}}">Room Check</a>
+                    </li>
+                    <li>
+                        <a href="{{url('/loan')}}">Loan Equipment</a>
+                    </li>
+                    <li>
+                        <a href="{{url('/return')}}">What's still out?</a>
+                    </li>
+                    <li>
+                        <a href="{{url('/issues')}}">Issues</a>
+                    </li>
+                    @if(Auth::user()->is_authorized) 
+                    <li>
+                        <a href="#">Types</a>
+                    </li>
+                    <li>
+                        <a href="#">Assets</a>
+                    </li>
+                    <li>
+                        <a href="#">Attributes</a>
+                    </li>
+                    <li>
+                        <a href="#">Users</a>
+                    </li>
+                    @endif
+                    @if(Auth::check())
+                    <li>
+                        <a href="{{ url('/logout') }}"> Logout</a>
+                    </li>
+                    @endif
+                </ul>
+            </div>
+            <div id="page-content-wrapper">
+                <div class = "container-fluid top-bar "id='header'>
+                    <div class="container-fluid">
+                        <div class="col-lg-9 col-md-8 col-sm-7 col-xs-6 " ><!--style='display:table-cell; text-decoration:none;'>-->
+                            @if(Auth::check())
+                             <a href = "/home" style='display:inline;'>
+                            @else
+                            <a href = "/" style='display:inline;'>
+                            @endif
+                                <img src = "/img/medsup.jpg" width="85%"/>
+                            </a>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-md-2 col-xs-2" >
+                        
+                         <!-- <div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 vcenter'> -->
+                             <!-- <div class="btn-group-justified"> -->
+                                @if(Auth::check())
+                            <h2 style='display:inline-block; '><a  style='display:inline-block; text-decoration: none; color:black;' href="{{ url('/profile') }}"> Hi {{Auth::user()->first_name}}</a></h2>
+                            @endif
+                            <h2 style='display:inline-block; float:right;'><a style='display:inline-block; text-decoration: none; color:black;'  id="menu-toggle"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a></h2>
+                                <!-- <a class = "btn btn-default" role = "button" href="{{url('/home')}}">Home</a>
+                                
+                                <a class = "btn btn-default" role = "button"  href="{{ url('/logout') }}">Logout</a>
+                                
+                                <a class="btn btn-default" id='login' href="{{url('/login')}}">Login</a>
+                                 -->
+                            <!-- </div>  -->
+                            
+                        </div>
+
+                        <div class='divider col-lg-12 col-md-12 col-sm-12 col-xs-12'></div>
                     </div>
                 </div>
-                <div class='divider col-lg-12 col-md-12 col-sm-12 col-xs-12'></div>
+                <div class="container container-table">
+                    <div class="container-fluid top-bar">
+                        <!-- @yield('bar') -->
+                    </div> 
+                    <div class="content">
+                        @yield('content')
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="container container-table">
-            <div class="container-fluid top-bar">
-                @yield('bar')
-            </div>
-            <div class="content">
-                @yield('content')
-            </div>
-        </div>
+        <script>
+    $(document).ready(function(){
+        $("#wrapper").toggleClass("toggled");
+    });
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#wrapper").toggleClass("toggled");
+    });
+    </script>
     </body>
 </html>

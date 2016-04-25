@@ -1,5 +1,4 @@
 @extends('layouts.app')
-@include('user.userBar')
 @section('content')
 <script type='text/javascript' src="/js/bootstrap-datetimepicker.min.js"></script>
 <script>

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@include('user.userBar')
+<!-- @include('user.userBar') -->
 @section('content')
 	<h1> Remove User </h1>
 	<form class="form-horizontal" role="form" method="POST" action="{{ url('users/remove') }}">

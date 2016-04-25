@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@include('user.userBar')
+<!-- @include('user.userBar') -->
 
 @section('content')
 <script type='text/javascript'>

@@ -43,7 +43,7 @@ class AssetsController extends Controller
     }
 
     public function showRooms(){
-        $rooms = Asset::where('is_container',1)->get();
+        // $rooms = Asset::where('is_container',1)->get();
         // print_r($rooms);
         // foreach($rooms as $room){
         //     $type = $room['type_id'];
@@ -53,7 +53,7 @@ class AssetsController extends Controller
         //         ['time_checked'] => $checked,
         //     ];
         // }
-        return view('roomCheck',['rooms'=>$rooms]);
+        return view('roomCheck');
     }
 
     public function roomCheck(){
