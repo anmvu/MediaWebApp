@@ -3,6 +3,11 @@
 @include('user.userBar')
 
 @section('content')
+<script type='text/javascript'>
+	@foreach ($users as $user)
+		console.log({{ $user->id }});
+	@endforeach
+</script>
 <div class='container'>
 <div class='col-lg-10 col-md-9 col-sm-10 col-xs-10  col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1'>
 <div class='table-responsive'>

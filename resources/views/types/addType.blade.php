@@ -19,7 +19,7 @@ $(document).ready(function() {
 });
 </script>
 	<h1> Add Type Form </h1>
-	<form class="form-horizontal" role="form" method="POST" action="{{ url('/addtype') }}">
+	<form class="form-horizontal" role="form" method="POST" action="{{ url('/types/add') }}">
 		{{ csrf_field() }}
         <div class="form-group">
 

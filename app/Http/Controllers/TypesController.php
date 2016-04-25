@@ -6,12 +6,15 @@ use Illuminate\Http\Request;
 use App\Type as Type;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Validator;
 
 class TypesController extends Controller
 {
     public function index(){
-    	$types = type::all();
-    	return view('types.types',['types'=>$types]);
+    	$types = Type::all();
+        $max = Type::all()->max('id');
+        $middle = $max/2;
+    	return view('types.types',['types'=>$types,'max'=>$max,'mid'=>$middle]);
     }
 
     public function profile(){
@@ -23,28 +26,22 @@ class TypesController extends Controller
     	return view('types.addtype');
     }
 
-    public function posttype(){
+    public function posttype(Request $request){
         $validator = Validator::make($request->all(), [
-            'fname' => 'required',
-            'lname' => 'required',
-            'phonenum' => 'required',
-            'authorized' => 'required',
-            'user' => 'required',
+            'name' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return redirect('/users/add')
+            return redirect('/types/add')
                 ->withInput()
                 ->withErrors($validator);
         }
 
-        $user = new User;
-        $user->first_name = $request->fname;
-        $user->last_name = $request->lname;
-        $user->phone_num = $request->phonenum;
-        $user->is_authorized = $request->authorized;
-        $user->user = $request->user;
-        $user->save();
+        $type = new Type;
+        $type->name = $request->name;
+        $type->save();
+
+        return redirect('/types');
     }
 
     public function removetype(){

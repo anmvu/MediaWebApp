@@ -42,6 +42,25 @@ class AssetsController extends Controller
         $user->save();
     }
 
+    public function showRooms(){
+        $rooms = Asset::where('is_container',1)->get();
+        // print_r($rooms);
+        // foreach($rooms as $room){
+        //     $type = $room['type_id'];
+        //     $checked = $room['time_checked'];
+        //     $classroom[$room['barcode']] =[
+        //         ['type_id'] => $type,
+        //         ['time_checked'] => $checked,
+        //     ];
+        // }
+        return view('roomCheck',['rooms'=>$rooms]);
+    }
+
+    public function roomCheck(){
+
+    }
+
+
     public function removeAsset(){
         return view('assets.removeAsset');
     }

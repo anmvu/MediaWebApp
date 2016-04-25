@@ -47,6 +47,23 @@ Route::group(['middleware' => 'web'], function () {
 
 		Route::get('/issues',"IssuesController@listIssues");
 
+		//Route::get('/roomcheck',"AssetsController@showRooms");
+
+		Route::get('/roomcheck', function() {
+		    return App\Asset::all();
+		});
+
+		Route::post('/roomcheck', function() {
+		    return App\Asset::create(Request::all());
+		});
+
+		Route::get('api/messages', function() {
+		    return Message::all();
+		});
+		Route::post('api/messages', function() {
+		    return Message::create(Request::all());
+		});
+
 		Route::group(['middleware' => AdminMiddleware::class], function () {
 			Route::get('/users',"UsersController@index");
 			Route::post('/users','UsersController@removeSelectedUser');
@@ -66,6 +83,7 @@ Route::group(['middleware' => 'web'], function () {
 			Route::get('assets/add','AssetsController@addAsset');
 			Route::post('assets/add','AssetsController@postAsset');
 			Route::get('assets/remove','AssetsController@removeAsset');
+			Route::get('assets/rooms','AssetsController@rooms');
 
 			Route::get('/attributes',"AttributesController@index");
 			Route::get('attributes/add','AttributesController@addAsset');

@@ -20,7 +20,13 @@
 			<td>{{$asset->barcode}}</td>
 			<td>{{$asset->type_id}}</td>
 			<td>{{$asset->time_checked}}</td>
-			<td>{{$asset->container_id}}</td>
+			<td>
+				@if ($asset->container_id == null)
+					No Container
+				@else	
+				{{$asset->container_id}}
+				@endif
+			</td>
 			<td>
 				@if($asset->is_container)
 				<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>

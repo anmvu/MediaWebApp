@@ -6,6 +6,7 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'AssetsTableSeeder' => $baseDir . '/database/seeds/AssetsTableSeeder.php',
     'CreateAssetsTable' => $baseDir . '/database/migrations/2016_02_26_183406_create_assets_table.php',
     'CreateAttributeAssetsTable' => $baseDir . '/database/migrations/2016_02_26_183722_create_attribute_assets_table.php',
     'CreateAttributesTable' => $baseDir . '/database/migrations/2016_02_26_183549_create_attributes_table.php',
@@ -520,5 +521,6 @@ return array(
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
     'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
+    'TypesTableSeeder' => $baseDir . '/database/seeds/TypesTableSeeder.php',
     'UsersTableSeeder' => $baseDir . '/database/seeds/UsersTableSeeder.php',
 );

@@ -30,7 +30,7 @@ class UsersTableSeeder extends Seeder
         	'user'=>'N14433367',
             'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
-        ]);'id'=
+        ]);
         DB::table('users')->insert([
             'id'=>3,
             'is_authorized'=>False,
@@ -54,7 +54,7 @@ class UsersTableSeeder extends Seeder
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
         DB::table('users')->insert([
-            'id'=5,
+            'id'=>5,
             'is_authorized' =>1,
             'active' => 1,
             'first_name' =>"Erich",
@@ -66,7 +66,7 @@ class UsersTableSeeder extends Seeder
             'updated_at' =>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
         DB::table('users')->insert([
-            'id'=6,
+            'id'=>6,
             'is_authorized' =>1,
             'active' => 1,
             'first_name' =>"James",
@@ -78,7 +78,7 @@ class UsersTableSeeder extends Seeder
             'updated_at' =>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
         DB::table('users')->insert([
-            'id'=7,
+            'id'=>7,
             'is_authorized' =>0,
             'active' => 1,
             'first_name' =>"Reiko",
@@ -90,7 +90,7 @@ class UsersTableSeeder extends Seeder
             'updated_at' =>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
         DB::table('users')->insert([
-            'id'=8,
+            'id'=>8,
             'is_authorized' =>0,
             'active' => 1,
             'first_name' =>"Jimmy",
