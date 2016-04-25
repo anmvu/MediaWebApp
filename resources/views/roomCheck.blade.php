@@ -15,10 +15,15 @@
 
 
 @section('content')
-<script src='/js/roomcheck.js' type='text/javascript'></script>
+
 
 <div id="roomcheck">
+    <select>
+        <option v-for="room in rooms">
+            @{{room.barcode}}
+        </option>
+    </select>
 </div>
 
-
+<script src='/js/roomcheck.js' type='text/javascript'></script>
 @endsection
