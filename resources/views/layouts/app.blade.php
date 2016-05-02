@@ -145,7 +145,7 @@
                         <a href="{{url('/login')}}">Login</a>
                         @endif
                     </li>
-                    
+                    @if(Auth::check())
                     <li>
                         <a href="{{url('/roomcheck')}}">Room Check</a>
                     </li>
@@ -160,19 +160,18 @@
                     </li>
                     @if(Auth::user()->is_authorized) 
                     <li>
-                        <a href="#">Types</a>
+                        <a href="{{url('/types')}}">Types</a>
                     </li>
                     <li>
-                        <a href="#">Assets</a>
+                        <a href="{{url('/assets')}}">Assets</a>
                     </li>
                     <li>
-                        <a href="#">Attributes</a>
+                        <a href="{{url('/attributes')}}">Attributes</a>
                     </li>
                     <li>
-                        <a href="#">Users</a>
+                        <a href="{{url('/users')}}">Users</a>
                     </li>
                     @endif
-                    @if(Auth::check())
                     <li>
                         <a href="{{ url('/logout') }}"> Logout</a>
                     </li>

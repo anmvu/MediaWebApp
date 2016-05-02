@@ -138,13 +138,14 @@ Student users are users that work for the department and have work-study. Studen
 
 Special thanks to Aleksandr Rogozin and Randy Sofia for their assistance and teaching throughout the development process.
 
-## <a name="future"></a>Future Features
+## <a name="future"></a>Possible Future Features
 
-	- Form for requests
+	- Form for media requests
 	- Logging in two different ways
 	- Chat feature between online users
 	- Updating certain asset-attribute values in room check i.e. lamp hours
 	- Loanable equipment can be from storage and still be loaned out
+	- Calendar/task list for the day as the home page on login
 
 
 ##<a name="problem"></a> Contact
