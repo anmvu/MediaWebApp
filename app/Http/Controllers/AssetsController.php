@@ -6,11 +6,13 @@ use Illuminate\Http\Request;
 use App\Asset as Asset;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
+
 
 class AssetsController extends Controller
 {
     public function index(){
-    	$assets = Asset::all();
+    	$assets = Asset::enabled()->get();
     	return view('assets.assets',['assets'=>$assets]);
     }
 
@@ -61,7 +63,9 @@ class AssetsController extends Controller
     }
 
 
-    public function removeAsset(){
-        return view('assets.removeAsset');
+    public function removeAsset(Request $request){
+        $asset = Asset::find($request->id);
+        $asset->update(['enabled'=>0]);
+        return response()->json(['return' => $request->id]);
     }
 }

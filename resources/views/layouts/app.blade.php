@@ -12,7 +12,10 @@
         <link href="https://fonts.googleapis.com/css?family=Lato:100" rel="stylesheet" type="text/css">
         <link href="/css/sidebar.css" rel="stylesheet">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-        <script type='text/javascript' src="/js/vue.js"></script>
+        <link href="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/css/bootstrap-editable.css" rel="stylesheet"/>
+            <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.4/vue.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.16/vue-resource.min.js"></script>
         <style>
 
             @font-face {
@@ -105,47 +108,56 @@
             .page-nav{
                 display:table-row;
             }
-            
+
+            .top-bar{
+                z-index: 999;
+            }
+            .form-group{
+                margin-bottom: 0px;
+            }
+            .editable-click, a.editable-click, a.editable-click:hover{
+                border-bottom: 0px;
+            }
+            a{
+                color:black;
+            }
         </style>
         <script>
-        var top = $('.top-bar').offset();
-        $('.trigger').click(function () {
-            $('.top-bar').css('position','');  
-            $('.left2').toggle('slow',function(){
-                top = $('.top-bar').offset().top;
+        $(document).ready(function(){
+            var top = $('.top-bar').offset();
+            $('.trigger').click(function () {
+                $('.top-bar').css('position','');  
+                $('.left2').toggle('slow',function(){
+                    top = $('.top-bar').offset().top;
+                });
+
             });
 
+
+
+            $(document).scroll(function(){
+                //calculating the minimal top position of the div
+                $('.top-bar').css('position','');
+                top = $('.top-bar').offset().top;
+
+                $('.top-bar').css('position','absolute');                 
+                $('.top-bar').css('top',Math.max(top,$(document).scrollTop()));
+             });
         });
-
-
-
-        $(document).scroll(function(){
-            //calculating the minimal top position of the div
-            $('.top-bar').css('position','');
-            top = $('.top-bar').offset().top;
-
-            $('.top-bar').css('position','absolute');                 
-            $('.top-bar').css('top',Math.max(top,$(document).scrollTop()));
-         });
         </script>
     </head>
     <body>
+        @if(Auth::check())
         <div id="wrapper">
 
             <!-- Sidebar -->
             <div id="sidebar-wrapper">
                 <ul class="sidebar-nav">
                     <li class="sidebar-brand">
-                        @if(Auth::check())
                         <a href="{{ url('/home') }}">
                             Home
                         </a>
-
-                        @else
-                        <a href="{{url('/login')}}">Login</a>
-                        @endif
                     </li>
-                    @if(Auth::check())
                     <li>
                         <a href="{{url('/roomcheck')}}">Room Check</a>
                     </li>
@@ -175,29 +187,31 @@
                     <li>
                         <a href="{{ url('/logout') }}"> Logout</a>
                     </li>
-                    @endif
                 </ul>
             </div>
+            @endif
             <div id="page-content-wrapper">
-                <div class = "container-fluid top-bar "id='header'>
+                <div class = "container-fluid "id='header'>
                     <div class="container-fluid">
-                        <div class="col-lg-9 col-md-8 col-sm-7 col-xs-6 " ><!--style='display:table-cell; text-decoration:none;'>-->
+                        <div class="col-lg-9 col-md-8 col-sm-8 col-xs-6 " ><!--style='display:table-cell; text-decoration:none;'>-->
                             @if(Auth::check())
                              <a href = "/home" style='display:inline;'>
                             @else
                             <a href = "/" style='display:inline;'>
                             @endif
-                                <img src = "/img/medsup.jpg" width="85%"/>
+                                <img src = "/img/medsup.jpg" width="100%"/>
                             </a>
                         </div>
-                        <div class="col-lg-3 col-md-3 col-md-2 col-xs-2" >
+                        <div class="col-lg-3 col-md-3 col-md-3 col-xs-4" >
                         
                          <!-- <div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 vcenter'> -->
                              <!-- <div class="btn-group-justified"> -->
-                                @if(Auth::check())
-                            <h2 style='display:inline-block; '><a  style='display:inline-block; text-decoration: none; color:black;' href="{{ url('/profile') }}"> Hi {{Auth::user()->first_name}}</a></h2>
+                            @if(Auth::check())
+                            <a style='display:inline-block; text-decoration: none; color:black; float:right; margin-left: 20px;'><h2 style='display:inline-block;'><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true" id="menu-toggle"></span></h2></a>
+                            <h2 style='display:inline-block; float:right;'><a  style='display:inline-block; text-decoration: none; color:black;' href="{{ url('/profile') }}"> Hi {{Auth::user()->first_name}}</a></h2>                
+                            @else
+                            <h2 style='display:inline-block; float:right;'><a  style='display:inline-block; text-decoration: none; color:black;' href="{{ url('/login') }}"> Login </a></h2>
                             @endif
-                            <h2 style='display:inline-block; float:right;'><a style='display:inline-block; text-decoration: none; color:black;'  id="menu-toggle"><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true"></span></a></h2>
                                 <!-- <a class = "btn btn-default" role = "button" href="{{url('/home')}}">Home</a>
                                 
                                 <a class = "btn btn-default" role = "button"  href="{{ url('/logout') }}">Logout</a>
@@ -211,10 +225,10 @@
                         <div class='divider col-lg-12 col-md-12 col-sm-12 col-xs-12'></div>
                     </div>
                 </div>
+                <div class="container-fluid top-bar">
+                        @yield('bar')
+                </div>
                 <div class="container container-table">
-                    <div class="container-fluid top-bar">
-                        <!-- @yield('bar') -->
-                    </div> 
                     <div class="content">
                         @yield('content')
                     </div>
@@ -222,12 +236,19 @@
             </div>
         </div>
         <script>
+    
     $(document).ready(function(){
         $("#wrapper").toggleClass("toggled");
     });
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
+    $("#wrapper").click(function(e){
+        if($(e.target).is("#menu-toggle")){
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        }
+        else if($(e.target).is("li")){}
+        else{
+            $("#wrapper").addClass("toggled");
+        }
     });
     </script>
     </body>

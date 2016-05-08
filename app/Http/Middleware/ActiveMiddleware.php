@@ -15,10 +15,13 @@ class ActiveMiddleware
      */
     public function handle($request, Closure $next)
     {
-        // dd($request->user()->Active());
-        if(!$request->user()->active){
-           return redirect('errors.401');
+        // dd($request->user());
+        if($request->user() == null){
+            return redirect('errors.401');
         }
+        if(!$request->user()->active ){
+                return redirect('errors.401');
+            }
         return$next($request);
     }
 }

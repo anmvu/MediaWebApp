@@ -11,7 +11,7 @@ use Validator;
 class TypesController extends Controller
 {
     public function index(){
-    	$types = Type::all();
+    	$types = Type::enabled()->get();
         $max = Type::all()->max('id');
         $middle = $max/2;
     	return view('types.types',['types'=>$types,'max'=>$max,'mid'=>$middle]);
@@ -44,7 +44,9 @@ class TypesController extends Controller
         return redirect('/types');
     }
 
-    public function removetype(){
-        return view('types.removetype');
+    public function removetype(Request $request){
+        $type = Type::find($request->id);
+        $type->update(['enable'=>0]);
+        return response()->json(['return' => $request->id]);
     }
 }

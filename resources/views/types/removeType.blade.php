@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<!-- @include('user.userBar') -->
+@include('types.typeBar')
 @section('content')
 <script>
 $(document).ready(function() {
@@ -18,7 +18,7 @@ $(document).ready(function() {
     });
 });
 </script>
-	<h1> Add type Form </h1>
+	<h1> Add Type Form </h1>
 	<form class="form-horizontal" role="form" method="POST" action="{{ url('/addtype') }}">
 		{{ csrf_field() }}
         <div class="form-group">

@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<!-- @include('user.userBar') -->
+@include('assets.assetBar')
 @section('content')
 <script>
 $(document).ready(function() {

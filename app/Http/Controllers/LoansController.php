@@ -13,7 +13,7 @@ use DB;
 class LoansController extends Controller
 {
     public function getLoanForm(){
-    	$rooms = Asset::room()->orderBy('barcode')->get();
+    	$rooms = Asset::room()->enabled()->orderBy('barcode')->get();
     	
     	return view('loan',['rooms' => $rooms]);
     }

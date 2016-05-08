@@ -6,43 +6,40 @@ use Illuminate\Http\Request;
 use App\Attribute as Attribute;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
+use Validator;
 
 class AttributesController extends Controller
 {
     public function index(){
-    	$attributes = attribute::all();
+    	$attributes = Attribute::enabled()->get();
     	return view('attributes.attributes',['attributes'=>$attributes]);
     }
 
-    public function addattribute(){
-    	return view('attributes.addattribute');
+    public function addAttribute(){
+    	return view('attributes.addAttribute');
     }
 
-    public function postattribute(){
+    public function postAttribute(Request $request){
         $validator = Validator::make($request->all(), [
-            'fname' => 'required',
-            'lname' => 'required',
-            'phonenum' => 'required',
-            'authorized' => 'required',
-            'user' => 'required',
+            'label' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return redirect('/users/add')
+            return redirect('/attributes/add')
                 ->withInput()
                 ->withErrors($validator);
         }
 
-        $user = new User;
-        $user->first_name = $request->fname;
-        $user->last_name = $request->lname;
-        $user->phone_num = $request->phonenum;
-        $user->is_authorized = $request->authorized;
-        $user->user = $request->user;
-        $user->save();
+        $attribute = new Attribute;
+        $attribute->label = $request->label;
+        $attribute->save();
+        return redirect('/attributes/add');
     }
 
-    public function removeattribute(){
-        return view('attributes.removeattribute');
+    public function removeAttribute(Request $request){
+        // $attribute = Attribute::find($request->id);
+        Attribute::find($request->id)->update(['enabled'=>0]);
+        // $attribute->update(['enabled' => 0]);
+        return response()->json(['return' => $request->id]);
     }
 }

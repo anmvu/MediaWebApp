@@ -1,6 +1,7 @@
 <?php
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\ActiveMiddleware;
+use App\Http\Middleware\SessionTimeout;
 /*
 |--------------------------------------------------------------------------
 | Routes File
@@ -33,7 +34,7 @@ Route::group(['middleware' => 'web'], function () {
     Route::post('/login','Auth\AuthController@postLogin');
     Route::get('/logout','Auth\AuthController@logOut');
     
-    Route::group(['middleware' => ActiveMiddleware::class], function () {
+    Route::group(['middleware' => [ActiveMiddleware::class,SessionTimeout::class]], function () {
 		Route::get('/home',function(){
 			return view('home');
 		});
@@ -47,23 +48,19 @@ Route::group(['middleware' => 'web'], function () {
 
 		Route::get('/issues',"IssuesController@listIssues");
 
-		//Route::get('/roomcheck',"AssetsController@showRooms");
-
-		Route::get('/roomcheck', function() {
+		Route::get('/roomcheck/all', function() {
 		    return App\Asset::all();
 		});
 
-		Route::get('/roomcheck/form', "AssetsController@showRooms");
+		Route::get('/roomcheck/{id}',function($id){
+			return response()->json(App\Asset::where("container_id",$id)->get());
+		});
+		
 
-		Route::post('/roomcheck', function() {
+		Route::get('/roomcheck', "AssetsController@showRooms");
+
+		Route::post('/roomcheck/all', function() {
 		    return App\Asset::create(Request::all());
-		});
-
-		Route::get('api/messages', function() {
-		    return Message::all();
-		});
-		Route::post('api/messages', function() {
-		    return Message::create(Request::all());
 		});
 
 		Route::group(['middleware' => AdminMiddleware::class], function () {
@@ -71,26 +68,25 @@ Route::group(['middleware' => 'web'], function () {
 			Route::post('/users','UsersController@removeSelectedUser');
 			Route::get('users/add','UsersController@addUser');
 			Route::post('users/add','UsersController@postUser');
-			//Route::get('users/remove','UsersController@removeUser');
-			// Route::post('users/remove','UsersController@removeSelectedUser');
+			Route::post('users/edit/{id}','UsersController@editUser');
 			Route::get('users/reactivate','UsersController@reactivateUser');
 			Route::post('users/reactivate','UsersController@reactivateSelectedUser');
 
 			Route::get('/types',"TypesController@index");
+			Route::post('/types',"TypesController@remoteType");
 			Route::get('types/add','TypesController@addType');
 			Route::post('types/add','TypesController@postType');
-			Route::get('types/remove','TypesController@removeType');
 
 			Route::get('/assets',"AssetsController@index");
 			Route::get('assets/add','AssetsController@addAsset');
 			Route::post('assets/add','AssetsController@postAsset');
-			Route::get('assets/remove','AssetsController@removeAsset');
+			Route::post('assets','AssetsController@removeAsset');
 			Route::get('assets/rooms','AssetsController@rooms');
 
 			Route::get('/attributes',"AttributesController@index");
-			Route::get('attributes/add','AttributesController@addAsset');
-			Route::post('attributes/add','AttributesController@postAsset');
-			Route::get('attributes/remove','AttributesController@removeAsset');
+			Route::post('/attributes',"AttributesController@removeAttribute");
+			Route::get('attributes/add','AttributesController@addAttribute');
+			Route::post('attributes/add','AttributesController@postAttribute');
 		});
 	});
 });

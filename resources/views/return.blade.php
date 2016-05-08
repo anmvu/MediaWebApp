@@ -1,5 +1,5 @@
 @extends('layouts.app')
-<!-- @include('user.userBar') -->
+
 @section('content')
 <div class='container'>
 <div class='col-lg-10 col-md-9 col-sm-8 col-xs-7 col-lg-offset-1 col-md-offset-1 col-sm-offset-2 col-xs-offset-3'>

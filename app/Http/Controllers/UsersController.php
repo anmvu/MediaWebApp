@@ -50,38 +50,38 @@ class UsersController extends Controller
         $user->user = $request->user;
         $user->save();
 
-        // DB::table('users')->insert([ //,
-        //     'first_name' => $request->fname,
-        //     'last_name' => $request->lname,
-        //     'phone_num' => $request->phonenum,
-        //     'is_authorized' => false,
-        //     'user' => $request->user,
-        //     'created_at' => \Carbon\Carbon::now()->toDateTimeString(),
-        //     'updated_at' => \Carbon\Carbon::now()->toDateTimeString(),
-        // ]);
-
         return redirect('/users');
-    }
-
-    public function removeUser(){
-        $users = User::Active()->get();
-        return view('user.removeUser',['users'=>$users]);
     }
 
     public function removeSelectedUser(Request $request){
+        // $user = User::find($request->id);
+        // $user->update(array('active'=>0));
+        // //return redirect('/users/remove');
+        // return redirect('/users');
+        // $data = Input::all();        
         $user = User::find($request->id);
-        $user->update(array('active'=>0));
-        //return redirect('/users/remove');
-        return redirect('/users');
+        // print_r($user);
+        $user->update(['active'=>0]);
+        // return view('assets.assets');    
+        return response()->json(['return' => $request->id]);
+    }
+
+    public function editUser(Request $request, $id) {
+        $user = User::findOrFail($id);
+        $name = $request->get('name');
+        $value = $request->get('value');
+        $user->$name = $value;
+        return response()->json(['return' => $user->save()]);
     }
 
     public function reactivateUser(){
         $users = User::Inactive()->get();
         return view('user.reactivateUser',['users'=>$users]);
     }
+
     public function reactivateSelectedUser(Request $request){
         $user = User::find($request->id);
-        $user->update(array('active'=>1));
-        return redirect('/users/reactivate');
+        $user->update(['active'=>1]);
+        return response()->json(['return' => $request->id]);
     }
 }

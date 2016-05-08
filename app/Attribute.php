@@ -10,4 +10,7 @@ class Attribute extends Model
     public function assets(){
     	return $this->belongsToMany('App\Asset','attribute_assets');
     }
+    public function scopeEnabled(){
+        return $this->is_enabled;
+    }
 }

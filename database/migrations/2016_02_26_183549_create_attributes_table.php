@@ -15,6 +15,7 @@ class CreateAttributesTable extends Migration
         Schema::create('attributes', function (Blueprint $table) {
             $table->increments('id');
             $table->string('label')->unique();
+            $table->boolean('enabled')->default(true);
             $table->timestamps();
         });
     }
