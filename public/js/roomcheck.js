@@ -6,6 +6,7 @@ new Vue({
 	el:'#roomcheck',
 
 	data: {
+		checkedParts:[]
     },
 
 	ready: function(){
@@ -22,6 +23,7 @@ new Vue({
 		fetchEquipments:function(id){
 			$url = '/roomcheck/'+id;
 			console.log(id);
+			console.log($url);
 			this.$http.get($url,function(equipments){
 				this.$set('equipments',equipments);
 			});

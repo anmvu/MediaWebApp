@@ -4,7 +4,7 @@
     <div class="btn-group-justified" role="group" aria-label="attribute-stuff">
         <a href="{{url('/attributes')}}" class="btn btn-default">View Attributes</a>
         <a  href="{{url('attributes/add')}}" class="btn btn-default">Add Attribute</a>
-        <a href="{{url('attributes/edit')}}" class="btn btn-default">Edit Attribute</a>
+        <!-- <a href="{{url('attributes/edit')}}" class="btn btn-default">Edit Attribute</a> -->
     </div>
 </div>
 <!-- </div> -->

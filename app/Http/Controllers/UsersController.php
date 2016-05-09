@@ -70,6 +70,19 @@ class UsersController extends Controller
         $user = User::findOrFail($id);
         $name = $request->get('name');
         $value = $request->get('value');
+        $correct_username = true;
+        if($name == 'user'){
+            if($user->is_authorized){
+                $yay = preg_match('/N\d{8}/',$value);
+            }
+            else{
+                $yay = preg_match('/\d{14}/',$value);
+            }
+            if($yay == 0 || $yay == FALSE) $correct_username == false;
+            $value = strval($value);
+        }
+        return $yay;
+        if (!$correct_username)return response()->json(['status'=> 'error']);
         $user->$name = $value;
         return response()->json(['return' => $user->save()]);
     }

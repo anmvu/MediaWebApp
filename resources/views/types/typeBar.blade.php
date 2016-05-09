@@ -4,7 +4,7 @@
     <div class="btn-group-justified" role="group" aria-label="Type-stuff">
         <a href="{{url('/types')}}" class="btn btn-default">View Types</a>
         <a  href="{{url('types/add')}}" class="btn btn-default">Add Type</a>
-        <a href="{{url('types/edit')}}" class="btn btn-default">Edit Type</a>
+        <!-- <a href="{{url('types/edit')}}" class="btn btn-default">Edit Type</a> -->
     </div>
 </div>
 <!-- </div> -->

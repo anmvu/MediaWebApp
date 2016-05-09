@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Asset as Asset;
 use App\Http\Requests;
+use App\Type as Type;
+use App\AttributeAsset as Attass;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
-
+use Validator;
 
 class AssetsController extends Controller
 {
@@ -17,31 +19,32 @@ class AssetsController extends Controller
     }
 
     public function addAsset(){
-    	return view('assets.addAsset');
+        $rooms = Asset::where('is_container',1)->orderBy('barcode')->get();
+        $types = Type::orderBy('name')->get();
+    	return view('assets.addAsset',['types'=>$types,'rooms'=>$rooms]);
     }
 
-    public function postAsset(){
+    public function postAsset(Request $request){
         $validator = Validator::make($request->all(), [
-            'fname' => 'required',
-            'lname' => 'required',
-            'phonenum' => 'required',
-            'authorized' => 'required',
-            'user' => 'required',
+            'barcode' => 'required|unique:assets',
+            'type' => 'required',
+            'room' => 'required',
+            'is_container' => 'required',
         ]);
 
         if ($validator->fails()) {
-            return redirect('/users/add')
+            return redirect('/assets/add')
                 ->withInput()
                 ->withErrors($validator);
         }
 
-        $user = new Asset;
-        $user->barcode = $request->fname;
-        $user->type_id = $request->lname;
-        $user->time_checked = $request->phonenum;
-        $user->container_id = $request->authorized;
-        $user->is_container = $request->user;
-        $user->save();
+        $asset = new Asset;
+        $asset->barcode = $request->barcode;
+        $asset->type_id = $request->type;
+        $asset->container_id = $request->room;
+        $asset->is_container = $request->is_container;
+        $asset->save();
+        return redirect('assets/add');
     }
 
     public function showRooms(){
@@ -68,4 +71,21 @@ class AssetsController extends Controller
         $asset->update(['enabled'=>0]);
         return response()->json(['return' => $request->id]);
     }
+
+    public function editAsset(Request $request, $id) {
+        $asset = Asset::findOrFail($id);
+        $name = $request->get('name');
+        $value = $request->get('value');
+        if($name == 'container_id'){
+            if($asset->barcode == $value){
+                print_r('error');
+                return response()->json(['return'=>'Cannot make this a container!','status'=> 0]);
+            }
+            else if($value == 0){ $value = NULL;}
+        }
+        $asset->$name = $value;
+        return response()->json(['return' => $asset->save()]);
+    }
+
+
 }

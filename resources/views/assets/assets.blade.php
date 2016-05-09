@@ -4,6 +4,49 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <script>
+$.fn.editable.defaults.mode = 'inline';
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $('.pUpdate').editable({
+        validate: function(value) {
+            if($.trim(value) == '')
+                return 'Value is required.';
+        },
+        placement: 'top',
+        send:'always',
+        ajaxOptions: {
+            dataType: 'json',
+            type: 'post'
+        }
+    });
+
+
+    $(".container_id").editable({
+    	validate: function(value) {
+            if($.trim(value) == '')
+                return 'Value is required.';
+        },
+        placement: 'top',
+        send:'always',
+        ajaxOptions: {
+            dataType: 'json',
+            type: 'post'
+        },
+        source: [
+        	{value: 0, text: "None"},
+        @foreach($assets as $asset)
+        @if($asset->is_container)
+        	{value: {{$asset->id}}, text:"{{$asset->barcode}}"},
+        	@endif
+        	@endforeach
+        ]
+    });
+});
+
 $(function () {
 
     $('form').on('submit', function (e) {
@@ -61,15 +104,18 @@ $(function () {
 			@foreach($assets as $asset)
 			<tbody>
 				<tr id="{{$asset->id}}">
-					<td style='vertical-align:middle;'>{{$asset->barcode}}</td>
-					<td style='vertical-align:middle;'>{{$asset->type_id}}</td>
-					<td style='vertical-align:middle;'>{{$asset->time_checked}}</td>
+					<td style='vertical-align:middle;'><a href="assets/{{$asset->id}}">{{$asset->barcode}}</a></td>
+					<td style='vertical-align:middle;'><a href="#" name='type_id' id="type_id" data-type="text" data-pk="1" data-title="Enter Attribute Label" class="editable editable-click pUpdate" data-url="assets/edit/{{$asset->id}}" style="display: inline;">{{$asset->type->name}}</a></td>
+					<td style='vertical-align:middle;'><a href="#" name='asset_id' id="asset_id" data-type="text" data-pk="1" data-title="Enter Attribute Label" class="editable editable-click pUpdate" data-emptytext="Never" data-url="assets/edit/{{$asset->id}}" style="display: inline;">{{$asset->time_checked}}</a></td>
 					<td style='vertical-align:middle;'>
-						@if ($asset->container_id == null)
-							No Container
-						@else	
-						{{$asset->container_id}}
-						@endif
+						<a href="#" name='container_id' id="container_id" data-type="select" data-pk="1" data-title="Enter Attribute Label" class="editable editable-click container_id" data-emptytext="None" data-url="assets/edit/{{$asset->id}}" style="display: inline;">
+							@if($asset->container_id != null)
+							{{$asset->container->barcode}}
+							@else
+							{{$asset->container_id}}
+							@endif
+
+						</a>
 					</td>
 					<td style='vertical-align:middle;'>
 						@if($asset->is_container)

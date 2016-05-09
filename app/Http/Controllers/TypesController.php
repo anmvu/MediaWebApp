@@ -41,12 +41,20 @@ class TypesController extends Controller
         $type->name = $request->name;
         $type->save();
 
-        return redirect('/types');
+        return redirect('/types/add');
     }
 
     public function removetype(Request $request){
         $type = Type::find($request->id);
         $type->update(['enable'=>0]);
         return response()->json(['return' => $request->id]);
+    }
+
+    public function editType(Request $request, $id) {
+        $type = Type::findOrFail($id);
+        $name = $request->get('name');
+        $value = $request->get('value');
+        $type->$name = $value;
+        return response()->json(['return' => $type->save()]);
     }
 }

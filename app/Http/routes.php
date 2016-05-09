@@ -49,11 +49,11 @@ Route::group(['middleware' => 'web'], function () {
 		Route::get('/issues',"IssuesController@listIssues");
 
 		Route::get('/roomcheck/all', function() {
-		    return App\Asset::all();
+		    return App\Asset::room()->orderBy('barcode')->get();
 		});
 
 		Route::get('/roomcheck/{id}',function($id){
-			return response()->json(App\Asset::where("container_id",$id)->get());
+			return App\Asset::where("container_id",$id)->with('type')->get();
 		});
 		
 
@@ -76,17 +76,24 @@ Route::group(['middleware' => 'web'], function () {
 			Route::post('/types',"TypesController@remoteType");
 			Route::get('types/add','TypesController@addType');
 			Route::post('types/add','TypesController@postType');
+			Route::post('types/edit/{id}','TypesController@editType');
 
 			Route::get('/assets',"AssetsController@index");
 			Route::get('assets/add','AssetsController@addAsset');
 			Route::post('assets/add','AssetsController@postAsset');
 			Route::post('assets','AssetsController@removeAsset');
 			Route::get('assets/rooms','AssetsController@rooms');
+			Route::post('assets/edit/{id}','AssetsController@editAsset');
+			Route::get('assets/{id}',"AttributeAssetController@showAttributes");
+			Route::post('assets/{id}/add',"AttributeAssetController@linkAttributes");
+			Route::post('assets/{id}/delete',"AttributeAssetController@removeAttributes");
+			Route::post('assets/{id}/edit/{attribute}',"AttributeAssetController@editLink");
 
 			Route::get('/attributes',"AttributesController@index");
 			Route::post('/attributes',"AttributesController@removeAttribute");
-			Route::get('attributes/add','AttributesController@addAttribute');
-			Route::post('attributes/add','AttributesController@postAttribute');
+			Route::get('/attributes/add','AttributesController@addAttribute');
+			Route::post('/attributes/add','AttributesController@postAttribute');
+			Route::post('/attributes/edit/{id}','AttributesController@editAttribute');
 		});
 	});
 });

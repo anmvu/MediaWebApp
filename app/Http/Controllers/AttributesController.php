@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Attribute as Attribute;
 use App\Http\Requests;
+use App\Type as Type;
 use App\Http\Controllers\Controller;
 use Validator;
 
@@ -42,4 +43,13 @@ class AttributesController extends Controller
         // $attribute->update(['enabled' => 0]);
         return response()->json(['return' => $request->id]);
     }
+
+    public function editAttribute(Request $request, $id) {
+        $attribute = Attribute::findOrFail($id);
+        $name = $request->get('name');
+        $value = $request->get('value');
+        $attribute->$name = $value;
+        return response()->json(['return' => $attribute->save()]);
+    }
+
 }

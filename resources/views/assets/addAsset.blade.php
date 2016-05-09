@@ -7,63 +7,67 @@ $(document).ready(function() {
     $('form *').change(function(){
         formmodified=1;
     });
-    window.onbeforeunload = confirmExit;
-    function confirmExit() {
-        if (formmodified == 1) {
-            return "New information not saved. Do you wish to leave the page?";
-        }
-    }
     $("input[name='commit']").click(function() {
         formmodified = 0;
     });
+    if (formmodified == 1) {
+        window.onbeforeunload = confirmExit;
+        function confirmExit() {
+            return "New information not saved. Do you wish to leave the page?";
+        }
+    }
+    
 });
 </script>
 	<h1> Add Asset Form </h1>
-	<form class="form-horizontal" role="form" method="POST" action="{{ url('asset/add') }}">
+	<form class="form-horizontal" role="form" method="POST" action="{{ url('assets/add') }}">
 		{{ csrf_field() }}
-        <div class="form-group">
+        <div class="form-group{{ $errors->has('barcode') ? ' has-error' : '' }}">
 
             <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4  control-label">Barcode</label>
             <!-- <br/> -->
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4  dropdown">
-                <input type="text" class="form-control" name="barcode" value="{{ old('fname') }}"> 
+                <input type="text" class="form-control" name="barcode" value="{{ old('barcode') }}"> 
             </div>
         </div>
-        <div class="form-group">
-            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4  control-label">Last Name</label>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4  dropdown">
-                <input type="text" class="form-control" name="lname" value="{{ old('lname') }}"> 
+        <div class="form-group{{ $errors->has('type') ? ' has-error' : '' }}">
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4  control-label">Type</label>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <select name="type">
+                    @foreach ($types as $type)
+                        <option value="{{$type->id}}">{{$type->name}}</option>
+                    @endforeach
+                </select>
             </div>
         </div>
-        <div class="form-group">
+        <div class="form-group{{ $errors->has('room') ? ' has-error' : '' }}">
 
-            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4  control-label">Phone Number</label>
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4  control-label">Container</label>
             <!-- <br/> -->
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
-               <input type="text" class="form-control" name="phonenum" pattern="\d{7}" title="Enter 10 digit phone number" value="{{ old('phonenum') }}">
-            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <select name="room">
+                    <option value="0">None</option>
+                    @foreach ($rooms as $room)
+                        <option value="{{$room->id}}">{{$room->barcode}}</option>
+                    @endforeach
+                </select>
+            </div>        
         </div>
-        <div class="form-group">
+        <div class="form-group{{ $errors->has('is_container') ? ' has-error' : '' }}">
 
-            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4  control-label">Is Authorized</label>
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4  control-label">Is Container</label>
             <!-- <br/> -->
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1  col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 radio">
                 <label>
-                    <input type="radio" name="authorized" id="optionsRadio1" value="1" checked>
+                    <input type="radio" name="is_container" id="optionsRadio1" value="1" checked>
                     Yes
                 </label>
             </div>
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 radio">
                 <label>
-                    <input type="radio" name="authorized" id="optionsRadio2" value="0">
+                    <input type="radio" name="is_container" id="optionsRadio2" value="0">
                     No
                 </label>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4  control-label">N number(Authorized) or Barcode(Student)</label>
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 ">
-            	<input type="textbox" class="form-control" name='asset' value="{{old('asset')}}">
             </div>
         </div>
         <div class="form-group">

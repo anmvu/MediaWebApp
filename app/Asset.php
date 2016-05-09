@@ -16,8 +16,8 @@ class Asset extends Model
         'barcode'
     ];
 
-    public function attributes(){
-    	return $this->belongsToMany('App\Attribute','attribute_assets');
+    public function container(){
+        return $this->hasOne('App\Asset','id','container_id');
     }
 
     public function containedAssets(){
@@ -27,11 +27,19 @@ class Asset extends Model
     	}
     }
 
+    public function type(){
+        return $this->hasOne('App\Type','id','type_id');
+    }
+
     public function scoperoom($query){
         return $query->where('is_container',1);
     }
 
     public function scopeEnabled($query){
         return $query->where('enabled',1);
+    }
+
+    public function attributes(){
+        return $this->hasManyThrough('App\Attribute','App\AttributeAsset','asset_id','attribute_id');
     }
 }

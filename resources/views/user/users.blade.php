@@ -7,32 +7,33 @@
 
 $.fn.editable.defaults.mode = 'inline';
 $(document).ready(function() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
 
-        $('.pUpdate').editable({
-            validate: function(value) {
-                if($.trim(value) == '')
-                    return 'Value is required.';
-            },
-            type: 'text',
-            title: 'Edit Comment',
-            placement: 'top',
-            send:'always',
-            ajaxOptions: {
-                dataType: 'json',
-                type: 'post'
-            }
-        });
-        $('#username').editable({
-		    success: function(response, newValue) {
-		        if(response.status == 'error') return response.msg; //msg will be shown in editable form
+    $('#user').editable({
+	    success: function(response, newValue) {
+	    	console.log(response);
+	        if(response.status == 'error') return response.msg; //msg will be shown in editable form
 	    }
-});
-    
+    });
+
+    $('.pUpdate').editable({
+        validate: function(value) {
+            if($.trim(value) == '')
+                return 'Value is required.';
+        },
+        type: 'text',
+        title: 'Edit Comment',
+        placement: 'top',
+        send:'always',
+        ajaxOptions: {
+            dataType: 'json',
+            type: 'post'
+        }
+    });
 });
 
 
@@ -92,7 +93,9 @@ $(function () {
 						<a href="#" name='last_name' id="last_name" data-type="text" data-pk="1" data-title="Enter Last Name" class="editable editable-click pUpdate" data-url="users/edit/{{$user->id}}" style="display: inline;">{{$user->last_name}}</a>
 					</td>
 					<td style='vertical-align:middle;'>
-						<a href="#" name='username' id="username" data-type="text" data-pk="1" data-title="Enter barcode/N Number" class="editable editable-click pUpdate" data-url="users/edit/{{$user->id}}" style="display: inline;">{{$user->user}}</a>
+						<!-- <a href="#" name='user' id="user" data-type="text" data-pk="1" data-title="Enter barcode/N Number" class="editable editable-click pUpdate" data-url="users/edit/{{$user->id}}" style="display: inline;"> -->
+							{{$user->user}}
+						<!-- </a> -->
 					</td>
 					<td style='vertical-align:middle;'>
 						<a href="#" name='phone_num' id="phone_num" data-type="text" data-pk="1" data-title="Enter phone number" class="editable editable-click pUpdate" data-url="users/edit/{{$user->id}}" style="display: inline;">{{$user->phone_num}}</a>

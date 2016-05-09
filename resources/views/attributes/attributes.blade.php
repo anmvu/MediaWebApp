@@ -4,6 +4,28 @@
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
 <script>
+
+$.fn.editable.defaults.mode = 'inline';
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $('.pUpdate').editable({
+        validate: function(value) {
+            if($.trim(value) == '')
+                return 'Value is required.';
+        },
+        placement: 'top',
+        send:'always',
+        ajaxOptions: {
+            dataType: 'json',
+            type: 'post'
+        }
+    });
+});
+
 $(function () {
 
     $('form').on('submit', function (e) {
@@ -40,7 +62,7 @@ $(function () {
 </script>
 <div class='container'>
 	<div class='table-responsive'>
-		<table class='table table-hover table-bordered'>
+		<table class='table table-hover table-striped table-responsive'>
 			<thead>
 				<tr>
 					<th style='text-align:center'>Label</th>
@@ -50,11 +72,11 @@ $(function () {
 			@foreach($attributes as $attribute)
 			<tbody>
 				<tr id='{{$attribute->id}}'>
-					<td style='vertical-align:middle;'>{{$attribute->label}}</td>
+					<td style='vertical-align:middle;'><a href="#" name='label' id="label" data-type="text" data-pk="1" data-title="Enter Attribute Label" class="editable editable-click pUpdate" data-url="attributes/edit/{{$attribute->id}}" style="display: inline;">{{$attribute->label}}</a></td>
 					<td>
 						<form class="form-horizontal" role="form" method="POST">
 							<div class="form-group">
-								<div class="col-lg-5 col-lg-offset-4" style='text-align:center'>
+								<div class="col-lg-6 col-lg-offset-3" style='text-align:center'>
 					            	<input type='hidden' class='id' name='id' value='{{$attribute->id}}'></input>
 					                <button type="submit" class="btn btn-danger btn-block">
 					                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
