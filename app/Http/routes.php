@@ -63,6 +63,10 @@ Route::group(['middleware' => 'web'], function () {
 		    return App\Asset::create(Request::all());
 		});
 
+		Route::post('/roomcheck/{id}',"AssetsController@clearRoom");
+		Route::get('/roomcheck/{id}/{array}',"AssetsController@addComments");
+		Route::post('/roomcheck/{id}/{array}',"AssetsController@postComments");
+
 		Route::group(['middleware' => AdminMiddleware::class], function () {
 			Route::get('/users',"UsersController@index");
 			Route::post('/users','UsersController@removeSelectedUser');

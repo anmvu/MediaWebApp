@@ -16,6 +16,10 @@ $(document).ready(function() {
     $("input[name='commit']").click(function() {
         formmodified = 0;
     });
+
+    $("#due").change(function(){
+  console.log(this.value);
+    });      
 });
 </script>
 	<h1> Loan-out Form </h1>
@@ -36,7 +40,7 @@ $(document).ready(function() {
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
             	<div class="well">
 	            	<div id="datetimepicker2" class="input-append">
-					    <input data-format="MM/dd/yyyy HH:mm:ss PP" type="text"></input>
+					    <input data-format="MM/dd/yyyy HH:mm:ss PP" id='due' type="text" name="due" value="{{old('due')}}"></input>
 					    <span class="add-on">
 					      <i data-time-icon="glyphicon glyphicon-time" data-date-icon="glyphicon glyphicon-calendar">
 					      </i>
@@ -91,7 +95,7 @@ $(document).ready(function() {
         </div>
         <div class="form-group">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">
-                <button type="submit" class="btn btn-primary btn-block">
+                <button type="submit" name='commit' class="btn btn-primary btn-block">
                     <i class="fa fa-btn fa-sign-in"></i>Submit Loan
                 </button>
 

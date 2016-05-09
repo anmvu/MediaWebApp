@@ -19,20 +19,20 @@ class LoansController extends Controller
     }
 
     public function postLoan(Request $request){
-    	$this->validate($request->all(), [
-            'item' => 'required|id',
-            'due' => 'required|string',
-            'email' => 'string',
-           	'loaned' => 'required|string',
-           	'room' => 'required|id',
-           	'comments' => 'string',
-        ]);
+    	// $this->validate($request->all(), [
+     //        'item' => 'required|id',
+     //        'due' => 'required|string',
+     //        'email' => 'string',
+     //       	'loaned' => 'required|string',
+     //       	'room' => 'required|id',
+     //       	'comments' => 'string',
+     //    ]);
 
-        if ($validator->fails()) {
-            return redirect('/loan')
-                ->withInput()
-                ->withErrors($validator);
-        }
+        // if ($validator->fails()) {
+        //     return redirect('/loan')
+        //         ->withInput()
+        //         ->withErrors($validator);
+        // }
 
         // DB::table('loans')->insert([ //,
         //     'asset_id' => $request->item,
@@ -47,11 +47,15 @@ class LoansController extends Controller
         //     'update_at' => \Carbon\Carbon::now()->toDateTimeString(),
         // ]);
 
+
         $loan = new Loan;
-        $loan->asset_id = $request->item;
+        $asset = array(Asset::where('barcode',$request->item)->first(['id']));
+        $loan->asset_id = $asset[0]["id"];
         $loan->user_id = $request->user()->id;
-        $loan->comment_before = $request->comments;
-        $loan->due = $request->due;
+        if(isset($request->comments))$loan->comment_before = $request->comments;
+        else $loan->comment_before = "";
+        $time = strtotime($request->due);
+        $loan->due = date("Y-m-d H:i:s", $time);
         $loan->is_returned = false;
         $loan->email = $request->email;
         $loan->loaned_to = $request->loaned;
@@ -63,7 +67,8 @@ class LoansController extends Controller
     }
 
     public function needReturning(){
-        $items = Loan::where('is_returned',0);
+        $items = Loan::where('is_returned',0)->get();
+        // print_r($items);
         return view('return',['items'=>$items]);
     }
 }

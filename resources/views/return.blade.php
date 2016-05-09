@@ -3,8 +3,8 @@
 @section('content')
 <div class='container'>
 <div class='col-lg-10 col-md-9 col-sm-8 col-xs-7 col-lg-offset-1 col-md-offset-1 col-sm-offset-2 col-xs-offset-3'>
-@if(count($items) > 1)
-<h2> {{count($items)}} thing is still out</h2>
+@if(count($items) > 0)
+<h2> {{count($items)}} thing(s) are still out</h2>
 <div class='container-fluid'>
 	<div class='form-group'>
 		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
@@ -25,7 +25,7 @@
 <div class='container-fluid'>
 	<div class='form-group'>
 		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
-			<h5>{{$item->asset_id}}</h5>
+			<h5>{{$item->asset->barcode}}</h5>
 		</div>
 		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
 			<h5>{{$item->due}}</h5>
@@ -35,7 +35,7 @@
 		</div>
 
 		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
-			<h5>{{$item->container_id}}</h5>
+			<h5>{{$item->container->barcode}}</h5>
 		</div>
 	</div>
 </div>

@@ -158,18 +158,18 @@
                             Home
                         </a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="{{url('/roomcheck')}}">Room Check</a>
-                    </li>
+                    </li> -->
                     <li>
                         <a href="{{url('/loan')}}">Loan Equipment</a>
                     </li>
                     <li>
                         <a href="{{url('/return')}}">What's still out?</a>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a href="{{url('/issues')}}">Issues</a>
-                    </li>
+                    </li> -->
                     @if(Auth::user()->is_authorized) 
                     <li>
                         <a href="{{url('/types')}}">Types</a>

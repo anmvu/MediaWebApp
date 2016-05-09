@@ -1,12 +1,12 @@
 // Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('value');
 
-
 new Vue({
 
 	el:'#roomcheck',
 
 	data: {
-		checkedParts:[]
+		checkedParts:[],
+		showForm: false,
     },
 
 	ready: function(){
@@ -22,14 +22,19 @@ new Vue({
 
 		fetchEquipments:function(id){
 			$url = '/roomcheck/'+id;
-			console.log(id);
-			console.log($url);
+			this.checkedParts.splice(0,this.checkedParts.length);
 			this.$http.get($url,function(equipments){
 				this.$set('equipments',equipments);
+				console.log(JSON.stringify(equipments));
+				this.showForm = true;
 			});
 		},
 
-	}
+		checked:function(id){
+			// comment.id.show();
 
+		},
+
+	}
 
 });

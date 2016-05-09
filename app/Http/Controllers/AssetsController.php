@@ -61,8 +61,12 @@ class AssetsController extends Controller
         return view('roomCheck');
     }
 
-    public function roomCheck(){
-
+    public function clearRoom($id){
+        $room = Asset::findOrFail($id);
+        $room->time_checked = \Carbon\Carbon::now()->toDateTimeString();
+        $room->save();
+        print_r($room);
+        // return redirect('/roomcheck');
     }
 
 
