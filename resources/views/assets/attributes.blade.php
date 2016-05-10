@@ -49,19 +49,24 @@ $(function () {
 
         e.preventDefault();
 
-        console.log(this.attribute.value);
-        console.log(this.val.value);
-        console.log({{$id}});
-
+        var id = this.attribute.value;
+        var value = this.val.value;
+        var select = "#attribute option[value='"+id+"']";
+        var attribute = $(select).text();
         $.ajax({
             url:'/assets/{{$id}}/add',
             type: 'post',
             data: {'attribute':this.attribute.value,'value':this.val.value},
             success:function(data){
-                console.log(data);
-                $("tbody").prepend('<tr id='+this.attribute.value+'><td style=\'vertical-align:middle;\'>'+this.attribute.value+'</td><td style=\'vertical-align:middle;\'>'+this.val.value+'</td><td style=\'vertical-align:middle;\'><form class="form-horizontal" class=\'delete\' role="form" method="POST"><div class="form-group"><div class="col-lg-5 col-lg-offset-4" style=\'text-align:center\'><input type=\'hidden\' class=\'id\' name=\'id\' value='+this.attribute.value+'></input><button type="submit" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></button></div></div></form></td></tr>');
-                // $("#"+this.attribute).remove();
-                // $("#"+this_id).remove();
+                $(select).remove();
+                $("#value").val("");
+                var htmlStuff = '<tr id='+id+'><td style=\'vertical-align:middle;\'>'+attribute+'</td><td style=\'vertical-align:middle;\'>'+value+'</td><td style=\'vertical-align:middle;\'><form class="form-horizontal" class=\'delete\' role="form" method="POST"><div class="form-group"><div class="col-lg-5 col-lg-offset-4" style=\'text-align:center\'><input type=\'hidden\' class=\'id\' name=\'id\' value='+id+'></input></div></div></form></td></tr>';
+                if ({{sizeOf($linked)}} == 0){
+                    htmlStuff = '<table class=\'table table-hover table-striped table-responsive\'><thead><tr><th style=\'text-align:center\'>Attribute</th><th style=\'text-align:center\'>Value</th></tr></thead><tbody>'+htmlStuff+'</tbody></table>';
+                    $(".table-responsive").append(htmlStuff);
+                }
+                else $(htmlStuff).insertBefore('table > tbody > tr:first');
+
             }
         });
     });
@@ -93,17 +98,13 @@ $(function () {
 });
 
 </script>
-@foreach($linked as $link)
- <p> {{$link->id}} </p>
-@endforeach
-
 <form class="form-horizontal"  id='add'role="form" method="POST" >
     <div class="form-group">
 
         <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Attribute</label>
         <!-- <br/> -->
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-            <select name="attribute">
+            <select id='attribute' name="attribute">
                 @foreach ($attributes as $attribute)
                     <option value="{{$attribute->id}}">{{$attribute->label}}</option>
                 @endforeach
@@ -115,7 +116,7 @@ $(function () {
         <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Value (i.e. Barcos)</label>
         <!-- <br/> -->
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 dropdown">
-            <input type="text" class="form-control" name="val" value="{{ old('value') }}"> 
+            <input type="text" id="value" class="form-control" name="val" value="{{ old('value') }}"> 
         </div>
     </div>
     <div class="form-group">
@@ -126,8 +127,9 @@ $(function () {
         </div>
     </div>
 </form>
-@if(sizeOf($linked) > 0)
+
 <div class='table-responsive'>
+    @if(sizeOf($linked) > 0)
     <table class='table table-hover table-striped table-responsive'>
         <thead>
             <tr>
@@ -162,11 +164,11 @@ $(function () {
                 </td> -->
             </tr>
         </tbody>
-        
         @endforeach
     </table>
-</div>
     @endif
+</div>
+    
 
 
 @endsection

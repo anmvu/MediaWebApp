@@ -45,6 +45,7 @@ Route::group(['middleware' => 'web'], function () {
 		Route::get('/profile',"UsersController@profile");
 
 		Route::get('/return',"LoansController@needReturning");
+		Route::post('/return',"LoansController@return");
 
 		Route::get('/issues',"IssuesController@listIssues");
 

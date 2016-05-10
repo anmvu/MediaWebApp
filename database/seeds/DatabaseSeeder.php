@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Database\seeds\AttributesTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call('UsersTableSeeder');
         $this->call('TypesTableSeeder');
         $this->call('AssetsTableSeeder');
+        $this->call('AttributesTableSeeder');
     }
 }

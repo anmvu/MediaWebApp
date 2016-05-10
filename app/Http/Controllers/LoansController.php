@@ -8,31 +8,39 @@ use App\Loan as Loan;
 use App\Asset as Asset;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
-use DB;
+use Validator;
 
 class LoansController extends Controller
 {
     public function getLoanForm(){
     	$rooms = Asset::room()->enabled()->orderBy('barcode')->get();
-    	
-    	return view('loan',['rooms' => $rooms]);
+    	$items = Asset::loanable()->enabled()->orderBy('barcode')->get();
+    	return view('loan',['rooms' => $rooms,'items'=>$items]);
+    }
+
+    public function return(Request $request){
+        $loan = Loan::findOrFail($request->id);
+        $loan->is_returned = 1;
+        return response()->json(['return' => $loan->save()]);
     }
 
     public function postLoan(Request $request){
-    	// $this->validate($request->all(), [
-     //        'item' => 'required|id',
-     //        'due' => 'required|string',
-     //        'email' => 'string',
-     //       	'loaned' => 'required|string',
-     //       	'room' => 'required|id',
-     //       	'comments' => 'string',
-     //    ]);
 
-        // if ($validator->fails()) {
-        //     return redirect('/loan')
-        //         ->withInput()
-        //         ->withErrors($validator);
-        // }
+        $validator = Validator::make($request->all(), [
+            'item' => 'required',
+            'due' => 'required|string',
+            'email' => 'string',
+            'loaned' => 'required|string',
+            'room' => 'required',
+            'comments' => 'string',
+        ]);
+
+
+        if ($validator->fails()) {
+            return redirect('/loan')
+                ->withInput()
+                ->withErrors($validator);
+        }
 
         // DB::table('loans')->insert([ //,
         //     'asset_id' => $request->item,
@@ -49,8 +57,8 @@ class LoansController extends Controller
 
 
         $loan = new Loan;
-        $asset = array(Asset::where('barcode',$request->item)->first(['id']));
-        $loan->asset_id = $asset[0]["id"];
+        // $asset = array(Asset::where('barcode',$request->item)->first(['id']));
+        $loan->asset_id = $request->item;
         $loan->user_id = $request->user()->id;
         if(isset($request->comments))$loan->comment_before = $request->comments;
         else $loan->comment_before = "";

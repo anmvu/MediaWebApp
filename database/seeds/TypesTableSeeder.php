@@ -61,5 +61,140 @@ class TypesTableSeeder extends Seeder
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
+        DB::table('types')->insert([
+            'name'=>'Touchpanel',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'Video Receiver',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'Blu-ray Player',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'VGA Laptop Cable',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'HDMI Laptop Cable',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'Mini DisplayPort Laptop Cable',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'Computer (Dual Boot)',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'Interactive Pen Interface',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'Wireless Video Interface',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'Gooseneck Microphone',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'Wireless Lavalier Microphone',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'Wireless Handheld Microphone',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'Wireless Mic Receiver',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'Program Loudspeakers',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'Speech Loudspeakers',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'Electric Projection Screen',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'Projector',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'Interactive Whiteboard',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'Briteclass Lecture Capture System',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'Controller/Switcher/Processor/Audio Amp',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'Aux Mic Mixer',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'4-Mic Faceplate',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'Keypad',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'DVD/VHS',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'HDMI to VGA converter',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'Video & Audio Switcher',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('types')->insert([
+            'name'=>'VGA Dongle',
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
     }
 }

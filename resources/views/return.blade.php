@@ -1,54 +1,107 @@
 @extends('layouts.app')
-
 @section('content')
-<div class='container'>
-<div class='col-lg-10 col-md-9 col-sm-8 col-xs-7 col-lg-offset-1 col-md-offset-1 col-sm-offset-2 col-xs-offset-3'>
-@if(count($items) > 0)
-<h2> {{count($items)}} thing(s) are still out</h2>
-<div class='container-fluid'>
-	<div class='form-group'>
-		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
-			<h3>Item Name</h3>
-		</div>
-		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
-			<h3>Time Due</h3>
-		</div>
-		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
-			<h3>Loaned To</h3>
-		</div>
-		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
-			<h3>Room</h3>
-		</div>
-	</div>
-</div>
-@foreach($items as $item)
-<div class='container-fluid'>
-	<div class='form-group'>
-		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
-			<h5>{{$item->asset->barcode}}</h5>
-		</div>
-		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
-			<h5>{{$item->due}}</h5>
-		</div>
-		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
-			<h5>{{$item->loaned_to}} ({{$item->email}})</h5>
-		</div>
-
-		<div class='col-lg-3 col-md-3 col-sm-3 col-xs-3'>
-			<h5>{{$item->container->barcode}}</h5>
-		</div>
-	</div>
-</div>
-@endforeach
-@else
+<meta name="csrf-token" content="{{ csrf_token() }}">
 <style>
 	.title {
         font-size: 72px;
         margin-bottom: 40px;
     }
 </style>
-<div class="title">Looks like everything's back</div>
-@endif
+<script>
+$(function () {
+	
+    $('form').on('submit', function (e) {
+
+      	e.preventDefault();
+      	if (confirm("Are you sure it's returned?")) {
+	        // your deletion code
+	    
+	      	var this_id = this.id.value;
+	    	$.ajaxSetup({
+		        headers: {
+		            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+		        }
+			});
+
+	    	// console.log(this_id);
+
+
+			$.ajax({
+			    url:'/return',
+			    type: 'post',
+			    data: {'id': this_id},
+			    success:function(data){
+			    	$("#"+this_id).remove();
+			    	var count = parseInt($("#count").text());
+			    	if(count-1 != 0)$("#count").text(count-1 + " thing(s) are still out");
+			    	else{
+			    		$("table").remove();
+			    		$("#count").remove();
+			    		$(".table-responsive").append("<div class='title'>Looks like everything's back </div>");
+			    	}
+			 	}
+			});
+		}
+		else{return false;}
+
+    });
+
+});
+</script>
+<div class='container'>
+	@if(count($items) > 0)
+	<div class='table-responsive'>
+		<h2 id='count' value='{{count($items)}}'> {{count($items)}} thing(s) are still out</h2>
+		<table class='table table-hover table-striped table-responsive'>
+			<thead>
+				<tr>
+					<th style='text-align:center'>Item Name</th>
+					<th style='text-align:center'>Time Lent</th>
+					<th style='text-align:center'>Time Due</th>
+					<th style='text-align:center'>Loaned To</th>
+					<th style='text-align:center'>Room</th>
+					<th style='text-align:center'>Return</th>
+				</tr>
+			</thead>
+			@foreach($items as $item)
+			<tbody>
+				<tr id="{{$item->id}}">
+					<td style='vertical-align:middle;'>
+						<h5>{{$item->asset->barcode}}</h5>
+					</td>
+					<td style='vertical-align:middle;'>
+						<h5>{{date('D M j g:i:s',strtotime($item->created_at))}}</h5>
+					</td>
+					<td style='vertical-align:middle;'>
+						<h5>{{date('D M j g:i:s',strtotime($item->due))}}</h5>
+					</td>
+					<td style='vertical-align:middle;'>
+						<h5>{{$item->loaned_to}} ({{$item->email}})</h5>
+					</td>
+					<td style='vertical-align:middle;'>
+						<h5>{{$item->container->barcode}}</h5>
+					</td>
+					<td style='vertical-align:middle;'>
+						<form class="form-horizontal" role="form" method="POST">
+							<div class="form-group">
+								<div class="col-lg-8 col-lg-offset-2" style='text-align:center'>
+					            	<input type='hidden' class='id' name='id' value='{{$item->id}}'></input>
+					                <button type="submit" class="btn btn-danger btn-block">
+					                    <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+					                </button>
+					            </div>
+			            	</div>
+		            	</form>
+					</td>
+				</tr>
+			</tbody>
+			@endforeach
+		</table>
+	</div>
+	@else
+	
+	<div class="title">Looks like everything's back</div>
+	@endif
 </div>
-</div>
+
 @endsection

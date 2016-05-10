@@ -30,6 +30,7 @@ class AssetsController extends Controller
             'type' => 'required',
             'room' => 'required',
             'is_container' => 'required',
+            'loanable'=>'required',
         ]);
 
         if ($validator->fails()) {
@@ -43,6 +44,7 @@ class AssetsController extends Controller
         $asset->type_id = $request->type;
         $asset->container_id = $request->room;
         $asset->is_container = $request->is_container;
+        $asset->loanable = $request->loanable;
         $asset->save();
         return redirect('assets/add');
     }

@@ -13,4 +13,8 @@ class Loan extends Model
     public function container(){
         return $this->hasOne('App\Asset','id','container_id');
     }
+
+    public function loanable(){
+    	return $this->belongsTo('App\Asset','asset_id');
+    }
 }

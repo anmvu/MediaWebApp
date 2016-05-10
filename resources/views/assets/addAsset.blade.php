@@ -70,6 +70,23 @@ $(document).ready(function() {
                 </label>
             </div>
         </div>
+        <div class="form-group{{ $errors->has('loanable') ? ' has-error' : '' }}">
+
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4  control-label">Loanable</label>
+            <!-- <br/> -->
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1  col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 radio">
+                <label>
+                    <input type="radio" name="loanable" id="optionsRadio1" value="1" checked>
+                    Yes
+                </label>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 radio">
+                <label>
+                    <input type="radio" name="loanable" id="optionsRadio2" value="0">
+                    No
+                </label>
+            </div>
+        </div>
         <div class="form-group">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4  col-lg-offset-4 col-md-offset-4 col-sm-offset-4 col-xs-offset-4">
                 <button type="submit" name='commit' class="btn btn-primary btn-block">

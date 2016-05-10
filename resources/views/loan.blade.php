@@ -16,10 +16,7 @@ $(document).ready(function() {
     $("input[name='commit']").click(function() {
         formmodified = 0;
     });
-
-    $("#due").change(function(){
-  console.log(this.value);
-    });      
+  
 });
 </script>
 	<h1> Loan-out Form </h1>
@@ -30,7 +27,17 @@ $(document).ready(function() {
             <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Item</label>
             <!-- <br/> -->
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 dropdown">
-                <input type="text" class="form-control" name="item" value="{{ old('item') }}"> 
+                <select name="item">
+                    @foreach ($items as $item)
+                    @if(gettype($item->loan->last()) != "NULL")
+                        @if($item->loan->last()->is_returned)
+                            <option value="{{$item->id}}">{{$item->barcode}}</option>
+                        @endif
+                    @else
+                        <option value="{{$item->id}}">{{$item->barcode}}</option>
+                    @endif
+                    @endforeach
+                </select>
             </div>
         </div>
         <div class="form-group">

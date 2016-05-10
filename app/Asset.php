@@ -20,6 +20,10 @@ class Asset extends Model
         return $this->hasOne('App\Asset','id','container_id');
     }
 
+    public function loan(){
+        return $this->hasMany('App\Loan','asset_id','id');
+    }
+
     public function containedAssets(){
     	if($this->is_container){
     		$items = Asset::where('container_id' == $this->id);
@@ -29,6 +33,10 @@ class Asset extends Model
 
     public function type(){
         return $this->hasOne('App\Type','id','type_id');
+    }
+
+    public function scopeloanable($query){
+        return $query->where('loanable',1);
     }
 
     public function scoperoom($query){

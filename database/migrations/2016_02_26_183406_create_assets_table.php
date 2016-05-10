@@ -19,6 +19,7 @@ class CreateAssetsTable extends Migration
             $table->timestamp('time_checked')->nullable();
             $table->integer('container_id')->references('id')->on('assets')->nullable();
             $table->boolean('is_container')->default(false);
+            $table->boolean('loanable')->default(false);
             $table->boolean('enabled')->default(true);
             $table->timestamps();
         });

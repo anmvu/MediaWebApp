@@ -214,5 +214,55 @@ class AssetsTableSeeder extends Seeder
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
+        DB::table('assets')->insert([
+            'barcode'=>'BenQ1',
+            'type_id'=>27,
+            'is_container'=> false,
+            'loanable'=> true,
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('assets')->insert([
+            'barcode'=>'CrestronSwitcher1',
+            'type_id'=>30,
+            'is_container'=> false,
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('assets')->insert([
+            'barcode'=>'CrestronTouchPanel1',
+            'type_id'=>11,
+            'is_container'=> false,
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('assets')->insert([
+            'barcode'=>'CrestronVideoReceiver1',
+            'type_id'=>12,
+            'is_container'=> false,
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('assets')->insert([
+            'barcode'=>'BluRay1',
+            'type_id'=>13,
+            'is_container'=> false,
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('assets')->insert([
+            'barcode'=>'VGA1',
+            'type_id'=>14,
+            'is_container'=> false,
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
+        DB::table('assets')->insert([
+            'barcode'=>'HDMI1',
+            'type_id'=>15,
+            'is_container'=> false,
+            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
+        ]);
     }
 }
