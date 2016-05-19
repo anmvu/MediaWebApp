@@ -71,7 +71,6 @@ Route::group(['middleware' => 'web'], function () {
 		Route::group(['middleware' => AdminMiddleware::class], function () {
 			Route::get('/users',"UsersController@index");
 			Route::post('/users','UsersController@removeSelectedUser');
-			Route::get('users/add','UsersController@addUser');
 			Route::post('users/add','UsersController@postUser');
 			Route::post('users/edit/{id}','UsersController@editUser');
 			Route::get('users/reactivate','UsersController@reactivateUser');
