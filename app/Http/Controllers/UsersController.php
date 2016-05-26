@@ -32,12 +32,27 @@ class UsersController extends Controller
             'fname' => 'required',
             'lname' => 'required',
             'phonenum' => 'required',
-            'authorized' => 'required',
-            'user' => 'required',
+            'auth' => 'required',
+            'uname' => 'required',
         ]);
+        $correct_username = true;
+        if($request->auth == 1){
+            $check_uname = preg_match('/N\d{8}/',$request->uname);
+        }
+        else{
+            $check_uname = preg_match('/\d{14}/',$request->uname);
+        }
+        if($check_uname == 0 || $check_uname == FALSE) $correct_username = false;
+        if (preg_match('/^\d{10}$/', $request->phonenum)) {
+            $correct_phonenum = true;
+        }
+        else {
+            $correct_phonenum = false;
+        }
+        if (!$correct_username || !$correct_phonenum) return response()->json(['status'=> 'error']);
 
         if ($validator->fails()) {
-            return redirect('/users/add')
+            return redirect('/users')
                 ->withInput()
                 ->withErrors($validator);
         }
@@ -46,11 +61,11 @@ class UsersController extends Controller
         $user->first_name = $request->fname;
         $user->last_name = $request->lname;
         $user->phone_num = $request->phonenum;
-        $user->is_authorized = $request->authorized;
-        $user->user = $request->user;
+        $user->is_authorized = $request->auth;
+        $user->user = $request->uname;
         $user->save();
 
-        return redirect('/users');
+        return response()->json(['return' => $user->save(), 'id' => $user->id]);
     }
 
     public function removeSelectedUser(Request $request){
@@ -71,6 +86,7 @@ class UsersController extends Controller
         $name = $request->get('name');
         $value = $request->get('value');
         $correct_username = true;
+        $correct_phonenum = true;
         if($name == 'user'){
             if($user->is_authorized){
                 $yay = preg_match('/N\d{8}/',$value);
@@ -80,9 +96,17 @@ class UsersController extends Controller
             }
             if($yay == 0 || $yay == FALSE) $correct_username == false;
             $value = strval($value);
+            return $yay;
         }
-        return $yay;
-        if (!$correct_username)return response()->json(['status'=> 'error']);
+        if($name == 'phone_num') {
+            if (preg_match('/^\d{10}$/', $value)) {
+                $correct_phonenum = true;
+            }
+            else {
+                $correct_phonenum = false;
+            }
+        }
+        if (!$correct_username || !$correct_phonenum)return response()->json(['status'=> 'error']);
         $user->$name = $value;
         return response()->json(['return' => $user->save()]);
     }

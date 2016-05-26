@@ -2,7 +2,15 @@
 @include('user.userBar')
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-
+<style type="text/css">
+	.admin-bar {
+		float:right;
+	}
+	.table-responsive {
+		overflow-x: hidden;
+	}
+</style>
+<script src="/js/add_user.js"></script>
 <script type='text/javascript'>
 
 $.fn.editable.defaults.mode = 'inline';
@@ -74,6 +82,12 @@ $(function () {
 </script>
 <div class='container'>
 	<div class='table-responsive'>
+		<div class="admin-bar">
+			<button type="button" class="btn btn-success" onclick="addUser();">
+				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+				Add
+			</button>
+		</div>
 		<table class='table table-hover table-striped table-responsive'>
 			<thead>
 				<tr>
