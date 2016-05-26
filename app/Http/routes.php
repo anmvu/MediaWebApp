@@ -49,24 +49,27 @@ Route::group(['middleware' => 'web'], function () {
 
 		Route::get('/issues',"IssuesController@listIssues");
 
+		Route::post('/roomcheck/',"AssetsController@clearRoom");
+
+
+		Route::get('/roomcheck/comment/{room}/{selected}',"AssetsController@addComments");
+		Route::post('/roomcheck/comment/{room}/{selected}',"IssuesController@submitComments");
+
 		Route::get('/roomcheck/all', function() {
 		    return App\Asset::room()->orderBy('barcode')->get();
 		});
 
-		Route::get('/roomcheck/{id}',function($id){
+		Route::get('/roomcheck/{id}/equipments',function($id){
 			return App\Asset::where("container_id",$id)->with('type')->get();
 		});
 		
+		Route::get('/roomcheck/{id}',"AssetsController@getTimeChecked");
 
 		Route::get('/roomcheck', "AssetsController@showRooms");
 
 		Route::post('/roomcheck/all', function() {
 		    return App\Asset::create(Request::all());
 		});
-
-		Route::post('/roomcheck/{id}',"AssetsController@clearRoom");
-		Route::get('/roomcheck/{id}/{array}',"AssetsController@addComments");
-		Route::post('/roomcheck/{id}/{array}',"AssetsController@postComments");
 
 		Route::group(['middleware' => AdminMiddleware::class], function () {
 			Route::get('/users',"UsersController@index");
@@ -88,6 +91,7 @@ Route::group(['middleware' => 'web'], function () {
 			Route::post('assets/add','AssetsController@postAsset');
 			Route::post('assets','AssetsController@removeAsset');
 			Route::get('assets/rooms','AssetsController@rooms');
+
 			Route::post('assets/edit/{id}','AssetsController@editAsset');
 			Route::get('assets/{id}',"AttributeAssetController@showAttributes");
 			Route::post('assets/{id}/add',"AttributeAssetController@linkAttributes");

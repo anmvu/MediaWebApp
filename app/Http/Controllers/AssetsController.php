@@ -10,6 +10,8 @@ use App\AttributeAsset as Attass;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Validator;
+use URL;
+use Illuminate\Support\Facades\Request as URLRequest;
 
 class AssetsController extends Controller
 {
@@ -50,27 +52,8 @@ class AssetsController extends Controller
     }
 
     public function showRooms(){
-        // $rooms = Asset::where('is_container',1)->get();
-        // print_r($rooms);
-        // foreach($rooms as $room){
-        //     $type = $room['type_id'];
-        //     $checked = $room['time_checked'];
-        //     $classroom[$room['barcode']] =[
-        //         ['type_id'] => $type,
-        //         ['time_checked'] => $checked,
-        //     ];
-        // }
-        return view('roomCheck');
+        return view('roomcheck.roomCheck');
     }
-
-    public function clearRoom($id){
-        $room = Asset::findOrFail($id);
-        $room->time_checked = \Carbon\Carbon::now()->toDateTimeString();
-        $room->save();
-        print_r($room);
-        // return redirect('/roomcheck');
-    }
-
 
     public function removeAsset(Request $request){
         $asset = Asset::find($request->id);
@@ -93,5 +76,46 @@ class AssetsController extends Controller
         return response()->json(['return' => $asset->save()]);
     }
 
+    public function getTimeChecked($id){
+        $time = Asset::where('id',$id)->get(['time_checked']);
+        // \Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $timestamp, 'Europe/Stockholm');
+        $thebool = gettype($time[0]['time_checked']) != 'undefined';
+
+        if(!is_null($time[0]['time_checked'])){
+            $new = strtotime($time);
+            $return = date('D M j g:i A');
+            return response()->json(['return'=>$return]); 
+        }
+        return response()->json(['return'=> "Never"]);
+    }
+    
+
+    public function clearRoom(Request $request){
+        $asset = Asset::findOrFail($request->room);
+        $now = date('Y-m-d G:i:s');
+        $asset->update(['time_checked'=>$now]);
+        $time = strtotime($now);
+        $return = date('D M j g:i A',$time);    
+        return response()->json(['return'=>$return]);
+    }
+
+    public function addComments($room, $selected){
+        // print_r(URLRequest::url());
+        $asset_ids = explode("+",$selected);
+        $assets = array();
+        $room_obj = Asset::findOrFail($room);
+        $asset_string = "";
+        foreach ($asset_ids as $asset_id){
+            $asset = Asset::findOrFail($asset_id);
+            if(!$asset || $asset->container_id!= $room){
+                return redirect('errors.401');            
+            }
+            array_push($assets, $asset);
+            $asset_string += $asset_id + "+";
+        }
+        return view('roomcheck.comments',["room" => $room_obj,"assets"=>$assets, "asset_string"=>$asset_string]);
+    }
+
+    
 
 }

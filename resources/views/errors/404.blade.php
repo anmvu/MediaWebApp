@@ -41,7 +41,7 @@
         <div class="container">
             <div class="content">
                 <div class="title">Looks like it doesn't exist.</div>
-                <h2><a href='{{ URL::previous() }}'>Go Back</a></h2>
+                <h2><a href='/'>Go Back</a></h2>
             </div>
         </div>
     </body>

@@ -2,6 +2,9 @@
 <html lang='en'>
     <head>
         <meta charset="utf-8">
+        @if(Auth::check())
+        <meta name="csrf-token" id='token' value="{{ csrf_token() }}">
+        @endif
         <title>NYU Tandon Media Support</title>
         <script type="text/javascript"  src="https://code.jquery.com/jquery-2.2.2.js"   
         integrity="sha256-4/zUCqiq0kqxhZIyp4G0Gk+AOtCJsY1TA00k5ClsZYE="   crossorigin="anonymous"></script>
@@ -16,6 +19,7 @@
             <script src="//cdnjs.cloudflare.com/ajax/libs/x-editable/1.5.0/bootstrap3-editable/js/bootstrap-editable.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.4/vue.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.16/vue-resource.min.js"></script>
+        <script src="//cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.13/vue-router.min.js"></script>
         <style>
 
             @font-face {

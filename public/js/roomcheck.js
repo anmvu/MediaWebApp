@@ -1,16 +1,18 @@
-// Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('value');
+Vue.http.headers.common['X-CSRF-TOKEN'] = document.querySelector('#token').getAttribute('value');
 
-new Vue({
+
+var roomcheck = new Vue({
 
 	el:'#roomcheck',
 
 	data: {
 		checkedParts:[],
-		showForm: false,
+		showForm: false,		
     },
 
 	ready: function(){
 		this.fetchRooms();
+
 	},
 
 	methods:{
@@ -21,20 +23,45 @@ new Vue({
 		},
 
 		fetchEquipments:function(id){
-			$url = '/roomcheck/'+id;
+			$url = '/roomcheck/'+id+'/equipments';
 			this.checkedParts.splice(0,this.checkedParts.length);
 			this.$http.get($url,function(equipments){
 				this.$set('equipments',equipments);
-				console.log(JSON.stringify(equipments));
 				this.showForm = true;
 			});
+			$room = '/roomcheck/'+id;
+			this.$http.get($room,function(data){
+				console.log(data.return);
+				this.$set('checked',"Last checked: " + data.return);
+			})
+
 		},
 
-		checked:function(id){
-			// comment.id.show();
-
+		roomClear: function(e){
+			e.preventDefault();
+			console.log('click');
+			this.$http.post('/roomcheck',{room:this.selected},function(data){
+				this.checked="Last checked: " + data.return;
+				console.log(this.checked);
+            });
+			console.log(this.selected);
 		},
 
-	}
+		next: function(e){
+			e.preventDefault();
+			$url = "/roomcheck/comment/";
+			$url += this.selected + "/";
+			for($i = 0; $i < this.checkedParts.length; $i++){
+				if($i == 0){
+					$url += this.checkedParts[$i];
+				}
+				else{
+					$url += "+" + this.checkedParts[$i];
+				}
+			}
+			window.location= $url;
+		},
+
+	},
 
 });
