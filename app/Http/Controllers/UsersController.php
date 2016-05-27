@@ -95,10 +95,10 @@ class UsersController extends Controller
                 $yay = preg_match('/\d{14}/',$value);
             }
             if($yay == 0 || $yay == FALSE) $correct_username == false;
-            $value = strval($value);
             return $yay;
         }
         if($name == 'phone_num') {
+            $value = strval($value);
             if (preg_match('/^\d{10}$/', $value)) {
                 $correct_phonenum = true;
             }
