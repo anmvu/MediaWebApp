@@ -24,7 +24,7 @@ function addUser() {
 			console.log("Insertion Failed Some Fields are Blank....!!");
 		}
 		else {
-			//Insert into database with AJAX via ajax_funcs.php
+			//Insert into database with AJAX
 			$.post("/users/add", {
 					fname: fname,
 					lname: lname,
