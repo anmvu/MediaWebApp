@@ -128,7 +128,7 @@ $(function () {
     </div>
 </form>
 
-<div class='table-responsive'>
+<div class='table-responsive' style='overflow-x:hidden;'>
     @if(sizeOf($linked) > 0)
     <table class='table table-hover table-striped table-responsive'>
         <thead>

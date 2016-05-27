@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Input;
 use Validator;
 use URL;
 use Illuminate\Support\Facades\Request as URLRequest;
+use DB;
 
 class AssetsController extends Controller
 {
@@ -116,6 +117,29 @@ class AssetsController extends Controller
         return view('roomcheck.comments',["room" => $room_obj,"assets"=>$assets, "asset_string"=>$asset_string]);
     }
 
-    
+    public function roomStatus(){
+        $room_query = DB::table('assets')
+            ->join('types', 'assets.type_id', '=', 'types.id')
+            ->select('assets.*', 'types.name')
+            ->where('types.name','like','Room%')
+            ->get();
+        // print_r($rooms);
+        $rooms = array();
+        $room_items = array();
+        foreach($room_query as $room){
+            $asset = Asset::findOrFail($room->id);
+            $items = array();
+            foreach($asset->items as $item){
+                $contained = Asset::findOrFail($item->id);
+                array_push($items, $contained);
+            }
+            $id = $asset->id;
+            $this_room = [$id=> $items];
+            $room_items[$id] = $items;
+            array_push($rooms,$asset);
+            // print_r($asset->items);
+        }
+        return view('rooms',['rooms'=>$rooms,'items'=>$room_items]);
+    }
 
 }

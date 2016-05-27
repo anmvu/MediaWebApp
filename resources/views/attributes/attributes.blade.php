@@ -61,7 +61,7 @@ $(function () {
 });
 </script>
 <div class='container'>
-	<div class='table-responsive'>
+	<div class='table-responsive'  style='overflow-x:hidden;'>
 		<table class='table table-hover table-striped table-responsive'>
 			<thead>
 				<tr>

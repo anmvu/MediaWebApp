@@ -89,7 +89,7 @@ $(function () {
 	}
 </style>
 <div class='container'>
-	<div class='table-responsive'>
+	<div class='table-responsive'  style='overflow-x:hidden;'>
 		<table class='table table-hover table-striped table-responsive'>
 			<thead>
 				<tr>
@@ -127,7 +127,7 @@ $(function () {
 					<td>
 						<form class="form-horizontal" class='delete' role="form" method="POST" >
 							<div class="form-group">
-								<div class="col-lg-8 col-lg-offset-2" style='text-align:center'>
+								<div class="col-lg-9" style='text-align:center'>
 			            			<input type='hidden' class='id' name='id' value='{{$asset->id}}'></input>
 					                <button type="submit" class="btn btn-danger btn-block">
 				                    	<span class="glyphicon glyphicon-trash" aria-hidden="true"></span>

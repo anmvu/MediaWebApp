@@ -11,8 +11,10 @@ use App\Comment as Comment;
 class IssuesController extends Controller
 {
     public function listIssues(){
-    	$needsWork = Issue::where('status','Needs Work');
-    	$workingOn = Issue::where('status','In Progress');
+    	$needsWork = Issue::where('status','Needs Work')->get();
+    	$workingOn = Issue::where('status','In Progress')->get();
+        // print_r($needsWork);
+        // foreach($needsWork as $need)print_r($need->comments);
     	return view('issues.issues',['needsWork'=>$needsWork,'workingOn'=>$workingOn]);
     }
 
@@ -25,7 +27,7 @@ class IssuesController extends Controller
             $issue = new Issue;
             $issue->asset_id = $asset_id;
             $issue->user_id = $request->user_id;
-            $issue->priority = $request->$priority;
+            $issue->priority = $priority;
             $issue->status = "Needs Work";
             $issue->save();
 

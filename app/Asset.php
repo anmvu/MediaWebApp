@@ -50,4 +50,14 @@ class Asset extends Model
     public function attributes(){
         return $this->hasManyThrough('App\Attribute','App\AttributeAsset','asset_id','attribute_id');
     }
+
+    public function items(){
+        // if($this->is_container)
+            return $this->hasMany('App\Asset','container_id','id');
+    }
+
+    public function issues(){
+        return $this->hasMany('App\Issue','asset_id','id');
+    }
+
 }

@@ -39,6 +39,8 @@ Route::group(['middleware' => 'web'], function () {
 			return view('home');
 		});
 
+		Route::get('/rooms',"AssetsController@roomStatus");
+
 		Route::get('/loan','LoansController@getLoanForm');
 		Route::post('/loan','LoansController@postLoan');
 

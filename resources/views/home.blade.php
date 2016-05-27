@@ -2,11 +2,11 @@
 
 @section('content')
 
-	<!-- <div class='container-fluid form-group'>
+	<div class='container-fluid form-group'>
 		<a role="button" class="btn btn-default col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1" href='roomcheck'> Room Check</a>
 		<div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 		<a role="button" class="btn btn-default col-lg-4 col-md-4 col-sm-4 col-xs-4"  href='issues'>View Issues</a>
-	</div> -->
+	</div>
 	<div class='container-fluid form-group'></div>
 	<div class='container-fluid form-group'>
 		<a role="button" class="btn btn-default col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1"  href='loan'>Loan Equipment</a>
