@@ -60,7 +60,7 @@ $(function () {
             success:function(data){
                 $(select).remove();
                 $("#value").val("");
-                var htmlStuff = '<tr id='+id+'><td style=\'vertical-align:middle;\'>'+attribute+'</td><td style=\'vertical-align:middle;\'>'+value+'</td><td style=\'vertical-align:middle;\'><form class="form-horizontal" class=\'delete\' role="form" method="POST"><div class="form-group"><div class="col-lg-5 col-lg-offset-4" style=\'text-align:center\'><input type=\'hidden\' class=\'id\' name=\'id\' value='+id+'></input></div></div></form></td></tr>';
+                var htmlStuff = '<tr id='+id+'><td style=\'vertical-align:middle;\'>'+attribute+'</td><td style=\'vertical-align:middle;\'>'+value+'</td><td style=\'vertical-align:middle;\'><form class="form-horizontal" class=\'delete\' role="form" method="POST"><div class="form-group"><div class="col-lg-6 col-lg-offset-3" style=\'text-align:center\'><input type=\'hidden\' class=\'id\' name=\'id\' value='+id+'></input></div></div></form></td></tr>';
                 if ({{sizeOf($linked)}} == 0){
                     htmlStuff = '<table class=\'table table-hover table-striped table-responsive\'><thead><tr><th style=\'text-align:center\'>Attribute</th><th style=\'text-align:center\'>Value</th></tr></thead><tbody>'+htmlStuff+'</tbody></table>';
                     $(".table-responsive").append(htmlStuff);
@@ -153,7 +153,7 @@ $(function () {
                 <!-- <td style='vertical-align:middle;'>
                     <form class="form-horizontal" class='delete' role="form" method="POST">
                         <div class="form-group">
-                            <div class="col-lg-5 col-lg-offset-4" style='text-align:center'>
+                            <div class="col-lg-6 col-lg-offset-3" style='text-align:center'>
                                 <input type='hidden' class='id' name='id' value='{{$link->attribute_id}}'></input>
                                 <button type="submit" class="btn btn-danger btn-block">
                                     <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>

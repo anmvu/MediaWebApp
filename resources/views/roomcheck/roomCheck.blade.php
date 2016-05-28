@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+<meta name="csrf-token" id='token' value="{{ csrf_token() }}">
 
 <div id="roomcheck">
   <select v-on:change="fetchEquipments(selected)" v-model = "selected">
