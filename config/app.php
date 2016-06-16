@@ -156,6 +156,11 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
+
+
+        //Trying this elasticsearch
+        Spatie\SearchIndex\SearchIndexServiceProvider::class,
+
     ],
 
     /*
@@ -201,6 +206,8 @@ return [
         'URL'       => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View'      => Illuminate\Support\Facades\View::class,
+
+        'SearchIndex' => Spatie\SearchIndex\SearchIndexFacade::class,
 
     ],
 

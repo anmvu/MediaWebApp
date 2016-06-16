@@ -29,12 +29,17 @@ var roomcheck = new Vue({
 				this.$set('equipments',equipments);
 				this.showForm = true;
 			});
-			$room = '/roomcheck/'+id;
-			this.$http.get($room,function(data){
+			$time = '/roomcheck/'+id+'/checked';
+			this.$http.get($time,function(data){
 				console.log(data.return);
 				this.$set('checked',"Last checked: " + data.return);
 			})
 
+			$user = '/roomcheck/'+id+'/checkedBy'
+			this.$http.get($user,function(data){
+				console.log(data.return);
+				this.$set('user', data.return);
+			})
 		},
 
 		roomClear: function(e){

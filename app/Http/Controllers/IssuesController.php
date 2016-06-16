@@ -7,6 +7,7 @@ use App\Issue as Issue;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Comment as Comment;
+use App\Asset as Asset;
 
 class IssuesController extends Controller
 {
@@ -23,6 +24,11 @@ class IssuesController extends Controller
         foreach($asset_ids as $asset_id){
 
         	$priority = $asset_id +"_priority";
+            
+            $asset = Asset::findOrFail($asset_id);
+            $asset->update(['has_problems'=>1]);
+            $asset->container->update(['has_problems'=>1]);
+            
 
             $issue = new Issue;
             $issue->asset_id = $asset_id;
@@ -38,5 +44,11 @@ class IssuesController extends Controller
             $comment->save();
         }
         return redirect('/roomcheck');
+    }
+
+    public function showIssues($asset_id){
+        $issues = Issue::where('asset_id',$asset_id)->get();
+        $asset = Asset::findOrFail($asset_id);
+        return view('issues.asset_issues',['issues'=>$issues,'asset'=>$asset,'id'=>$asset_id]);
     }
 }

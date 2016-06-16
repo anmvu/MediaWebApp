@@ -17,6 +17,7 @@
         <script src="//cdnjs.cloudflare.com/ajax/libs/vue/1.0.4/vue.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/vue-resource/0.1.16/vue-resource.min.js"></script>
         <script src="//cdnjs.cloudflare.com/ajax/libs/vue-router/0.7.13/vue-router.min.js"></script>
+        <script   src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"   integrity="sha256-xNjb53/rY+WmG+4L6tTl9m6PpqknWZvRt0rO1SRnJzw="   crossorigin="anonymous"></script>
         <style>
 
             @font-face {
@@ -147,7 +148,7 @@
         });
         </script>
     </head>
-    <body>
+    <body class="preload">
         @if(Auth::check())
         <div id="wrapper">
 
@@ -158,6 +159,9 @@
                         <a href="{{ url('/home') }}">
                             Home
                         </a>
+                    </li>
+                    <li>
+                        <a href="{{url('/rooms')}}">Room Statuses</a>
                     </li>
                     <li>
                         <a href="{{url('/roomcheck')}}">Room Check</a>
@@ -243,13 +247,16 @@
     });
     $("#wrapper").click(function(e){
         if($(e.target).is("#menu-toggle")){
-            e.preventDefault();
+            // e.preventDefault();
             $("#wrapper").toggleClass("toggled");
         }
         else if($(e.target).is("li")){}
         else{
             $("#wrapper").addClass("toggled");
         }
+    });
+    $(window).load(function() {
+      $("body").removeClass("preload");
     });
     </script>
     </body>

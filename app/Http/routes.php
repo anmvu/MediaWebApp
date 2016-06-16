@@ -40,6 +40,7 @@ Route::group(['middleware' => 'web'], function () {
 		});
 
 		Route::get('/rooms',"AssetsController@roomStatus");
+		Route::post('/rooms/find',"AssetsController@findRooms");
 
 		Route::get('/loan','LoansController@getLoanForm');
 		Route::post('/loan','LoansController@postLoan');
@@ -50,6 +51,7 @@ Route::group(['middleware' => 'web'], function () {
 		Route::post('/return',"LoansController@return");
 
 		Route::get('/issues',"IssuesController@listIssues");
+		Route::get('/issues/{asset_id}',"IssuesController@showIssues");
 
 		Route::post('/roomcheck/',"AssetsController@clearRoom");
 
@@ -65,7 +67,9 @@ Route::group(['middleware' => 'web'], function () {
 			return App\Asset::where("container_id",$id)->with('type')->get();
 		});
 		
-		Route::get('/roomcheck/{id}',"AssetsController@getTimeChecked");
+		Route::get('/roomcheck/{id}/checked',"AssetsController@getTimeChecked");
+		Route::get('/roomcheck/{id}/checkedBy',"AssetsController@getUser");
+
 
 		Route::get('/roomcheck', "AssetsController@showRooms");
 

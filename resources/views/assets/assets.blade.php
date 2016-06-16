@@ -21,7 +21,10 @@ $(document).ready(function() {
         ajaxOptions: {
             dataType: 'json',
             type: 'post'
-        }
+        },
+        success: function(response) {
+        if(response.status == 'error') return response.msg; //msg will be shown in editable form
+	    }
     });
 
 
@@ -43,7 +46,11 @@ $(document).ready(function() {
         	{value: {{$asset->id}}, text:"{{$asset->barcode}}"},
         	@endif
         	@endforeach
-        ]
+        ],
+        success: function(response) {
+        	console.log(response);
+        if(response.status == 'error') return response.msg; //msg will be shown in editable form
+	    }
     });
 });
 
@@ -71,8 +78,6 @@ $(function () {
 			    data: {'id': this_id},
 			    success:function(data){
 			    	$("#"+this_id).remove();
-			    	console.log(data);
-			    	console.log(this_id);
 			    	// $("#"+this_id).remove();
 			 	}
 			});
@@ -83,11 +88,7 @@ $(function () {
 
 });
 </script>
-<style>
-	table td{
-		/*width:100%;*/
-	}
-</style>
+
 <div class='container'>
 	<div class='table-responsive'  style='overflow-x:hidden;'>
 		<table class='table table-hover table-striped table-responsive'>
@@ -102,11 +103,19 @@ $(function () {
 				</tr>
 			</thead>
 			@foreach($assets as $asset)
+			@if(strstr($asset->type->name,'Room') == false)
+			
 			<tbody>
 				<tr id="{{$asset->id}}">
 					<td style='vertical-align:middle;'><a href="assets/{{$asset->id}}">{{$asset->barcode}}</a></td>
-					<td style='vertical-align:middle;'><a href="#" name='type_id' id="type_id" data-type="text" data-pk="1" data-title="Enter Attribute Label" class="editable editable-click pUpdate" data-url="assets/edit/{{$asset->id}}" style="display: inline;">{{$asset->type->name}}</a></td>
-					<td style='vertical-align:middle;'><a href="#" name='asset_id' id="asset_id" data-type="text" data-pk="1" data-title="Enter Attribute Label" class="editable editable-click pUpdate" data-emptytext="Never" data-url="assets/edit/{{$asset->id}}" style="display: inline;">{{$asset->time_checked}}</a></td>
+					<td style='vertical-align:middle;'>{{$asset->type->name}}</td>
+					<td style='vertical-align:middle;'>
+						@if($asset->time_checked != null)
+							{{date('D M j g:i:s',strtotime($asset->time_checked))}}
+						@else
+							<i style='color:red;'>Never</i>
+						@endif
+					</td>
 					<td style='vertical-align:middle;'>
 						<a href="#" name='container_id' id="container_id" data-type="select" data-pk="1" data-title="Enter Attribute Label" class="editable editable-click container_id" data-emptytext="None" data-url="assets/edit/{{$asset->id}}" style="display: inline;">
 							@if($asset->container_id != null)
@@ -138,6 +147,7 @@ $(function () {
 					</td>
 				</tr>
 			</tbody>
+			@endif
 			@endforeach
 		</table>
 	</div>

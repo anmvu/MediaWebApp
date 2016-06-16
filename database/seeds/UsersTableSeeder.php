@@ -14,6 +14,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'id'=>1,
             'is_authorized'=>True,
+            'is_registrar' => 0,
             'first_name'=>'Admin',
             'last_name' => 'User',
             'phone_num'=>6469973934,
@@ -24,6 +25,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
         	'id'=>2,
         	'is_authorized'=>True,
+            'is_registrar' => 0,
         	'first_name'=>'An',
             'last_name' => 'Vu',
         	'phone_num'=>7328508863,
@@ -34,6 +36,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'id'=>3,
             'is_authorized'=>False,
+            'is_registrar' => 0,
             'first_name'=>'Johnny',
             'last_name' => 'Test',
             'phone_num'=>12347890,
@@ -44,6 +47,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'id'=>4,
             'is_authorized' => 0,
+            'is_registrar' => 0,
             'active' => 1,
             'first_name' => "Nicholas",
             'last_name' => "Ng",
@@ -56,6 +60,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'id'=>5,
             'is_authorized' =>1,
+            'is_registrar' => 0,
             'active' => 1,
             'first_name' =>"Erich",
             'last_name' => "Chu",
@@ -68,6 +73,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'id'=>6,
             'is_authorized' =>1,
+            'is_registrar' => 0,
             'active' => 1,
             'first_name' =>"James",
             'last_name' => "Um",
@@ -80,6 +86,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'id'=>7,
             'is_authorized' =>0,
+            'is_registrar' => 0,
             'active' => 1,
             'first_name' =>"Reiko",
             'last_name' => "Ng",
@@ -92,6 +99,7 @@ class UsersTableSeeder extends Seeder
         DB::table('users')->insert([
             'id'=>8,
             'is_authorized' =>0,
+            'is_registrar' => 0,
             'active' => 1,
             'first_name' =>"Jimmy",
             'last_name' => "Yeung",

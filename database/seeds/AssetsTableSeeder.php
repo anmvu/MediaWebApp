@@ -15,6 +15,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH200',
         	'type_id'=>1,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -22,6 +23,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH201',
         	'type_id'=>1,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -29,6 +31,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH202',
         	'type_id'=>1,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -36,6 +39,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH203',
         	'type_id'=>1,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -43,6 +47,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH204',
         	'type_id'=>1,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -50,6 +55,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH205',
         	'type_id'=>1,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -57,6 +63,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH206',
         	'type_id'=>2,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -64,6 +71,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH207',
         	'type_id'=>1,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -71,6 +79,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH211',
         	'type_id'=>1,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -78,6 +87,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH213',
         	'type_id'=>1,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -85,6 +95,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH214',
         	'type_id'=>3,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -92,6 +103,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH215',
         	'type_id'=>4,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -99,6 +111,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH302',
         	'type_id'=>8,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -106,6 +119,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH317',
         	'type_id'=>8,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -113,6 +127,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH325',
         	'type_id'=>5,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -120,6 +135,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH331',
         	'type_id'=>6,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -127,6 +143,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH425',
         	'type_id'=>9,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -134,6 +151,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'JAB473',
         	'type_id'=>6,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -141,6 +159,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH503',
         	'type_id'=>8,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -148,6 +167,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH505',
         	'type_id'=>8,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -155,6 +175,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH602',
         	'type_id'=>8,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -162,6 +183,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH603',
         	'type_id'=>10,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -169,6 +191,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH615',
         	'type_id'=>10,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -176,6 +199,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH704',
         	'type_id'=>10,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -183,6 +207,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH705',
         	'type_id'=>10,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -190,6 +215,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'RH708',
         	'type_id'=>10,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -197,6 +223,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'JAB775',
         	'type_id'=>8,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -204,6 +231,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'JAB775B',
         	'type_id'=>8,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -211,6 +239,7 @@ class AssetsTableSeeder extends Seeder
         	'barcode'=>'LC400',
         	'type_id'=>7,
         	'is_container'=> true,
+            'has_problems' => 0,
         	'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -218,6 +247,7 @@ class AssetsTableSeeder extends Seeder
             'barcode'=>'BenQ1',
             'type_id'=>27,
             'is_container'=> false,
+            'has_problems' => 0,
             'loanable'=> true,
             'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
@@ -226,6 +256,7 @@ class AssetsTableSeeder extends Seeder
             'barcode'=>'CrestronSwitcher1',
             'type_id'=>30,
             'is_container'=> false,
+            'has_problems' => 0,
             'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -233,6 +264,7 @@ class AssetsTableSeeder extends Seeder
             'barcode'=>'CrestronTouchPanel1',
             'type_id'=>11,
             'is_container'=> false,
+            'has_problems' => 0,
             'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -240,6 +272,7 @@ class AssetsTableSeeder extends Seeder
             'barcode'=>'CrestronVideoReceiver1',
             'type_id'=>12,
             'is_container'=> false,
+            'has_problems' => 0,
             'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -247,6 +280,7 @@ class AssetsTableSeeder extends Seeder
             'barcode'=>'BluRay1',
             'type_id'=>13,
             'is_container'=> false,
+            'has_problems' => 0,
             'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -254,6 +288,7 @@ class AssetsTableSeeder extends Seeder
             'barcode'=>'VGA1',
             'type_id'=>14,
             'is_container'=> false,
+            'has_problems' => 0,
             'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -261,6 +296,7 @@ class AssetsTableSeeder extends Seeder
             'barcode'=>'HDMI1',
             'type_id'=>15,
             'is_container'=> false,
+            'has_problems' => 0,
             'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);

@@ -1,5 +1,5 @@
-@extends('layouts.app')
-@include('assets.assetBar')
+@extends('layouts.app') 
+@include('assets.single_asset')
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -70,29 +70,32 @@ $(function () {
             }
         });
     });
+})
 
-    $('.delete').on('submit', function (e) {
+$(function(){
+
+    $('#delete').on('submit', function (e) {
         e.preventDefault();
         var this_id = this.id.value;
 
-        // $.ajaxSetup({
-        //     headers: {
-        //         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        //     }
-        // });
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
 
         console.log(this_id);
 
-        // $.ajax({
-        //     url:'/assets/{{$id}}/delete',
-        //     type: 'post',
-        //     data: {'id': this_id},
-        //     success:function(data){
-        //         console.log(data);
-        //         $("#"+this_id).remove();
-        //         // $("#"+this_id).remove();
-        //     }
-        // });
+        $.ajax({
+            url:'/assets/{{$id}}/delete',
+            type: 'post',
+            data: {'id': this_id},
+            success:function(data){
+                console.log(data);
+                $("#"+this_id).remove();
+                // $("#"+this_id).remove();
+            }
+        });
     });
 
 });
@@ -135,7 +138,7 @@ $(function () {
             <tr>
                 <th style='text-align:center'>Attribute</th>
                 <th style='text-align:center'>Value</th>
-                <!-- <th style='text-align:center'>Remove Link</th> -->
+                <th style='text-align:center'>Remove Link</th>
             </tr>
         </thead>
         @foreach($linked as $link)
@@ -150,8 +153,8 @@ $(function () {
                     </a>
 
                 </td>
-                <!-- <td style='vertical-align:middle;'>
-                    <form class="form-horizontal" class='delete' role="form" method="POST">
+                <td style='vertical-align:middle;'>
+                    <form class="form-horizontal" id='delete' role="form" method="POST">
                         <div class="form-group">
                             <div class="col-lg-6 col-lg-offset-3" style='text-align:center'>
                                 <input type='hidden' class='id' name='id' value='{{$link->attribute_id}}'></input>
@@ -161,7 +164,7 @@ $(function () {
                             </div>
                         </div>
                     </form>
-                </td> -->
+                </td>
             </tr>
         </tbody>
         @endforeach

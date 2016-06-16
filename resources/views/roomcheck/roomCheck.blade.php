@@ -10,14 +10,25 @@
   </select> 
   <!-- @{{equipments | json}} -->
 
-  <p v-if="showForm">@{{checked}}</p>
+  <p v-if="showForm">@{{checked}} by @{{user}}</p>
 	<form class="form-horizontal" role="form" v-if="showForm">
 		<div class="form-group" v-for='equipment in equipments'>
-        <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-2 control-label" >@{{equipment.type.name}}</label>
-        <!-- <br/> -->
+
+      <!-- <p v-show="@{{equipment.has_problems}} == 1"> bleh</p> -->
+<!--       <template >
+ -->        <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-2 col-md-offset-2 col-sm-offset-2 control-label" >@{{equipment.type.name}}</label>
+        
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-	        <input class='checkboxes' type="checkbox" id="checkbox@{{equipment.id}}" value='@{{equipment.id}}' v-model='checkedParts'>
+	        <input v-show="@{{equipment.has_problems}} == 0" class='checkboxes' type="checkbox" id="checkbox@{{equipment.id}}" value='@{{equipment.id}}' v-model='checkedParts'>
         </div>
+      <!-- </template> -->
+      <!-- <tempate v-else>
+        <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 col-lg-offset-2 control-label" style='text-decoration:line-through;'>@{{equipment.type.name}}</label>
+          
+        <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+          <input  v-else class='checkboxes' type="checkbox" id="checkbox@{{equipment.id}}" value='@{{equipment.id}}' v-model='checkedParts' disabled>      
+        </div>
+      </template> -->
     </div>
 
     <div class="form-group" >

@@ -3,8 +3,9 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Spatie\SearchIndex\Searchable;
 
-class Asset extends Model
+class Asset extends Model implements Searchable
 {
     // $assets = Asset::all();
     protected $fillable = [
@@ -18,6 +19,10 @@ class Asset extends Model
 
     public function container(){
         return $this->hasOne('App\Asset','id','container_id');
+    }
+
+    public function user(){
+        return $this->hasOne('App\User','id','last_checked_by');
     }
 
     public function loan(){
@@ -58,6 +63,26 @@ class Asset extends Model
 
     public function issues(){
         return $this->hasMany('App\Issue','asset_id','id');
+    }
+
+    public function getSearchableBody()
+    {
+        $searchableProperties = [
+            'barcode' => $this->barcode,
+            'type' => $this->type()->name,
+        ];
+
+        return $searchableProperties;
+    }
+
+    public function getSearchableType()
+    {
+        return 'asset';
+    }
+
+    public function getSearchableId()
+    {
+        return $this->id;
     }
 
 }

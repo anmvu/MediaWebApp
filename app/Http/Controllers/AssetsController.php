@@ -7,12 +7,14 @@ use App\Asset as Asset;
 use App\Http\Requests;
 use App\Type as Type;
 use App\AttributeAsset as Attass;
+use App\User as User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Validator;
 use URL;
 use Illuminate\Support\Facades\Request as URLRequest;
 use DB;
+use SearchIndex;
 
 class AssetsController extends Controller
 {
@@ -67,9 +69,11 @@ class AssetsController extends Controller
         $name = $request->get('name');
         $value = $request->get('value');
         if($name == 'container_id'){
-            if($asset->barcode == $value){
-                print_r('error');
-                return response()->json(['return'=>'Cannot make this a container!','status'=> 0]);
+            if(strpos($asset->type->name, 'Room') !== false){
+                return response()->json(['status' =>'error','msg'=>"You can't put a room in anything"]);
+            }
+            if($asset->id == $value){
+                return response()->json(['status' =>'error','msg'=>'Cannot make this its container!']);
             }
             else if($value == 0){ $value = NULL;}
         }
@@ -89,6 +93,15 @@ class AssetsController extends Controller
         }
         return response()->json(['return'=> "Never"]);
     }
+
+    public function getUser($id){
+        $asset = Asset::findOrFail($id);
+        if(!is_null($asset->user)){
+            $user = $asset->user->first_name. " ". $asset->user->last_name;
+            return response()->json(['return'=>$user]);
+        }
+        return response()->json(['return'=>"No one"]);
+    }
     
 
     public function clearRoom(Request $request){
@@ -97,6 +110,11 @@ class AssetsController extends Controller
         $asset->update(['time_checked'=>$now]);
         $time = strtotime($now);
         $return = date('D M j g:i A',$time);    
+        $items = Asset::where('container_id',$request->room)->get();
+        foreach($items as $item){
+            $item->update(['time_checked'=>$now]);
+            // return $item->id;
+        }
         return response()->json(['return'=>$return]);
     }
 
@@ -134,12 +152,25 @@ class AssetsController extends Controller
                 array_push($items, $contained);
             }
             $id = $asset->id;
-            $this_room = [$id=> $items];
             $room_items[$id] = $items;
             array_push($rooms,$asset);
             // print_r($asset->items);
         }
         return view('rooms',['rooms'=>$rooms,'items'=>$room_items]);
+        return response()->json(['rooms'=>$rooms,'items'=>$room_items]);
+    }
+
+    public function findRooms(Request $request){
+        $items = $request->items;
+        $room_items = array();
+        for($i = 0; $i < sizeof($items); $i++){
+            $this_item = array();
+            $asset = Asset::where('type_id',$items[$i])->get(['container_id']);
+            foreach($asset as $room) array_push($this_item,$room);
+            if($i == 0) $room_items = $this_item;
+            else {$room_items = array_intersect($room_items,$this_item);}
+        }
+        return response()->json(['rooms'=>$room_items]);
     }
 
 }
