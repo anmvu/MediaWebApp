@@ -15,9 +15,9 @@
         <label class="col-lg-1 col-md-1 col-sm-1 col-xs-1 control-label">Priority</label>
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1  dropdown">
 		    <select name='{{$asset->id}}_priority'>
-		    	<option>High</option>
-		    	<option>Medium</option>
-		    	<option>Low</option>
+		    	<option value='High'>High</option>
+		    	<option value='Medium'>Medium</option>
+		    	<option value='Low'>Low</option>
 		    </select>
 	    </div>
     </div>

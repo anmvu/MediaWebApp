@@ -23,17 +23,18 @@ class IssuesController extends Controller
         $asset_ids = explode("+",$selected);
         foreach($asset_ids as $asset_id){
 
-        	$priority = $asset_id +"_priority";
+        	$priority = $asset_id."_priority";
             
             $asset = Asset::findOrFail($asset_id);
             $asset->update(['has_problems'=>1]);
             $asset->container->update(['has_problems'=>1]);
             
 
+
             $issue = new Issue;
             $issue->asset_id = $asset_id;
             $issue->user_id = $request->user_id;
-            $issue->priority = $priority;
+            $issue->priority = $request->$priority;
             $issue->status = "Needs Work";
             $issue->save();
 

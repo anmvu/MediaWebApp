@@ -21,8 +21,7 @@
 				<th style='text-align:center'> Room </th>
 				<th style='text-align:center'>Comment</th>
 				<th style='text-align:center'>Submitted By</th>
-				<th style='text-algin:center'>Priority</th>
-				<th style='text-align:center'>Status</th>
+				<th style='text-align:center'>Priority</th>
 				<th style='text-align:center'>Created On</th>
 			</tr>
 		</thead>
@@ -46,9 +45,6 @@
 				</td>
 				<td style='vertical-align:middle;'>
 					<h5>{{$need->priority}}</h5>
-				</td>
-				<td style='vertical-align:middle;'>
-					<h5>{{$need->status}}</h5>
 				</td>
 				<td style='vertical-align:middle;'>
 					<h5>{{date('D M j g:i:s',strtotime($need->created_at))}}</h5>
