@@ -28,11 +28,13 @@ $(function() {
             data: {'items':checked},
             success: function(data) {
             	$("#rooms tr:not(:first)").hide();
-            	if(data['rooms'].length != 0){
+            	if(data['rooms'].length > 0){
 	            	for(i = 0; i < data['rooms'].length; i++){
 	            		$('#'+data['rooms'][i]['container_id']).show();
+	            		console.log(data['rooms'][i]['container_id']);
 	            	}
 	            }
+	            else if(data['rooms'].length == undefined) $('#'+data['rooms'][1]['container_id']).show();
 	            else{
 	            	$("#rooms tbody:last").after('<tbody ><tr id="sorry"><td>SORRY, NO ROOMS HAS ALL THESE AMENITIES</td></tr></tbody>');
 	            	$("#sorry").show();
@@ -135,14 +137,14 @@ $(function() {
 							never
 							@else
 							on 
-							@datetime($room->time_checked)
+							{{date('D M j g:i A',strtotime($room->time_checked))}}
 							@endif</p>
 						<p>{{$room->barcode}}</p>
 						@endif
 						@if(count($items[$room->id]) != 0)
 						<ul id="{{$room->id}}_item" class="collapse list-group" style="margin-left: auto; margin-right: auto; ">
 							@foreach(($items[$room->id]) as $item)
-							<a href='/issues/{{$item->id}}' style=''><li class="list-group-item 
+							<a href='/assets/{{$item->id}}/issues' style=''><li class="list-group-item 
 							@if($item->has_problems)
 							list-group-item-danger
 							@else

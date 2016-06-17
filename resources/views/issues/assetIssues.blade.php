@@ -1,10 +1,44 @@
 @extends('layouts.app')
-@include('assets.single_asset')
+@include('assets.singleAsset')
 @section('content')
+<script>
+$.fn.editable.defaults.mode = 'inline';
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $('.container_id').editable({
+        validate: function(value) {
+            if($.trim(value) == '')
+                return 'Value is required.';
+        },
+        placement: 'top',
+        send:'always',
+        ajaxOptions: {
+            dataType: 'json',
+            type: 'post'
+        },
+        source: [
+        	{value: 0, text: "None"},
+        @foreach($rooms as $room)
+        @if($room->is_container)
+        	{value: {{$room->id}}, text:"{{$room->barcode}}"},
+    	@endif
+    	@endforeach
+        ],
+        success: function(response) {
+        	console.log(response);
+        if(response.status == 'error') return response.msg; //msg will be shown in editable form
+	    }
+    });
+})
+</script>
 <div class='container'>
 <div class='col-lg-10 col-md-9 col-sm-8 col-xs-7 col-lg-offset-1 col-md-offset-1 col-sm-offset-2 col-xs-offset-3'>
 <div class='table-responsive' style='overflow-x:hidden;'>
-	<h2> {{$asset->type->name}} ({{$asset->barcode}}) in <a href='/assets/{{$asset->container->id}}'>{{$asset->container->barcode}}</a></h2>
+	<h2> {{$asset->type->name}} ({{$asset->barcode}}) in <a href="#" name='container_id' id="container_id" data-type="select" data-pk="1" data-title="Choose Container" class="editable editable-click container_id" data-emptytext="None" data-url="assets/edit/{{$asset->id}}" style="display: inline;">{{$asset->container->barcode}}</a></h2>
 	<table class='table table-hover table-striped table-responsive'>
 		<thead>
 			<tr>

@@ -49,6 +49,14 @@ class IssuesController extends Controller
     public function showIssues($asset_id){
         $issues = Issue::where('asset_id',$asset_id)->get();
         $asset = Asset::findOrFail($asset_id);
-        return view('issues.asset_issues',['issues'=>$issues,'asset'=>$asset,'id'=>$asset_id]);
+        $containers = Asset::where('is_container',1)->get();
+        $rooms = array();
+        foreach($containers as $room){
+            if(strstr($room->type->name, 'Room') != false){
+                array_push($rooms,$room);
+            }
+        }
+        return view('issues.assetIssues',['issues'=>$issues,'asset'=>$asset,'id'=>$asset_id,'rooms'=>$rooms]);
     }
 }
+

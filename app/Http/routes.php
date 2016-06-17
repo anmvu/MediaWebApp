@@ -51,7 +51,7 @@ Route::group(['middleware' => 'web'], function () {
 		Route::post('/return',"LoansController@return");
 
 		Route::get('/issues',"IssuesController@listIssues");
-		Route::get('/issues/{asset_id}',"IssuesController@showIssues");
+		Route::get('/assets/{asset_id}/issues',"IssuesController@showIssues");
 
 		Route::post('/roomcheck/',"AssetsController@clearRoom");
 

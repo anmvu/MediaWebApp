@@ -16,7 +16,15 @@ class AttributeAssetController extends Controller
         $linked_attributes = AttAss::where('asset_id',$id)->get();
         $attributes = Attribute::notLinked($linked_attributes);
         $attribute_ids = Attribute::lists('id');
-        return view('assets.attributes',['linked'=>$linked_attributes,'attributes'=>$attributes,'id'=>$id]);
+        $asset = Asset::findOrFail($id);
+        $containers = Asset::where('is_container',1)->get();
+        $rooms = array();
+        foreach($containers as $room){
+            if(strstr($room->type->name, 'Room') != false){
+                array_push($rooms,$room);
+            }
+        }
+        return view('assets.attributes',['linked'=>$linked_attributes,'attributes'=>$attributes,'id'=>$id,'asset'=>$asset,"rooms"=>$rooms]);
     }
 
     public function linkAttributes(Request $request, $id){

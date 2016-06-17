@@ -26,8 +26,7 @@ class SessionTimeout {
             $this->session->put('lastActivityTime',time());
         elseif(time() - $this->session->get('lastActivityTime') > $this->getTimeOut()){
             $this->session->forget('lastActivityTime');
-            Auth::logout();
-            return redirect('/');
+            return redirect('/logout');
         }
         $this->session->put('lastActivityTime',time());
         return $next($request);

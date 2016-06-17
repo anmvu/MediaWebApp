@@ -51,7 +51,9 @@ class AssetsController extends Controller
         $asset->is_container = $request->is_container;
         $asset->loanable = $request->loanable;
         $asset->save();
-        return redirect('assets/add');
+
+        $link = 'assets/'.$asset->id;
+        return redirect($link);
     }
 
     public function showRooms(){

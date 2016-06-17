@@ -1,5 +1,5 @@
 @extends('layouts.app') 
-@include('assets.single_asset')
+@include('assets.singleAsset')
 @section('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -34,6 +34,30 @@ $(document).ready(function() {
         }
     });
 
+    $('.container_id').editable({
+        validate: function(value) {
+            if($.trim(value) == '')
+                return 'Value is required.';
+        },
+        placement: 'top',
+        send:'always',
+        ajaxOptions: {
+            dataType: 'json',
+            type: 'post'
+        },
+        source: [
+            {value: 0, text: "None"},
+        @foreach($rooms as $room)
+        @if($room->is_container)
+            {value: {{$room->id}}, text:"{{$room->barcode}}"},
+        @endif
+        @endforeach
+        ],
+        success: function(response) {
+            console.log(response);
+        if(response.status == 'error') return response.msg; //msg will be shown in editable form
+        }
+    });
 
 });
 
@@ -101,6 +125,7 @@ $(function(){
 });
 
 </script>
+<h2> {{$asset->type->name}} ({{$asset->barcode}}) in <a href="#" name='container_id' id="container_id" data-type="select" data-pk="1" data-title="Choose Container" class="editable editable-click container_id" data-emptytext="None" data-url="assets/edit/{{$asset->id}}" style="display: inline;">{{$asset->container->barcode}}</a></h2>
 <form class="form-horizontal"  id='add'role="form" method="POST" >
     <div class="form-group">
 
@@ -115,7 +140,6 @@ $(function(){
         </div>
     </div>
     <div class="form-group">
-
         <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Value (i.e. Barcos)</label>
         <!-- <br/> -->
         <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 dropdown">
