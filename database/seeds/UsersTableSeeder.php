@@ -18,7 +18,7 @@ class UsersTableSeeder extends Seeder
             'first_name'=>'Admin',
             'last_name' => 'User',
             'phone_num'=>6469973934,
-            'user'=>'anvuisawesome',
+            'user'=>'medi@3934',
             'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
@@ -33,19 +33,9 @@ class UsersTableSeeder extends Seeder
             'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
+
         DB::table('users')->insert([
             'id'=>3,
-            'is_authorized'=>False,
-            'is_registrar' => 0,
-            'first_name'=>'Johnny',
-            'last_name' => 'Test',
-            'phone_num'=>12347890,
-            'user'=>'N12345678',
-            'created_at'=>\Carbon\Carbon::now()->toDateTimeString(),
-            'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
-        ]);
-        DB::table('users')->insert([
-            'id'=>4,
             'is_authorized' => 0,
             'is_registrar' => 0,
             'active' => 1,
@@ -58,7 +48,7 @@ class UsersTableSeeder extends Seeder
             'updated_at'=>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
         DB::table('users')->insert([
-            'id'=>5,
+            'id'=>4,
             'is_authorized' =>1,
             'is_registrar' => 0,
             'active' => 1,
@@ -71,7 +61,7 @@ class UsersTableSeeder extends Seeder
             'updated_at' =>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
         DB::table('users')->insert([
-            'id'=>6,
+            'id'=>5,
             'is_authorized' =>1,
             'is_registrar' => 0,
             'active' => 1,
@@ -84,7 +74,7 @@ class UsersTableSeeder extends Seeder
             'updated_at' =>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
         DB::table('users')->insert([
-            'id'=>7,
+            'id'=>6,
             'is_authorized' =>0,
             'is_registrar' => 0,
             'active' => 1,
@@ -97,7 +87,7 @@ class UsersTableSeeder extends Seeder
             'updated_at' =>\Carbon\Carbon::now()->toDateTimeString(),
         ]);
         DB::table('users')->insert([
-            'id'=>8,
+            'id'=>7,
             'is_authorized' =>0,
             'is_registrar' => 0,
             'active' => 1,

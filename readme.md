@@ -133,7 +133,6 @@ Student users are users that work for the department and have work-study. Studen
 	- Loans
 
 
-
 ## <a name="thanks"></a>Special Thanks
 
 Special thanks to Aleksandr Rogozin and Randy Sofia for their assistance and teaching throughout the development process.
