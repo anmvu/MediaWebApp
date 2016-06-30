@@ -144,14 +144,9 @@ Special thanks to Aleksandr Rogozin and Randy Sofia for their assistance and tea
 	- Logging in two different ways
 	- Chat feature between online users
 	- Updating certain asset-attribute values in room check i.e. lamp hours
-	- Loanable equipment can be from storage and still be loaned out
 	- Calendar/task list for the day as the home page on login
-	- Search form for specific classrooms with specified equipment
-	- Registrar as it's own group of users
 	- Tasks for the day - pulling from Google Docs/Calendar
-	- Status Dashboard
 	- Barcode Oriented
-
 
 ##<a name="problem"></a> Contact
 
