@@ -36,6 +36,10 @@ class User extends Authenticatable
         return $this->is_authorized;
     }
 
+    public function scopeRegistrar(){
+        return $this->is_registrar;
+    }
+
     public function scopeActive(){
         return $this->active;
     }

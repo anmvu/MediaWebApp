@@ -10,7 +10,7 @@
 		overflow-x: hidden;
 	}
 </style>
-<script src="/js/add_user.js"></script>
+<!-- <script src="/js/add_user.js"></script> -->
 <script type='text/javascript'>
 
 $.fn.editable.defaults.mode = 'inline';
@@ -82,12 +82,12 @@ $(function () {
 </script>
 <div class='container'>
 	<div class='table-responsive'>
-		<div class="admin-bar">
+		<!-- <div class="admin-bar">
 			<button type="button" class="btn btn-success" onclick="addUser();">
 				<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
 				Add
 			</button>
-		</div>
+		</div> -->
 		<table class='table table-hover table-striped table-responsive'>
 			<thead>
 				<tr>

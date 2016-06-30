@@ -29,6 +29,18 @@ $(document).ready(function() {
             $('input.user-input').attr("title","Has to be a 14 digit number");
         }
     });
+    $("input[name='registrar']").on("change", function(){
+        if($(this).val()== '1'){
+            $('label.user-label').text("Registrar Identification");
+            $('input.user-input').attr("pattern","N\\d{8}");
+            $('input.user-input').attr("title","Needs to be N then the numbers after");
+        } 
+        else if($(this).val()=='0'){
+            $('label.user-label').text("Student(Barcode)");
+            $('input.user-input').attr("pattern","\\d{14}");
+            $('input.user-input').attr("title","Has to be a 14 digit number");
+        }
+    });
 });
 
 
@@ -71,6 +83,23 @@ $(document).ready(function() {
             <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 radio">
                 <label>
                     <input type="radio" name="authorized" id="optionsRadio2" value="0" checked>
+                    No
+                </label>
+            </div>
+        </div>
+        <div class="form-group">
+
+            <label class="col-lg-4 col-md-4 col-sm-4 col-xs-4 control-label">Is Registrar</label>
+            <!-- <br/> -->
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 radio">
+                <label>
+                    <input type="radio" name="registrar" id="optionsRadio1" value="1">
+                    Yes
+                </label>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1 radio">
+                <label>
+                    <input type="radio" name="registrar" id="optionsRadio2" value="0" checked>
                     No
                 </label>
             </div>

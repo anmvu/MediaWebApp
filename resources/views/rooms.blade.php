@@ -36,7 +36,6 @@ $(function() {
 	            }
 	            else if(data['rooms'].length == undefined) $('#'+data['rooms'][1]['container_id']).show();
 	            else{
-	            	$("#rooms tbody:last").after('<tbody ><tr id="sorry"><td>SORRY, NO ROOMS HAS ALL THESE AMENITIES</td></tr></tbody>');
 	            	$("#sorry").show();
 	            }
                 
@@ -51,9 +50,9 @@ $(function() {
     	$('input:checkbox.item').each(function () {
 		    $(this).attr('checked',false);
 		});
-
-		$("#sorry").hide();
+		
 		$("#rooms tr").show();
+		$("#sorry").hide();
     });
 });
 </script>
@@ -104,7 +103,7 @@ $(function() {
             </div>
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
             	<button type="submit" id='reset' name='commit' class="btn btn-primary btn-block" style='display:inline-block;'>
-                    <i class="glyphicon glyphicon-refresh"></i>Reset
+                    <i class="glyphicon glyphicon-refresh"></i>Clear Filters
                 </button>
             </div>
         </div>
@@ -114,13 +113,16 @@ $(function() {
 		<table  id='rooms' class='table table-hover table-striped table-responsive'>
 			<thead>
 				<tr>
-					<th style='text-align:center'>Room</th>
+					<th style='text-align:center'>
+						<h3>Rooms</h3>
+						<h5>Click rows to view amenities</h5>
+					</th>
 				</tr>
 			</thead>
 			@foreach($rooms as $room)
 			<tbody>
 				<tr id="{{$room->id}}" 
-				@if($room->has_problems)
+				@if($status[$room->id])
 					class="danger"
 				@else
 				class="success"
@@ -129,36 +131,46 @@ $(function() {
 				>
 
 					<td  data-toggle="collapse" data-target="#{{$room->id}}_item" style='vertical-align:middle;'>
-						@if(Auth::user()->is_registrar)
-						<p>{{$room->barcode}}</p>
-						@else
+						@if(!Auth::user()->is_registrar)
 						<p style='float:right;'> Last checked  
 							@if($room->time_checked == NULL)
-							never
+							never<span style='margin-right:110px;'></span>
 							@else
 							on 
 							{{date('D M j g:i A',strtotime($room->time_checked))}}
 							@endif</p>
+							@endif
 						<p>{{$room->barcode}}</p>
-						@endif
+						
 						@if(count($items[$room->id]) != 0)
 						<ul id="{{$room->id}}_item" class="collapse list-group" style="margin-left: auto; margin-right: auto; ">
 							@foreach(($items[$room->id]) as $item)
-							<a href='/assets/{{$item->id}}/issues' style=''><li class="list-group-item 
+							@if(Auth::user()->is_registrar)
+							<li class="list-group-item 
 							@if($item->has_problems)
 							list-group-item-danger
 							@else
 							list-group-item-success
 							@endif
-							" style='display:inline-block; text-align:center; border:none'>{{$item->barcode}}</li></a>
+							" style='display:inline-block; text-align:center; border:none'>{{$item->barcode}}</li>
+							@else
+							<a href='/assets/{{$item->id}}/issues' style=''>
+							<li class="list-group-item 
+							@if($item->has_problems)
+							list-group-item-danger
+							@else
+							list-group-item-success
+							@endif
+							" style='display:inline-block; text-align:center; border:none'>{{$item->type->name}}</li></a>
+							@endif
 							@endforeach
 						</ul>
 						@endif
 					</td>	
 				</tr>
-
 			</tbody>
 			@endforeach
+			<tbody><tr id="sorry" style='display:none;'><td>SORRY, NO ROOMS HAVE ALL OF THESE AMENITIES</td></tr></tbody>
 		</table>
 	</div>
 </div>

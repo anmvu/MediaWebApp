@@ -146,20 +146,24 @@ class AssetsController extends Controller
         // print_r($rooms);
         $rooms = array();
         $room_items = array();
+        $room_statuses = array();
         foreach($room_query as $room){
+            $status = false;
             $asset = Asset::findOrFail($room->id);
             $items = array();
             foreach($asset->items as $item){
                 $contained = Asset::findOrFail($item->id);
+                if($item->has_problems)
+                    $status = true;
                 array_push($items, $contained);
             }
             $id = $asset->id;
             $room_items[$id] = $items;
+            $room_statuses[$id] = $status;
             array_push($rooms,$asset);
             // print_r($asset->items);
         }
-        return view('rooms',['rooms'=>$rooms,'items'=>$room_items]);
-        return response()->json(['rooms'=>$rooms,'items'=>$room_items]);
+        return view('rooms',['rooms'=>$rooms,'items'=>$room_items,'status'=>$room_statuses]);
     }
 
     public function findRooms(Request $request){

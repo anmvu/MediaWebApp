@@ -3,6 +3,8 @@
 <meta name="csrf-token" id='token' value="{{ csrf_token() }}">
 
 <div id="roomcheck">
+  <h2>Room Check </h2>
+  <label>Choose a room</label>
   <select v-on:change="fetchEquipments(selected)" v-model = "selected">
       <option v-for="room in rooms" v-bind:value="room.id">
       		@{{room.barcode}}

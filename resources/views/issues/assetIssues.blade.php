@@ -55,7 +55,7 @@ $(document).ready(function() {
 			<tr id="{{$need->id}}" class="
 				@if($need->status == 'Needs Work')
 					danger
-				@elseif($need->status = 'In Progress')
+				@elseif($need->status == 'In Progress')
 					warning
 				@else
 					success
@@ -63,7 +63,7 @@ $(document).ready(function() {
 				"
 				>
 				<td style='vertical-align:middle;'>
-					<h5>{{$need->id}}</h5>
+					<h5><a href="/issues/{{$need->id}}">{{$need->id}}</a></h5>
 				</td>
 				<td style='vertical-align:middle;'>
 					<h5>{{$need->asset->type->name}}</h5>

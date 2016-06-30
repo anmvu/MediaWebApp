@@ -149,7 +149,7 @@
         </script>
     </head>
     <body class="preload">
-        @if(Auth::check())
+        @if(Auth::check() && !Auth::user()->is_registrar)
         <div id="wrapper">
 
             <!-- Sidebar -->
@@ -212,17 +212,22 @@
                          <!-- <div class='col-lg-3 col-md-3 col-sm-3 col-xs-3 vcenter'> -->
                              <!-- <div class="btn-group-justified"> -->
                             @if(Auth::check())
+                            @if(!Auth::user()->is_registrar)
                             <a style='display:inline-block; text-decoration: none; color:black; float:right; margin-left: 20px;'><h2 style='display:inline-block;'><span class="glyphicon glyphicon-menu-hamburger" aria-hidden="true" id="menu-toggle"></span></h2></a>
-                            <h2 style='display:inline-block; float:right;'><a  style='display:inline-block; text-decoration: none; color:black;' href="{{ url('/profile') }}"> Hi {{Auth::user()->first_name}}</a></h2>                
+                            <h2 style='display:inline-block; float:right;'><a  style='display:inline-block; text-decoration: none; color:black;' href="{{ url('/profile') }}"> Hi {{Auth::user()->first_name}}</a></h2>
+                            @else
+                            <a style='display:inline-block; float:right; margin-left:20px;text-decoration: none; color:black;'href='{{url("/logout")}}'><h2 >Logout</h2></a>
+                            <h2 style='display:inline-block; float:right;'> Hi {{Auth::user()->first_name}}</h2> 
+                            @endif                    
                             @else
                             <h2 style='display:inline-block; float:right;'><a  style='display:inline-block; text-decoration: none; color:black;' href="{{ url('/login') }}"> Login </a></h2>
                             @endif
-                                <!-- <a class = "btn btn-default" role = "button" href="{{url('/home')}}">Home</a>
+                                <!-- <a class = "btn btn-default" role = "button" href="{{url('/home')}}">Home</a> -->
                                 
-                                <a class = "btn btn-default" role = "button"  href="{{ url('/logout') }}">Logout</a>
+                                <!-- <a class = "btn btn-default" role = "button"  href="{{ url('/logout') }}">Logout</a> -->
                                 
-                                <a class="btn btn-default" id='login' href="{{url('/login')}}">Login</a>
-                                 -->
+                                <!-- <a class="btn btn-default" id='login' href="{{url('/login')}}">Login</a> -->
+                                
                             <!-- </div>  -->
                             
                         </div>

@@ -3,7 +3,7 @@
 <div class='btn-toolbar' role='toolbar' aria-label='user-stuff'>
     <div class="btn-group-justified" role="group" aria-label="user-stuff">
         <a href="{{url('/users')}}" class="btn btn-default">View Users</a> 
-    	<!-- <a href="{{url('/users/add')}}" class="btn btn-default">Add User</a> -->
+    	<a href="{{url('/users/add')}}" class="btn btn-default">Add User</a>
     	<a href="{{url('/users/reactivate')}}" class="btn btn-default">Reactivate User</a>
     </div>
 </div>

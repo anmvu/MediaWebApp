@@ -44,7 +44,19 @@ class IssuesController extends Controller
             $comment->is_problem = true;
             $comment->save();
         }
+        if(!$comment->save() || !$issue->save())
         return redirect('/roomcheck');
+    }
+
+    public function addComment(Request $request, $id){
+        $issue = Issue::findOrFail($id);
+        $comment = new Comment;
+        $comment->issue_id = $id;
+        $comment->comment = $request->comment;
+        $comment->is_problem = $request->problem;
+        $comment->save();
+        $created_on = date('D M j g:i:s',strtotime($comment->created_at));
+        return response()->json(['id'=>$comment->id,'created_on'=>$created_on]);
     }
 
     public function showIssues($asset_id){
@@ -58,6 +70,30 @@ class IssuesController extends Controller
             }
         }
         return view('issues.assetIssues',['issues'=>$issues,'asset'=>$asset,'id'=>$asset_id,'rooms'=>$rooms]);
+    }
+
+    public function seeIssue($id){
+        $issue = Issue::findOrFail($id);
+        $comments = Comment::where('issue_id',$id)->get();
+        return view('issues.singleIssue',['issue'=>$issue,'comments'=>$comments]);
+    }
+
+    public function editIssue(Request $request, $id) {
+        $issue = Issue::findOrFail($id);
+        $name = $request->get('name');
+        $value = $request->get('value');
+        $issue->$name = $value;
+        $status = $issue->save();
+        if ($value == 'Solved'){
+            $asset = $issue->asset;
+            $issues = $asset->issues;
+            foreach($issues as $issue){
+                if($issue->status != 'Solved')
+                    return response()->json(['return' => $status,'status' => $value]);
+            }
+            $asset->has_problems = 0;
+        }
+        return response()->json(['return' => $status,'status' => $value]);
     }
 }
 

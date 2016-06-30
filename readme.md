@@ -156,4 +156,4 @@ Special thanks to Aleksandr Rogozin and Randy Sofia for their assistance and tea
 ##<a name="problem"></a> Contact
 
 If there is any problems, feel free to contact me at
-anvu94@gmail.com or through my mobile number. Or contact Erich Chu.
+anvu94@gmail.com or through my mobile number. 

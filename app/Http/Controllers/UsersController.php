@@ -32,15 +32,16 @@ class UsersController extends Controller
             'fname' => 'required',
             'lname' => 'required',
             'phonenum' => 'required',
-            'auth' => 'required',
-            'uname' => 'required',
+            'authorized' => 'required',
+            'user' => 'required',
+            'registrar' => 'required',
         ]);
         $correct_username = true;
         if($request->auth == 1){
-            $check_uname = preg_match('/N\d{8}/',$request->uname);
+            $check_uname = preg_match('/N\d{8}/',$request->user);
         }
         else{
-            $check_uname = preg_match('/\d{14}/',$request->uname);
+            $check_uname = preg_match('/\d{14}/',$request->user);
         }
         if($check_uname == 0 || $check_uname == FALSE) $correct_username = false;
         if (preg_match('/^\d{10}$/', $request->phonenum)) {
@@ -49,10 +50,9 @@ class UsersController extends Controller
         else {
             $correct_phonenum = false;
         }
-        if (!$correct_username || !$correct_phonenum) return response()->json(['status'=> 'error']);
 
         if ($validator->fails()) {
-            return redirect('/users')
+            return redirect('/users/add')
                 ->withInput()
                 ->withErrors($validator);
         }
@@ -61,11 +61,13 @@ class UsersController extends Controller
         $user->first_name = $request->fname;
         $user->last_name = $request->lname;
         $user->phone_num = $request->phonenum;
-        $user->is_authorized = $request->auth;
-        $user->user = $request->uname;
+        $user->is_authorized = $request->authorized;
+        $user->is_registrar = $request->registrar;
+        $user->user = $request->user;
         $user->save();
 
-        return response()->json(['return' => $user->save(), 'id' => $user->id]);
+        // return response()->json(['return' => $user->save(), 'id' => $user->id]);
+        return redirect('/users');
     }
 
     public function removeSelectedUser(Request $request){
