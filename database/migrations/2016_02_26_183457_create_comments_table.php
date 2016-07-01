@@ -17,6 +17,7 @@ class CreateCommentsTable extends Migration
             $table->integer('issue_id')->references('id')->on('issues');
             $table->longText('comment');
             $table->boolean('is_problem');
+            $table->integer('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
