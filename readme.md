@@ -7,7 +7,7 @@
 - [Future Features](#future)
 - [Contact](#problems)
 
-#<a name="intro"></a>Introduction
+# <a name="intro"></a>Introduction
 
 Media-link to be made
 
@@ -29,15 +29,15 @@ Logging System utilizes the Laravel Framework along with Eloquent ORM and the Da
 - [Room Check](#roomcheck)
 - [Users](#users)
 
-###<a name="types"></a>Types
+### <a name="types"></a>Types
 
 Type is pretty self explanatory - used to describe each component in a room. If you're describing a projector, the type is projector. The list of types would be made into a list and can be modified for removal or addition. Any modifications in the type list can only be made by an authorized user.
 
-###<a name="assets"></a>Assets
+### <a name="assets"></a>Assets
 
 Assets is each individual object itself. In a classroom, you have a set of equipments. Each equipment is an asset and is linked to a specific type (i.e. projector or blu-ray player). Assets are also linked to several attributes which will be described later below. Assets even include the room itself or even a cart. Anything that can hold another asset must be considered a container and if an asset is in another asset, the container must be stated. Assets can only be modified by an authorized user.
 
-###<a name="attributes"></a>Attributes
+### <a name="attributes"></a>Attributes
 
 An attribute would be attributes of an asset. Many attributes can be connected to many assets but an asset cannot have two of the same attributes. There are several projectors but they are not all the same brands. Therefore, an attribute would be the brand. When you link an attribute to an asset, a value must be set. Attributes can only be modified, or linked, by an authorized user.
 
@@ -48,18 +48,18 @@ For example: I have a Ben-Q projector. The projector is already an asset in the 
 All assets must have an **issue count** as an attribute
 
 
-###<a name="issues"></a>Issues
+### <a name="issues"></a>Issues
 
 When some asset does not work or function properly, an issue can be created for that asset. The issue would have to be created by a user and the issue would be created in a form. The form will only ask for an asset id and priority. The issues will have status which indicates whether or not the issue has not started, is in the process of, or completed. Each issue can be connected to multiple comments.
 
 
 Issues will be listed on one page and there is an option to change the status of the issue. If the status is listed as completed, a comment needs to be submitted as to how it was fixed.
 
-###<a name="comments"></a>Comments
+### <a name="comments"></a>Comments
 
 Comments can be connected to one issue. The comments can either be in regards to the issue itself or to the solution to the issue. The indication needs to noted for the comment before linking it to the issue id.
 
-###<a name="loans"></a>Loans
+### <a name="loans"></a>Loans
 
 Loans are any portable equipment that are mainly used for temporary use. The purpose of this function is to understand the borrowing frequency of certain assets. Anyone can loan assets.
 
@@ -88,7 +88,7 @@ If it is just a room with problems:
 	- due = 1-2 weeks from the day of loans
 
 
-###<a name="roomcheck"></a>Room Check
+### <a name="roomcheck"></a>Room Check
 
 Room checks are crucial during room availabilities. It allows Media Support to check on the equipments(assets) in the room and make sure everything is readily working for any classes that will/may occur and to document any issues that users might not have submitted. Anyone can do room checks.
 
@@ -109,7 +109,7 @@ Room Checks will be done as follows:
 
 The Room Check function is also used to mark any issues found in the room. If a professor calls about a problem, the room check must be used to indicate that there was an issue.  
 
-###<a name="users"></a>Users
+### <a name="users"></a>Users
 
 There are two types of users:
 
@@ -147,7 +147,6 @@ Special thanks to Aleksandr Rogozin and Randy Sofia for their assistance and tea
 	- Tasks for the day - pulling from Google Docs/Calendar
 	- Barcode Oriented
 
-##<a name="problem"></a> Contact
+## <a name="problem"></a> Contact
 
-If there is any problems, feel free to contact me at
-anvu94@gmail.com or through my mobile number. 
+If there is any problems, feel free to contact me.
